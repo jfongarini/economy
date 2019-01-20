@@ -1,41 +1,67 @@
-const { app, BrowserWindow } = require("electron");
-const path = require("path");
-const url = require("url");
+const { app, BrowserWindow, ipcMain } = require('electron')
+const path = require('path')
+const url = require('url')
 
-let win;
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
+let win
+let knex = require("knex")({
+  client: "sqlite3",
+  connection: {
+    filename: path.join(__dirname, './db/', 'database.sqlite')    
+  }  
+});
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600 });
+  // Create the browser window.
+  mainWindow = new BrowserWindow({ width: 800, height: 600, show: false })
 
-  // load the dist folder from Angular
-  win.loadURL(
-    url.format({
-      pathname: path.join(__dirname, `./dist/index.html`),
-      protocol: "file:",
-      slashes: true
+  // and load the index.html of the app.
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, './dist/index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+  mainWindow.once("ready-to-show", () => { mainWindow.show() })
+
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools()
+
+  ipcMain.on("mainWindowLoaded", function () {
+    let result = knex.select("FirstName").from("Users")
+    result.then(function (rows) {
+      mainWindow.webContents.send("resultSent", rows);
     })
-  );
-
-  // The following is optional and will open the DevTools:
-  // win.webContents.openDevTools()
-
-  win.on("closed", () => {
-    win = null;
   });
+
+  // Emitted when the window is closed.
+  mainWindow.on('closed', () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    win = null
+  })
 }
 
-app.on("ready", createWindow);
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', createWindow)
 
-// on macOS, closing the window doesn't quit the app
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
+// Quit when all windows are closed.
+app.on('window-all-closed', () => {
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
-});
+})
 
-// initialize the app's main window
-app.on("activate", () => {
-  if (win === null) {
-    createWindow();
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (mainWindow === null) {
+    createWindow()
   }
-});
+})
