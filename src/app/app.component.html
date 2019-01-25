@@ -1,3 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-main></app-main>
-
+<ul id=menu class=menu>
+    <li><a routerLink="home" routerLinkActive="active"><span class="link-label"> RESUMEN</span></a></li>
+    <li><a routerLink="diario" routerLinkActive="active"><span class="link-label"> DIARIO</span></a></li>  
+    <li><a routerLink="diario" routerLinkActive="active"><span class="link-label"> INVERSIONES</span></a></li> 
+    <li ng-class="activeGrafico ? 'active' : 'inactive'"><a routerLink="/"><span class="link-label"> GRAFICO</span></a></li>
+    <li ng-class="activeConfiguracion ? 'active' : 'inactive'"><a routerLink="/"><span class="link-label"> CONFIGURACION</span></a></li>
+</ul>
+<router-outlet></router-outlet>

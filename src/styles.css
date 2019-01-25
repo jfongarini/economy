@@ -1,1 +1,654 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color:  #F3F4F6;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px
+}
+
+.login-body{
+    background-color: #292961;
+}
+
+.login-form {
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.login-form input{
+    font-family: 'Roboto', sans-serif;
+    outline: none !important;
+    background-color: white;
+    border: 0px;
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+.login-form label{
+    font-weight: 800;
+    color: white;
+    font-size: 15px;
+    display: inline-block;  
+    clear: left;
+    width: 23px
+}
+
+.login-logo{
+    margin-left: 75px;
+    margin-bottom: 25px;
+}
+
+.ingresar {
+    cursor: pointer;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    font-size: 13px;
+    padding: 9px;
+    width: 100px;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
+}
+
+.logo{
+    margin:20px;
+}
+.content {
+    margin-left: 250px
+}
+
+.banner-title{
+    text-align: right;
+    margin-top: 12px;
+    margin-right: 5px;
+}
+
+.banner-label{
+    text-align: right;
+    margin-top: 12px;
+    margin-right: 5px;
+}
+
+.banner-label-right{
+    float: right;
+    text-align: right;
+    margin-right: 30px;
+}
+
+ .confirm-message{
+   width: 100%
+}
+
+
+.input-banner {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    border: 0;
+    background-color: transparent
+}
+
+.input-banner:focus {
+    outline: none !important;
+
+}
+
+.input-banner, .input-banner:focus { 
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px
+}
+
+.action{
+    display: none
+}
+
+.action-td{
+    background-color:  #F3F4F6
+}
+
+
+.card, .banner-busqueda{
+    margin-top: 30px;
+    background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+
+.separator {
+    border-left: 1px solid #c2c1c1;
+    width: 1px;
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+
+.banner{
+    width: 95%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: -5px;
+    user-select: none;
+    font-size: 13px;
+}
+
+.banner-busqueda{
+	height: 45px;    
+    margin-bottom: 20px;   
+    margin-top: 12px; 
+    width: 95%;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.banner-label-busqueda{    
+    text-align: right;
+    margin-top: 12px;
+    margin-right: 5px;
+    margin-left: 20px;   
+}
+
+
+table,  .banner-busqueda{
+    width: 95%
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.main-table{
+    text-align: left;
+    background-color: white;
+    font-size: 13px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12)
+}
+
+
+table>tbody>tr:nth-child(odd) {
+    background-color: #F7F7F7
+}
+
+table tr{
+    height: 30px
+}
+
+tr:hover td {
+    background-color: #292961;
+    color: white;
+    cursor: pointer
+}
+
+tr:hover a {
+    color: white;
+    cursor: pointer
+}
+
+td,th{
+    padding-left: 8px
+}
+
+th {
+    font-weight: 400;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    top: 0;
+    margin-right: 300px;
+    background-color:  #292961;
+    padding: 0;
+    width: 200px;
+    height: 100%;
+    position: fixed; 
+    overflow: auto;
+    box-shadow: 0 4px 4px #333
+}
+
+li a {
+    display: block;
+    color: #d1d1f0;
+    padding: 8px 16px;
+    text-decoration: none
+}
+
+li a:hover {
+    background-color: #6666c4;
+    color: #FFFFFF;
+    cursor: pointer
+}
+
+.td-link{
+    height:100%;
+    width:100%
+}
+
+.trabajos-list{
+    width: 350px
+}
+
+.trabajos-list input{
+   border-width: 0px;
+   max-width: 45px;
+   background-color: transparent
+}
+
+.trabajos-list tr:hover td input {
+    color: white
+}
+
+.trabajos-list th{
+    text-align: left
+}
+
+.trabajos-list tr:nth-child(odd) {
+    background-color: #FFF
+}
+
+.active a{
+    margin-left: -3px;
+    font-weight: 600;
+    color:white
+}
+
+.table-remove{
+    width: 5px
+}
+
+.active {
+    border-left-width: 3px;
+    border-left-style: solid;
+    border-left-color:  #6666c4
+}
+
+.material-icons{
+    margin-right: 8px;
+    font-size: 18px;
+    vertical-align: sub
+}
+
+.modal {
+    display: none
+}
+
+.modalConf {
+    display: none
+}
+
+.modal-on-top, .modal-on, .modalConf-on{
+    display: block;
+    position: fixed;
+    padding-top: 40px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4)
+}
+
+.message {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-left: 200px;
+}
+
+.message-content {
+    padding: 50px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}
+
+.modal-double, .modal-content{
+    position: relative;
+    margin: auto;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.modal-content {
+    width: 360px;
+}
+
+#cv {
+    width: 600px;
+}
+
+.modal-double{
+    width: 700px;
+}
+
+.form-message{
+    margin-top: 5px;
+    font-size: 13px;
+    color: red;
+
+}
+
+.form-message-ok{
+    margin-top: 5px;
+    font-size: 13px;
+    color: green;
+
+}
+    
+.form-field{
+    font-size: 13px;
+    margin-bottom: 17px
+}
+
+.blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px)
+}
+
+.modal-content .form-field label, .modal-double .form-field label{
+    display: inline-block;  
+    clear: left;
+    width: 95px
+}
+
+.modal-content form input, .modal-double form input {
+    font-family: 'Roboto', sans-serif;
+    display: inline-block
+}
+
+.modal-content form input:focus, form select:focus , .modal-double form input:focus, form select:focus {
+    outline: none !important;
+    border-bottom: 2px solid #292961
+}
+
+.modal-content form input, .modal-double form input { 
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px
+}
+
+.modal-content form .buttons, .modal-double form .buttons{
+    width: 100%;
+    align-content: center;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 10px
+}
+
+.modal-content form .button, .modal-double form .button{
+    cursor: pointer;
+    font-weight: 800;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 90px;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
+}
+
+.modal-content form select, .modal-double form select{    
+    background: transparent;
+    border-bottom-color: #EEE;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px
+}
+
+.link,.ver-mas {
+    color: #292961;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.ver-mas {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.ver-mas label{
+    cursor: pointer;
+}
+
+.button-link{
+    text-decoration: none;
+}
+
+.banner-button a, .banner-button a:visited, .banner-button a:hover, .banner-button a:active {
+  color: inherit;
+      font-size: 13px;
+}
+
+.banner-button select{
+    cursor: pointer;
+}
+
+.peluquero-fields{
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+.card input {
+    font-family: 'Roboto', sans-serif;
+    display: inline-block
+}
+
+.card input:focus {
+    outline: none !important;
+    border-bottom: 2px solid #292961
+}
+
+.card input, input:focus { 
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px
+}
+
+.search-categoria {
+    float: left;
+    width: 80px;
+    margin-top: 12px;
+    margin-left: 5px;   
+    background: transparent;
+    border-bottom-color: #EEE;
+    border-bottom-width: 2px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px
+
+}
+
+.time-input{
+    width: 80px;
+}
+
+.resume{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-color: #EFEFEF
+}
+
+.accept{
+    background-color: #292961;
+    color: white
+}
+
+.cancel{
+    background-color: white;
+    color: black
+}
+
+.add, .remove{
+    cursor: pointer
+}
+
+.card-title{
+    margin-bottom: 20px
+}
+
+.ciudades, .peluqueros, .categorias{
+    width: 250px;
+    padding: 20px
+}
+
+.servicios{
+    width: 450px;
+    padding: 20px
+}
+
+.card label{
+    width: auto;
+}
+
+.card input {
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.card.servicios button{
+    display: none;
+}
+
+.card table>tbody>tr:nth-child(odd) {
+    background-color: white;
+}
+
+.delete{
+    text-align: right;
+}
+
+.card  tr:hover td {
+    background-color: white;
+    color:black;
+    cursor: pointer
+}
+
+.main-card{
+    max-width: 600px;
+
+}
+
+.main-card table{
+    width: 100%
+}
+
+.custom-button {
+    background-color: #292961; 
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6)
+}
+
+.banner-button  {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+}
+
+.banner-button:hover  {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
+}
+
+
+
+.trabajo-precio{
+    text-align: center;
+}
+
+.red {
+    color: red; 
+}
+.red-background {
+    background-color: rgba(255, 99, 132, .3);
+}
+
+.green {
+    color: green;
+}
+
+div .bb {    
+    align-content: center;
+    display: flex;    
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    margin-left: 20px;
+    margin-right: auto;
+    padding: 10px;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    background-color: #292961;
+    color: white;
+    bottom: 8px;
+    margin-top: 20px;
+
+}
+
+.tachoi {
+    visibility: hidden;
+}
+
+.tachotd {    
+    width: 5px;   
+}
+
+tr:hover i{
+    visibility: visible;
+}
+
+.cuotas{
+    
+    width: 32px;   
+    /*border-right-width: 1px;   
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-color: #000; */
+}
+
+
+.cuotas-oculto{
+    display: block;
+} 
+
+.material-icons.rojo { color: rgba(249, 0, 0, .7); }
+.material-icons.verde { color: rgba(0, 249, 0, .5); }
+
+
+@media (max-width: 700px){
+    body, .form-field{font-size: 12px}
+    table, .banner {width: 98%;}
+    .menu{width: 60px}
+    .logo{display: none}
+    .link-label{display: none}
+    .content, .message{margin-left: 80px}
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
