@@ -1,0 +1,38 @@
+<div style="text-align:center">
+  <h1>
+    List of users
+  </h1>
+  <ul *ngIf="list">
+    <li *ngFor="let name of list">{{name}}</li>
+  </ul>
+
+  <table ng-cloak id=table class=main-table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-cloak class="data-row fade-in" ng-repeat="caja in list ">
+        <td data-id={{caja}}>{{caja}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+main.component.ts
+
+ngOnInit() {
+let me = this;
+me.ipc.send("mainWindowLoaded")
+me.ipc.on("resultSent", function (evt, result) {
+me.list = [];
+for (var i = 0; i < result.length; i++) {
+        me.list.push(result[i].FirstName.toString());
+      }
+      me.ref.detectChanges()
+    });
+  }

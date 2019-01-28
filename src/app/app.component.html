@@ -1,9 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<ul id=menu class=menu>
+<div class="main-main-app">
+  <div class="main-app">
+    Enero
+  </div>
+  <div class="main-app">
+    2019
+  </div>
+  <div class="usuario">
+    Thelma
+  </div>
+</div>
+<div>
+  <ul id=menu class=menu>
     <li><a routerLink="home" routerLinkActive="active"><span class="link-label"> RESUMEN</span></a></li>
-    <li><a routerLink="diario" routerLinkActive="active"><span class="link-label"> DIARIO</span></a></li>  
-    <li><a routerLink="diario" routerLinkActive="active"><span class="link-label"> INVERSIONES</span></a></li> 
-    <li ng-class="activeGrafico ? 'active' : 'inactive'"><a routerLink="/"><span class="link-label"> GRAFICO</span></a></li>
-    <li ng-class="activeConfiguracion ? 'active' : 'inactive'"><a routerLink="/"><span class="link-label"> CONFIGURACION</span></a></li>
-</ul>
+    <li><a routerLink="diario" routerLinkActive="active"><span class="link-label"> DIARIO</span></a></li>
+    <li><a routerLink="tarjetas" routerLinkActive="active"><span class="link-label"> TARJETAS</span></a></li>
+    <li><a routerLink="inversiones" routerLinkActive="active"><span class="link-label"> INVERSIONES</span></a></li>
+    <li><a routerLink="diario-inversiones" routerLinkActive="active"><span class="link-label"> DIARIO INV</span></a></li>
+    <li><a routerLink="grafico" routerLinkActive="active"><span class="link-label"> GRAFICO</span></a></li>
+    <li><a routerLink="configuracion" routerLinkActive="active"><span class="link-label"> CONFIGURACION</span></a></li>
+  </ul>
+</div>
 <router-outlet></router-outlet>

@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    background-color:  #F3F4F6;
-    margin-left: 0px;
-    margin-top: 0px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px
+body {
+  background-color: #4abdac;
+  margin-left: 0px;
+  margin-top: 0px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px
 }
 
 .login-body{
@@ -166,6 +166,7 @@ table {
 }
 
 .main-table{
+    margin-top:10px;
     text-align: left;
     background-color: white;
     font-size: 13px;
@@ -201,31 +202,30 @@ th {
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    top: 0;
-    margin-right: 300px;
-    background-color:  #292961;
-    padding: 0;
-    width: 200px;
-    height: 100%;
-    position: fixed; 
-    overflow: auto;
-    box-shadow: 0 4px 4px #333
+  list-style-type: none;
+  margin: 0;
+  /*top: 0;*/
+  background-color: #0d4239;
+  padding: 0;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+  box-shadow: 0 4px 4px #1f5a50
 }
 
 li a {
-    display: block;
-    color: #d1d1f0;
-    padding: 8px 16px;
-    text-decoration: none
+  display: block;
+  color: #7ca99e;
+  padding: 8px 16px;
+  text-decoration: none
 }
 
-li a:hover {
-    background-color: #6666c4;
+  li a:hover {
+    background-color: #57575d;
     color: #FFFFFF;
     cursor: pointer
-}
+  }
 
 .td-link{
     height:100%;
@@ -265,9 +265,9 @@ li a:hover {
 }
 
 .active {
-    border-left-width: 3px;
-    border-left-style: solid;
-    border-left-color:  #6666c4
+  border-left-width: 3px;
+  border-left-style: solid;
+  border-left-color: #397332
 }
 
 .material-icons{
@@ -649,6 +649,62 @@ tr:hover i{
     .content, .message{margin-left: 80px}
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+
+.titulos {
+  padding-top: 6px;
+  padding-bottom: 2px;
+  margin-left: 250px;
+  color: #653c30;
+  font-weight: bold;
+  list-style-type: none;
+  top: 0;
+  background-color: #e27d60;
+  overflow: auto;
+  box-shadow: 0 4px 4px #e27d60;
+  border-left-width: 3px;
+  padding-left: 50px;
+  margin-top: 5px;
+}
+
+.main-app {
+  /* padding-top: 6px; */
+  /* padding-bottom: 2px; */
+  display: initial;
+  /* margin-left: 250px; */
+  /* color: #653c30; */
+  /* font-weight: bold; */
+  /* list-style-type: none; */
+  /* top: 0; */
+  /* background-color: #e27d60; */
+  /* overflow: auto; */
+  /* box-shadow: 0 4px 4px #e27d60; */
+  /* border-left-width: 3px; */
+  /* padding-left: 50px; */
+  /* margin-top: 5px; */
+}
+
+.main-main-app {
+  list-style-type: none;
+  margin: 0;
+  top: 0;
+  background-color: #0d4239;
+  padding: 0;
+  /* width: 200px; */
+  height: 100%;
+  position: initial;
+  overflow: auto;
+  box-shadow: 0 4px 4px #40776e;
+  display: block;
+  color: #7ca99e;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.totalColor {
+  background-color: #e8a87c;
+}
+
+.usuario {
+  display: initial;
+  margin-left: 90%;
 }
