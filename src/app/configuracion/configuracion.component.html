@@ -1,71 +1,21 @@
-<div class="titulos">
-  NOMBRE
-</div>
-<div class=fila-tarjetas-configuracion>
 
-  <div class="card servicios">
-    <form ng-submit="addServicio()">      
-      <input tipe="text" placeholder="Nombre" ng-model="ngServicio.descripcion" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>       
-      <button class="button accept" type="submit"></button>
-      <table id=table>
-        <tbody>
-          <tr ng-cloak id={{servicio.id}}  class="data-row fade-in"  ng-repeat="servicio in servicios" >
-            <td data-id={{servicio.id}} ng-click="loadServicio($event)">Thelma</td>          
-            <td class=delete ><i class="material-icons" data-id={{servicio.id}} ng-click="removeServicio($event)">Eliminar</i></td>
-          </tr>
-        </tbody>
-      </table>
-      <label  ng-cloak class=form-message>{{messageServicio}}</label>
-    </form>
-  </div>
-</div>
-<div class="titulos">
-  LISTA GRUPO INGRESO
-</div>
-<div class=fila-tarjetas-configuracion>
 
-  <div class="card servicios">
-    <form ng-submit="addServicio()">      
-      <input tipe="text" placeholder="Nombre" ng-model="ngServicio.descripcion" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>       
-      <button class="button accept" type="submit"></button>
-      <table id=table>
-        <tbody>
-          <tr ng-cloak id={{servicio.id}}  class="data-row fade-in"  ng-repeat="servicio in servicios" >
-            <td data-id={{servicio.id}} ng-click="loadServicio($event)">Sueldo</td>          
-            <td class=delete ><i class="material-icons" data-id={{servicio.id}} ng-click="removeServicio($event)">Eliminar</i></td>
-          </tr>
-          <tr ng-cloak id={{servicio.id}}  class="data-row fade-in"  ng-repeat="servicio in servicios" >
-            <td data-id={{servicio.id}} ng-click="loadServicio($event)">Banco</td>          
-            <td class=delete ><i class="material-icons" data-id={{servicio.id}} ng-click="removeServicio($event)">Eliminar</i></td>
-          </tr>
-        </tbody>
-      </table>
-      <label  ng-cloak class=form-message>{{messageServicio}}</label>
-    </form>
+<form style="margin-left: 250px;">
+  <div>
+    <label>enter</label>
+    <input type="text" id="item" autofocus>    
   </div>
+  <button type="submit">add item</button>
+  <button>add item2</button>
+  <button (click)="start()">Start</button>
+</form>
+<div class=foot>
+  <footer>
+    <label class="foot-button" ng-click="start2()">Nuevo</label>
+    <label class="foot-button" ng-click="alert()">Nuevo3</label>
+    <label class="foot-button" (click)="start()">Nuevo4</label>
+  </footer>
 </div>
-<div class="titulos">
-  LISTA GRUPO GASTO
-</div>
-<div class=fila-tarjetas-configuracion>
 
-  <div class="card servicios">
-    <form ng-submit="addServicio()">      
-      <input tipe="text" placeholder="Nombre" ng-model="ngServicio.descripcion" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>       
-      <button class="button accept" type="submit"></button>
-      <table id=table>
-        <tbody>
-          <tr ng-cloak id={{servicio.id}}  class="data-row fade-in"  ng-repeat="servicio in servicios" >
-            <td data-id={{servicio.id}} ng-click="loadServicio($event)">Alimentaci&oacute;n</td>          
-            <td class=delete ><i class="material-icons" data-id={{servicio.id}} ng-click="removeServicio($event)">Eliminar</i></td>
-          </tr>
-          <tr ng-cloak id={{servicio.id}}  class="data-row fade-in"  ng-repeat="servicio in servicios" >
-            <td data-id={{servicio.id}} ng-click="loadServicio($event)">Verduler&iacute;a</td>          
-            <td class=delete ><i class="material-icons" data-id={{servicio.id}} ng-click="removeServicio($event)">Eliminar</i></td>
-          </tr>
-        </tbody>
-      </table>
-      <label  ng-cloak class=form-message>{{messageServicio}}</label>
-    </form>
-  </div>
-</div>
+
+

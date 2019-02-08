@@ -641,14 +641,14 @@ tr:hover i{
 .material-icons.verde { color: rgba(0, 249, 0, .5); }
 
 
-@media (max-width: 700px){
+/*@media (max-width: 700px){
     body, .form-field{font-size: 12px}
     table, .banner {width: 98%;}
     .menu{width: 60px}
     .logo{display: none}
     .link-label{display: none}
     .content, .message{margin-left: 80px}
-}
+}*/
 
 
 .titulos {

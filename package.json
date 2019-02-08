@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "main.js",
   "scripts": {
-    "electron": "ng build --base-href ./ && electron .",
+    "electron": "ng build --base-href ./index.html && electron .",
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
@@ -12,8 +12,9 @@
     "e2e": "ng e2e",
     "postinstall": "electron-builder install-app-deps",
     "rebuild": "electron-rebuild -f -w sqlite3 -v 1.8.2",
-    "electron-tsc": "tsc main.ts && ng build --base-href ./ && electron .",
-    "package": "electron-packager . firstdesk"
+    "electron-tsc": "tsc main.ts && ng build --base-href ./index.html && electron .",
+    "package": "electron-packager . firstdesk",
+    "start2": "electron ."
   },
   "private": true,
   "dependencies": {

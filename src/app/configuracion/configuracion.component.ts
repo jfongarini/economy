@@ -12,4 +12,10 @@ export class ConfiguracionComponent implements OnInit {
   ngOnInit() {
   }
 
+  start() {
+    console.log(123);
+  }
+
+
+
 }
