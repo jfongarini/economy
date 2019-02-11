@@ -29,14 +29,7 @@ function createWindow() {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
-
- /* ipcMain.on("mainWindowLoaded", function () {
-    let result = knex.select("FirstName").from("Users")
-    result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
-    })
-  });*/
-
+  
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -44,6 +37,15 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
   })
+
+    ipcMain.on("mainWindowLoaded", function () {
+    console.log(2);
+    let result = knex.select("NOMBRE").from("Categoria")
+    result.then(function (rows) {
+      mainWindow.webContents.send("resultSent", rows);
+    })
+  });
+    
 }
 
 // This method will be called when Electron has finished
@@ -78,5 +80,6 @@ app.on('activate', () => {
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+
 
 })

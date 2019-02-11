@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+declare var electron: any;
 
 @Component({
   selector: 'app-configuracion',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfiguracionComponent implements OnInit {
 
-  constructor() { }
+	public ipc = electron.ipcRenderer;
+	public list: Array<string>;
+
+	constructor(private ref: ChangeDetectorRef) { }
+
 
   ngOnInit() {
+  	    let me = this;
+	    me.ipc.send("mainWindowLoaded")
+	    console.log(5);
+	    me.ipc.on("resultSent", function (evt, result) {
+	      me.list = [];
+	      for (var i = 0; i < result.length; i++) {
+	        me.list.push(result[i].NOMBRE.toString());
+	      }
+	      me.ref.detectChanges()
+	    });
   }
 
   start() {

@@ -4,17 +4,22 @@
   <div>
     <label>enter</label>
     <input type="text" id="item" autofocus>    
-  </div>
-  <button type="submit">add item</button>
-  <button>add item2</button>
-  <button (click)="start()">Start</button>
+  </div>  
 </form>
 <div class=foot>
   <footer>
-    <label class="foot-button" ng-click="start2()">Nuevo</label>
-    <label class="foot-button" ng-click="alert()">Nuevo3</label>
     <label class="foot-button" (click)="start()">Nuevo4</label>
+
   </footer>
+</div>
+
+<div style="text-align:center">
+  <h1>
+    List of users
+  </h1>
+  <ul *ngIf="list">
+    <li *ngFor="let name of list">{{name}}</li>
+  </ul>
 </div>
 
 
