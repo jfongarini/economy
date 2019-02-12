@@ -38,14 +38,15 @@ function createWindow() {
     win = null
   })
 
-    ipcMain.on("mainWindowLoaded", function () {
-    console.log(2);
+ /*   ipcMain.on("mainWindowLoaded", function () {
+    console.log("main.js");
     let result = knex.select("NOMBRE").from("Categoria")
     result.then(function (rows) {
       mainWindow.webContents.send("resultSent", rows);
     })
-  });
-    
+  });*/
+
+   
 }
 
 // This method will be called when Electron has finished
@@ -69,17 +70,27 @@ app.on('activate', () => {
     createWindow()
   }
 
-  process.on('uncaughtException', function (err) {
-  console.log(err);
-  })
-
-    app.on('uncaughtException', function (err) {
-  console.log(err);
-  })
-
-
-process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
-
-
 })
+
+function getNombresCategoria() {
+
+  ipcMain.on("mainWindowLoaded", function () {
+    let result = knex.select("NOMBRE").from("Categoria")
+    result.then(function (rows) {
+      mainWindow.webContents.send("resultSent", rows);
+    })
+  });
+
+}
+
+getNombresCategoria();
+
+
+
+
+ipcMain.on('insert', (event, arg) => {
+  knex('Categoria').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'G'})
+  .then( function (result) {
+  })
+});
+

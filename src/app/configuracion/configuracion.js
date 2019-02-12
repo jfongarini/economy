@@ -1,31 +1,10 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('path')
-const url = require('url')
-const { remote } = require('electron');
-const mainProcess = remote.require('../../dist/main.js');
+//var sqlite3 = require('sqlite3').verbose();
+//var db = new sqlite3.Database('../../../db/database1.sqlite3');
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
-let win
-let knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: path.join(__dirname, './db/', 'database1.sqlite3')    
-  }  
-});
+//let main = require('../../../main.js');
+//let knex = main.knex1;
 
-function getNombreCategoria2() {
-console.log(2);
-  ipcRenderer.send("mainWindowLoaded", function () {
-    let result = knex.select("NOMBRE").from("Categoria")
-    console.log(3);
-    console.log(this.result);
-    result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
-    })
-  });
-}
+var res = "hola"
+module.exports.hola = res;
 
-console.log(1);
-mainProcess.getNombreCategoria3();
-console.log(4);
+ 

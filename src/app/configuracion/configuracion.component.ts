@@ -1,5 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 declare var electron: any;
+declare var require: any;
+
+let conf = require('./configuracion');
 
 @Component({
   selector: 'app-configuracion',
@@ -13,24 +16,35 @@ export class ConfiguracionComponent implements OnInit {
 
 	constructor(private ref: ChangeDetectorRef) { }
 
-
-  ngOnInit() {
-  	    let me = this;
+	getNombreCategoria(){
+		let me = this;
 	    me.ipc.send("mainWindowLoaded")
-	    console.log(5);
 	    me.ipc.on("resultSent", function (evt, result) {
-	      me.list = [];
-	      for (var i = 0; i < result.length; i++) {
-	        me.list.push(result[i].NOMBRE.toString());
-	      }
-	      me.ref.detectChanges()
+			me.list = [];
+			for (var i = 0; i < result.length; i++) {
+				me.list.push(result[i].NOMBRE.toString());
+			}
+			me.ref.detectChanges()
 	    });
-  }
+	}
 
-  start() {
-    console.log(123);
-  }
+	ngOnInit() {
+		this.getNombreCategoria();
+	}
 
+	start() {
+		console.log(123);
+		console.log(conf.hola);
+		console.log(this.list);	
+	}
 
+ 
+	submitForm() {
+		var res2 = (<HTMLInputElement>document.getElementById('submit')).value;
+		console.log(res2);
+		let me = this;
+	    me.ipc.send("insert", res2);
+	    this.getNombreCategoria();
+	}
 
 }
