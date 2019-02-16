@@ -1,28 +1,47 @@
+<div class="titulos">
+  CATEGOR&Iacute;AS DE INGRESOS
+</div>
+<div id=content class="content fade-in">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card categorias">
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <label class="foot-button" (click)="insertCategoriaIngreso()">Nuevo</label>  
+        <table id=table>
+          <tbody>
+          <tr ng-cloak id={{categoriaI.ID}} class="data-row fade-in" *ngFor="let categoriaI of listI" >
+          <td>{{categoriaI.NOMBRE}}</td>
+          <td class="delete" ><i class="fa fa-times tachoi" data-id={{categoriaI.ID}} (click)="removeCategoria($event)"></i></td>
+          </tr>
+          </tbody>
+        </table>
+        <label  ng-cloak class=form-message></label>
+      </form>
 
-
-<form style="margin-left: 250px;" onsubmit="return false;">
-  <div>
-    <label>enter</label>
-    <input type="text" id="submit" autofocus>  
-    <label class="foot-button" (click)="submitForm()">Nuevo</label>   
-    <button type="button" class="foot-button" >nada</button>   
-  </div>  
-</form>
-<div class=foot>
-  <footer>
-    <label class="foot-button" (click)="start()">Nuevo4</label>
-
-  </footer>
+    </div>
+  </div>
 </div>
 
-<div style="text-align:center">
-  <h1>
-    List of users
-  </h1>
-  <ul *ngIf="list">
-    <li *ngFor="let name of list">{{name}}</li>
-  </ul>
+<div class="titulos">
+  CATEGOR&Iacute;AS DE GASTOS
 </div>
+<div id=content class="content fade-in">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card categorias">
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <label class="foot-button" (click)="insertCategoriaGasto()">Nuevo</label>  
+        <table id=table>
+          <tbody>
+          <tr ng-cloak id={{categoriaG.ID}} class="data-row fade-in" *ngFor="let categoriaG of listG" >
+          <td>{{categoriaG.NOMBRE}}</td>
+          <td class="delete" ><i class="fa fa-times tachoi" data-id={{categoriaG.ID}} (click)="removeCategoria($event)"></i></td>
+          </tr>
+          </tbody>
+        </table>
+        <label  ng-cloak class=form-message></label>
+      </form>
 
-
-
+    </div>
+  </div>
+</div>

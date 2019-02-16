@@ -12,29 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
+      <tr ng-cloak id={{diarioI.ID}} class="data-row fade-in" *ngFor="let diarioI of listI" >
+        <td>{{diarioI.FECHA}}</td>
+        <td>{{diarioI.MONTO}}</td>
+        <td>{{diarioI.ID_CATEGORIA}}</td>
+        <td>{{diarioI.DETALLE}}</td>
+        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioI.ID}} (click)="removeDiarioIngreso($event)"></i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>

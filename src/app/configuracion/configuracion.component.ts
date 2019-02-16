@@ -2,8 +2,6 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 declare var electron: any;
 declare var require: any;
 
-let conf = require('./configuracion');
-
 @Component({
   selector: 'app-configuracion',
   templateUrl: './configuracion.component.html',
@@ -12,39 +10,55 @@ let conf = require('./configuracion');
 export class ConfiguracionComponent implements OnInit {
 
 	public ipc = electron.ipcRenderer;
-	public list: Array<string>;
+	public listG: Array<string>;
+	public listI: Array<string>;
 
 	constructor(private ref: ChangeDetectorRef) { }
 
-	getNombreCategoria(){
+	getCategorias(){
 		let me = this;
-	    me.ipc.send("mainWindowLoaded")
+	    me.ipc.send("getCategorias")
 	    me.ipc.on("resultSent", function (evt, result) {
-			me.list = [];
+			me.listG = [];
+			me.listI = [];
 			for (var i = 0; i < result.length; i++) {
-				me.list.push(result[i].NOMBRE.toString());
+				if (result[i].GI == 'G') {
+					me.listG.push(result[i]);
+				} else {
+					me.listI.push(result[i]);
+				}				
 			}
 			me.ref.detectChanges()
 	    });
 	}
 
 	ngOnInit() {
-		this.getNombreCategoria();
+		this.getCategorias();
 	}
-
-	start() {
-		console.log(123);
-		console.log(conf.hola);
-		console.log(this.list);	
-	}
-
  
-	submitForm() {
-		var res2 = (<HTMLInputElement>document.getElementById('submit')).value;
-		console.log(res2);
+	public insertCategoriaGasto() {
+		event.preventDefault();
+		var res = (<HTMLInputElement>document.getElementById('submitG')).value;
+		(<HTMLInputElement>document.getElementById('submitG')).value = "";
 		let me = this;
-	    me.ipc.send("insert", res2);
-	    this.getNombreCategoria();
+	    me.ipc.send("insertCategoriaGasto", res);
+	    this.getCategorias();
+	}
+
+	public insertCategoriaIngreso() {
+		event.preventDefault();
+		var res = (<HTMLInputElement>document.getElementById('submitI')).value;
+		(<HTMLInputElement>document.getElementById('submitI')).value = "";
+		let me = this;
+	    me.ipc.send("insertCategoriaIngreso", res);
+	    this.getCategorias();
+	}
+
+	public removeCategoria(event) {
+		var id = event.target.id;
+		let me = this;
+	    me.ipc.send("deleteCategoria", id);
+	    this.getCategorias();
 	}
 
 }

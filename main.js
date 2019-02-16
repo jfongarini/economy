@@ -9,7 +9,9 @@ let knex = require("knex")({
   client: "sqlite3",
   connection: {
     filename: path.join(__dirname, './db/', 'database1.sqlite3')    
-  }  
+  } ,
+  "useNullAsDefault": true,
+  "debug": false
 });
 
 function createWindow() {
@@ -37,15 +39,6 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
   })
-
- /*   ipcMain.on("mainWindowLoaded", function () {
-    console.log("main.js");
-    let result = knex.select("NOMBRE").from("Categoria")
-    result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
-    })
-  });*/
-
    
 }
 
@@ -72,10 +65,48 @@ app.on('activate', () => {
 
 })
 
-function getNombresCategoria() {
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
 
-  ipcMain.on("mainWindowLoaded", function () {
-    let result = knex.select("NOMBRE").from("Categoria")
+//INTERACCION BASE DE DATOS
+
+//-- Main
+
+function createMonthWindow() {
+  // Create the browser window.
+  monthWindow = new BrowserWindow({ width: 200, height: 300, show: false, webPreferences:{
+        nodeIntegration: true
+      } })
+
+  // and load the index.html of the app.
+  monthWindow.loadURL(url.format({
+    pathname: path.join(__dirname, './src/app/monthWindow.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+   
+}
+
+///////////////////////////////////////////
+
+//-- Common
+
+//Separar fecha
+function getDay() {}
+
+function getMonth() {}
+
+function getYear() {}
+
+///////////////////////////////////////////
+
+//-- Configuracion
+
+function getCategorias() {
+
+  ipcMain.on("getCategorias", function () {
+    let result = knex('Categoria').where('ID_PERSONA', 1)
     result.then(function (rows) {
       mainWindow.webContents.send("resultSent", rows);
     })
@@ -83,14 +114,65 @@ function getNombresCategoria() {
 
 }
 
-getNombresCategoria();
+getCategorias();
 
-
-
-
-ipcMain.on('insert', (event, arg) => {
+ipcMain.on('insertCategoriaGasto', (event, arg) => {
   knex('Categoria').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'G'})
   .then( function (result) {
   })
 });
 
+ipcMain.on('insertCategoriaIngreso', (event, arg) => {
+  knex('Categoria').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'I'})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('deleteCategoria', (event, arg) => {
+  knex('Categoria').where('ID', arg).del()
+  .then( function (result) {
+  })
+});
+
+///////////////////////////////////////////
+
+//-- Diario
+
+function getDiario() {
+
+  ipcMain.on("getDiario", function () {
+    let result = knex('Diario').where('ID_PERSONA', 1)
+    result.then(function (rows) {
+      mainWindow.webContents.send("resultSent", rows);
+    })
+  });
+
+}
+
+getDiario();
+
+ipcMain.on('insertDiarioGasto', (event, arg) => {
+  knex('Diario').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'G'})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('insertDiarioIngreso', (event, arg) => {
+  knex('Diario').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'I'})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('deleteDiario', (event, arg) => {
+  knex('Diario').where('ID', arg).del()
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('updateDiario', (event, arg) => {
+  knex('Diario').where('ID', arg).del()
+  .then( function (result) {
+  })
+});
+
+///////////////////////////////////////////

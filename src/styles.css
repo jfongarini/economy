@@ -1,3 +1,4 @@
+
 /* You can add global styles to this file, and also import other style files */
 body {
   background-color: #4abdac;
@@ -532,10 +533,6 @@ li a {
     background-color: white;
 }
 
-.delete{
-    text-align: right;
-}
-
 .card  tr:hover td {
     background-color: white;
     color:black;
@@ -608,6 +605,11 @@ div .bb {
     bottom: 8px;
     margin-top: 20px;
 
+}
+
+.delete{
+    text-align: right;
+    padding-right: 8px;
 }
 
 .tachoi {
