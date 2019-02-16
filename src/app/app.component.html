@@ -1,14 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="main-main-app">
   <div class="main-app">
-    Enero
+    <label (click)="openmodal()">{{mesActNom}}</label>  
   </div>
   <div class="separator"></div>
   <div class="main-app">
-    2019
+    <label (click)="openmodal()">{{anno}}</label> 
   </div>
   <div class="usuario">
-    Thelma
+    <label (click)="openmodal()">{{nombre}}</label> 
+  </div>
+</div>
+<div class="main-main-app">
+  <div class="main-app">
+    <input type="text" placeholder="{{mesActNom}}" id="submitI" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>
+  </div>
+  <div class="separator"></div>
+  <div class="main-app">
+    <input type="text" placeholder="{{anno}}" id="submitI" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>
+  </div>
+  <div class="usuario">
+    <input type="text" placeholder="{{nombre}}" id="submitI" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>
+        <label class="foot-button"><i class="fa fa-times tachoi" data-id={{categoriaG.ID}} (click)="removeCategoria($event)"></i></label> 
   </div>
 </div>
 <div>

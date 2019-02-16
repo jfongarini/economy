@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "main.js",
   "scripts": {
-    "electron": "ng build --prod --no-build-optimizer --base-href ./index.html && electron .",
+    "electron": "ng build --base-href ./index.html && electron .",
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",

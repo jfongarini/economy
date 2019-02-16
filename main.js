@@ -92,12 +92,35 @@ function createMonthWindow() {
 
 //-- Common
 
+
 //Separar fecha
 function getDay() {}
 
 function getMonth() {}
 
 function getYear() {}
+
+///////////////////////////////////////////
+
+//-- Main
+
+//Separar fecha
+function getPersona() {
+  ipcMain.on("getPersona", function () {
+    let result = knex('Persona').where('ID', 1)
+    result.then(function (rows) {
+      mainWindow.webContents.send("resultSent", rows);
+    })
+  });
+}
+
+getPersona();
+
+ipcMain.on('updateNombre', (event, id, nombre) => {
+  knex('Persona').where('ID', id).update({ NOMBRE: nombre })
+  .then( function (result) {
+  })
+});
 
 ///////////////////////////////////////////
 
