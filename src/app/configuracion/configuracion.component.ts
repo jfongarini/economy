@@ -18,7 +18,7 @@ export class ConfiguracionComponent implements OnInit {
 	getCategorias(){
 		let me = this;
 	    me.ipc.send("getCategorias")
-	    me.ipc.on("resultSent", function (evt, result) {
+	    me.ipc.on("resultSentCategorias", function (evt, result) {
 			me.listG = [];
 			me.listI = [];
 			for (var i = 0; i < result.length; i++) {

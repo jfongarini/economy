@@ -686,6 +686,55 @@ tr:hover i{
   /* margin-top: 5px; */
 }
 
+.anno-main {
+  width: 40px;
+  font-size: 12px;
+}
+
+.mes-main {
+  width: 55px;
+  font-size: 12px;
+}
+
+.usuario-main {
+  width: 80px;
+  font-size: 12px;
+}
+
+.usuario {
+  display: initial;
+  margin-left: 80%;
+}
+
+.usuario-edit {
+  display: initial;
+  margin-left: 70%;
+}
+
+.botton-check{
+  color: #4abdac;
+}
+
+
+.button-main {
+  cursor: pointer;
+  padding: 0px;
+  margin-left: 15px;
+}
+
+.button-main a, .button-main a:visited, .button-main a:hover, .button-main a:active {
+  color: inherit;
+  font-size: 13px;
+}
+
+.button-main select {
+  cursor: pointer;
+}
+
+.button-main:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
+}
+
 .main-main-app {
   list-style-type: none;
   margin: 0;
@@ -704,13 +753,26 @@ tr:hover i{
   font-size: 15px;
 }
 
-.totalColor {
-  background-color: #e8a87c;
+.desp-main-app {
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  top: 0;
+  background-color: #0d4239;
+  padding: 0;
+  /* width: 200px; */
+  height: 100%;
+  position: initial;
+  overflow: auto;
+  box-shadow: 0 4px 4px #40776e;
+  color: #7ca99e;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 15px;
 }
 
-.usuario {
-  display: initial;
-  margin-left: 80%;
+.totalColor {
+  background-color: #e8a87c;
 }
 
 .foot {

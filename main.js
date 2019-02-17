@@ -71,34 +71,13 @@ app.on('activate', () => {
 
 //INTERACCION BASE DE DATOS
 
-//-- Main
-
-function createMonthWindow() {
-  // Create the browser window.
-  monthWindow = new BrowserWindow({ width: 200, height: 300, show: false, webPreferences:{
-        nodeIntegration: true
-      } })
-
-  // and load the index.html of the app.
-  monthWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './src/app/monthWindow.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
-   
-}
-
 ///////////////////////////////////////////
 
 //-- Common
 
-
-//Separar fecha
-function getDay() {}
-
-function getMonth() {}
-
-function getYear() {}
+ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariable ) => {
+  global.myGlobalVariable = "myGlobalVariable";
+} );
 
 ///////////////////////////////////////////
 
@@ -109,15 +88,15 @@ function getPersona() {
   ipcMain.on("getPersona", function () {
     let result = knex('Persona').where('ID', 1)
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
+      mainWindow.webContents.send("resultSentPersona", rows);
     })
   });
 }
 
 getPersona();
 
-ipcMain.on('updateNombre', (event, id, nombre) => {
-  knex('Persona').where('ID', id).update({ NOMBRE: nombre })
+ipcMain.on('updatePersona', (event, id, nombre, mes, anno) => {
+  knex('Persona').where('ID', id).update({ NOMBRE: nombre, MES: mes, ANNO: anno })
   .then( function (result) {
   })
 });
@@ -131,7 +110,7 @@ function getCategorias() {
   ipcMain.on("getCategorias", function () {
     let result = knex('Categoria').where('ID_PERSONA', 1)
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
+      mainWindow.webContents.send("resultSentCategorias", rows);
     })
   });
 
@@ -166,7 +145,7 @@ function getDiario() {
   ipcMain.on("getDiario", function () {
     let result = knex('Diario').where('ID_PERSONA', 1)
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSent", rows);
+      mainWindow.webContents.send("resultSentDiario", rows);
     })
   });
 

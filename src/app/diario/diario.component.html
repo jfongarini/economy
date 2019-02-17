@@ -12,15 +12,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-cloak id={{diarioI.ID}} class="data-row fade-in" *ngFor="let diarioI of listI" >
+      <tr ng-cloak id={{diarioI.ID}} class="data-row fade-in" *ngFor="let diarioI of listDiarioI" >
         <td>{{diarioI.FECHA}}</td>
         <td>{{diarioI.MONTO}}</td>
-        <td>{{diarioI.ID_CATEGORIA}}</td>
+        <td>{{diarioI.nombreCategoria}}</td>
         <td>{{diarioI.DETALLE}}</td>
         <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioI.ID}} (click)="removeDiarioIngreso($event)"></i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -43,32 +44,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>1</td>
-        <td>30</td>
-        <td>Alimentacion</td>
-        <td>Verduleria</td>
+      <tr ng-cloak id={{diarioG.ID}} class="data-row fade-in" *ngFor="let diarioG of listDiarioG" >
+        <td>{{diarioG.FECHA}}</td>
+        <td>{{diarioG.MONTO}}</td>
+        <td>{{diarioG.nombreCategoria}}</td>
+        <td>{{diarioG.DETALLE}}</td>
+        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioG.ID}} (click)="removeDiarioIngreso($event)"></i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
