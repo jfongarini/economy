@@ -686,6 +686,14 @@ tr:hover i{
   /* margin-top: 5px; */
 }
 
+.diario-add{
+  user-select: none;
+  font-size: 13px;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+}
+
 .anno-main {
   width: 40px;
   font-size: 12px;

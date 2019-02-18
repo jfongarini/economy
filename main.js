@@ -75,10 +75,6 @@ app.on('activate', () => {
 
 //-- Common
 
-ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariable ) => {
-  global.myGlobalVariable = "myGlobalVariable";
-} );
-
 ///////////////////////////////////////////
 
 //-- Main
@@ -141,9 +137,8 @@ ipcMain.on('deleteCategoria', (event, arg) => {
 //-- Diario
 
 function getDiario() {
-
-  ipcMain.on("getDiario", function () {
-    let result = knex('Diario').where('ID_PERSONA', 1)
+  ipcMain.on("getDiario", (event, arg) => {
+    let result = knex('Diario').where('ID_PERSONA', arg)
     result.then(function (rows) {
       mainWindow.webContents.send("resultSentDiario", rows);
     })
@@ -153,14 +148,8 @@ function getDiario() {
 
 getDiario();
 
-ipcMain.on('insertDiarioGasto', (event, arg) => {
-  knex('Diario').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'G'})
-  .then( function (result) {
-  })
-});
-
-ipcMain.on('insertDiarioIngreso', (event, arg) => {
-  knex('Diario').insert({ID_PERSONA: 1, NOMBRE: arg, GI: 'I'})
+ipcMain.on('insertDiario', (event, fecha, importe, grupo, detalle) => {
+  knex('Diario').insert({ID_PERSONA: 1, ID_CATEGORIA: grupo, FECHA: fecha, MONTO: importe, DETALLE: detalle})
   .then( function (result) {
   })
 });

@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr ng-cloak id={{diarioI.ID}} class="data-row fade-in" *ngFor="let diarioI of listDiarioI" >
-        <td>{{diarioI.FECHA}}</td>
+        <td>{{diarioI.dia}}</td>
         <td>{{diarioI.MONTO}}</td>
         <td>{{diarioI.nombreCategoria}}</td>
         <td>{{diarioI.DETALLE}}</td>
@@ -45,7 +45,7 @@
     </thead>
     <tbody>
       <tr ng-cloak id={{diarioG.ID}} class="data-row fade-in" *ngFor="let diarioG of listDiarioG" >
-        <td>{{diarioG.FECHA}}</td>
+        <td>{{diarioG.dia}}</td>
         <td>{{diarioG.MONTO}}</td>
         <td>{{diarioG.nombreCategoria}}</td>
         <td>{{diarioG.DETALLE}}</td>
@@ -60,6 +60,23 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div class=diario-add>
+  <div class=fila-tarjetas-configuracion>
+     <div class="card categorias">
+      <form id="testform" onsubmit="return false;">
+        <input type="text" placeholder="Dia" id="submitDia" maxlength="2" pattern="^[^\s].*([A-zÀ-ž\s]){1,2}" ng-pattern-restrict required />
+        <input type="text" placeholder="Importe" id="submitImporte" maxlength="8" pattern="^[^\s].*([A-zÀ-ž\s]){1,8}" required>
+        <div class=form-field><label>Categor&iacute;a:</label> 
+          <select name=categoria id="submitGrupo" required>
+            <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
+          </select>
+        </div> 
+        <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertDiario($event)"></i></label> 
+      </form>
+    </div>
+  </div>
 </div>
 <div class=foot>
   <footer>
