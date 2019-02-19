@@ -505,9 +505,15 @@ li a {
     margin-bottom: 20px
 }
 
-.ciudades, .peluqueros, .categorias{
+.categorias{
     width: 250px;
     padding: 20px
+}
+
+.nuevo-diario{
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
 }
 
 .servicios{
@@ -692,6 +698,7 @@ tr:hover i{
   bottom: 0;
   right: 0;
   position: fixed;
+  display: none;
 }
 
 .anno-main {
@@ -781,6 +788,11 @@ tr:hover i{
 
 .totalColor {
   background-color: #e8a87c;
+}
+
+.input-error{
+  visibility: hidden;
+  color: red;
 }
 
 .foot {

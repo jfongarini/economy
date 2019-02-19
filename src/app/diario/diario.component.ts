@@ -99,31 +99,53 @@ export class DiarioComponent implements OnInit {
 		this.getDiario();
 	}
  
-	public insertDiario(event) {
+	public insertDiario() {
 		let me = this;
-		event.preventDefault();
 		var dia = (<HTMLInputElement>document.getElementById('submitDia')).value;
 		var importe = (<HTMLInputElement>document.getElementById('submitImporte')).value;
 		var grupo = (<HTMLInputElement>document.getElementById('submitGrupo')).value;
 		var detalle = (<HTMLInputElement>document.getElementById('submitDetalle')).value;
 		var fecha = me.setFecha(dia);
-		(<HTMLInputElement>document.getElementById('submitDia')).value = "";
-		(<HTMLInputElement>document.getElementById('submitImporte')).value = "";
-		(<HTMLInputElement>document.getElementById('submitDetalle')).value = "";
-		console.log(fecha);
-	    //me.ipc.send("insertDiario", fecha, importe, grupo, detalle);
+		if ((dia == "") || (importe == "")) {
+			if (dia == "") {
+				(<HTMLInputElement>document.getElementById('submitDia')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('diaError')).style.visibility="visible";
+			}
+			if (importe == "") {
+				(<HTMLInputElement>document.getElementById('submitImporte')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('importeError')).style.visibility="visible";
+			}
+		} else {
+			(<HTMLInputElement>document.getElementById('submitDia')).value = "";
+			(<HTMLInputElement>document.getElementById('submitImporte')).value = "";
+			(<HTMLInputElement>document.getElementById('submitDetalle')).value = "";
+			let personaActualID = this.persona[0];
+			me.ipc.send("insertDiario", personaActualID, fecha, importe, grupo, detalle);
+			me.closeInsertDiario();
+		}
+	    
 	    this.getDiario();
 
-  alert("I am an alert box!");
+	}
 
-/*
-  if(dia2.checkValidity()) {
-  	console.log('hola');
-  } else {
-    alert((<HTMLInputElement>document.getElementById('submitDia')).validationMessage);
-  }+*/
+	public blankInputDia() {
+		(<HTMLInputElement>document.getElementById('submitDia')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('diaError')).style.visibility="hidden";
+	}
 
+	public blankInputImporte() {
+		(<HTMLInputElement>document.getElementById('submitImporte')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('importeError')).style.visibility="hidden";
+	}
 
+	public habilitaForm() {
+		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
+	}
+
+	public closeInsertDiario() {
+		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";
 	}
 
 	public updateDiario(event) {

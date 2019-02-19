@@ -148,8 +148,8 @@ function getDiario() {
 
 getDiario();
 
-ipcMain.on('insertDiario', (event, fecha, importe, grupo, detalle) => {
-  knex('Diario').insert({ID_PERSONA: 1, ID_CATEGORIA: grupo, FECHA: fecha, MONTO: importe, DETALLE: detalle})
+ipcMain.on('insertDiario', (event, personaActualID, fecha, importe, grupo, detalle) => {
+  knex('Diario').insert({ID_PERSONA: personaActualID, ID_CATEGORIA: grupo, FECHA: fecha, MONTO: importe, DETALLE: detalle})
   .then( function (result) {
   })
 });

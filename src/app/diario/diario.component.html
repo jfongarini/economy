@@ -61,25 +61,28 @@
     </tbody>
   </table>
 </div>
-<div class=diario-add>
+<div class=diario-add id="formNuevoDiario">
   <div class=fila-tarjetas-configuracion>
-     <div class="card categorias">
+     <div class="card nuevo-diario">
       <form id="testform" onsubmit="return false;">
-        <input type="text" placeholder="Dia" id="submitDia" maxlength="2" pattern="^[^\s].*([A-zÀ-ž\s]){1,2}" ng-pattern-restrict required />
-        <input type="text" placeholder="Importe" id="submitImporte" maxlength="8" pattern="^[^\s].*([A-zÀ-ž\s]){1,8}" required>
+        <input type="number" placeholder="Dia" id="submitDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
+        <label class="input-error" id="diaError">*Obligatorio</label> 
+        <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
+        <label class="input-error" id="importeError">*Obligatorio</label> 
         <div class=form-field><label>Categor&iacute;a:</label> 
           <select name=categoria id="submitGrupo" required>
             <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
           </select>
         </div> 
         <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertDiario($event)"></i></label> 
+        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertDiario()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertDiario()"></i></label> 
       </form>
     </div>
   </div>
 </div>
 <div class=foot>
   <footer>
-    <label class="foot-button" ng-click="getTurnosDiaAnterior()">Nuevo</label>
+    <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaForm()">Nuevo</label>
   </footer>
 </div>
