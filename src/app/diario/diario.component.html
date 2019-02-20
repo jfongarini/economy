@@ -13,15 +13,15 @@
     </thead>
     <tbody>
       <tr ng-cloak id={{diarioI.ID}} class="data-row fade-in" *ngFor="let diarioI of listDiarioI" >
-        <td>{{diarioI.dia}}</td>
-        <td>{{diarioI.MONTO}}</td>
-        <td>{{diarioI.nombreCategoria}}</td>
-        <td>{{diarioI.DETALLE}}</td>
-        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioI.ID}} (click)="removeDiarioIngreso($event)"></i></td>
+        <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.dia}}</td>
+        <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.MONTO}}</td>
+        <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.nombreCategoria}}</td>
+        <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.DETALLE}}</td>
+        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioI.ID}} (click)="removeDiario($event)"></i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
-        <td></td>
+        <td>{{getTotalIngreso()}}</td>
         <td></td>
         <td></td>
         <td></td>
@@ -45,15 +45,15 @@
     </thead>
     <tbody>
       <tr ng-cloak id={{diarioG.ID}} class="data-row fade-in" *ngFor="let diarioG of listDiarioG" >
-        <td>{{diarioG.dia}}</td>
-        <td>{{diarioG.MONTO}}</td>
-        <td>{{diarioG.nombreCategoria}}</td>
-        <td>{{diarioG.DETALLE}}</td>
-        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioG.ID}} (click)="removeDiarioIngreso($event)"></i></td>
+        <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.dia}}</td>
+        <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.MONTO}}</td>
+        <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.nombreCategoria}}</td>
+        <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.DETALLE}}</td>
+        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioG.ID}} (click)="removeDiario($event)"></i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
-        <td></td>
+        <td>{{getTotalGasto()}}</td>
         <td></td>
         <td></td>
         <td></td>
@@ -81,8 +81,28 @@
     </div>
   </div>
 </div>
+<div class=diario-add id="formEditDiario">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card nuevo-diario">
+      <form id="testform" onsubmit="return false;">
+        <input type="number" placeholder="Dia" id="editDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
+        <label class="input-error" id="diaError">*Obligatorio</label> 
+        <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
+        <label class="input-error" id="importeError">*Obligatorio</label> 
+        <div class=form-field><label>Categor&iacute;a:</label> 
+          <select name=categoria id="editGrupo" required>
+            <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
+          </select>
+        </div> 
+        <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <label class="button-main"><i class="fa fa-check botton-check" (click)="updateDiario()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertDiario()"></i></label> 
+      </form>
+    </div>
+  </div>
+</div>
 <div class=foot>
   <footer>
-    <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaForm()">Nuevo</label>
+    <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaFormInsert()">Nuevo</label>
   </footer>
 </div>

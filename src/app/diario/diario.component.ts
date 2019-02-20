@@ -16,6 +16,9 @@ export class DiarioComponent implements OnInit {
 	public listDiarioG: Array<string>;
 	public listDiarioI: Array<string>;
 	public listCategoria: Array<string>;
+	public totalIngreso: number;
+	public totalGasto: number;
+	public idDiario: number;
 
 	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -45,8 +48,10 @@ export class DiarioComponent implements OnInit {
 			personaActualMes = '0'+personaActualMes
 		}
 		personaActualMes = String(personaActualMes);
-		if (dia < 10) {
-			dia = '0'+dia
+		if (dia.length < 2) { 
+			if (dia < 10) {
+				dia = '0'+dia
+			}
 		}
 		dia = String(dia);
 		return dia+'/'+personaActualMes+'/'+personaActualAnno
@@ -70,11 +75,13 @@ export class DiarioComponent implements OnInit {
 		let giCat = "";
 		let idCat = 0;
 		let fechaValida = false;
-		let personaActualID = this.persona[0];
+		let personaActualID = this.persona[0];		
 	    me.ipc.send("getDiario", personaActualID)
 	    me.ipc.on("resultSentDiario", function (evt, result) {
 			me.listDiarioG = [];
 			me.listDiarioI = [];
+			me.totalIngreso = 0;
+			me.totalGasto = 0;
 			for (var i = 0; i < result.length; i++) {
 				sendFecha = result[i].FECHA;
 				fechaValida = me.getFecha(sendFecha);
@@ -85,13 +92,25 @@ export class DiarioComponent implements OnInit {
 					result[i].nombreCategoria = me.listCategoria[idCat-1]['NOMBRE'];
 					if (giCat == 'G') {
 						me.listDiarioG.push(result[i]);
+						me.totalGasto = me.totalGasto + result[i].MONTO;
 					} else {
 						me.listDiarioI.push(result[i]);
+						me.totalIngreso = me.totalIngreso + result[i].MONTO;
 					}
 				}		
 			}
 			me.ref.detectChanges()
 	    });
+	}
+
+	getTotalIngreso():string {		
+		let me = this;
+		return String(me.totalIngreso);
+	}
+
+	getTotalGasto():string {		
+		let me = this;
+		return String(me.totalGasto);
 	}
 
 	ngOnInit() {
@@ -138,27 +157,65 @@ export class DiarioComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('importeError')).style.visibility="hidden";
 	}
 
-	public habilitaForm() {
+	public habilitaFormInsert() {
 		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 	}
 
 	public closeInsertDiario() {
 		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('formEditDiario')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";
 	}
 
-	public updateDiario(event) {
-		var id = event.target.id;
+	public habilitaFormEdit(event) {
+		(<HTMLInputElement>document.getElementById('formEditDiario')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 		let me = this;
-	    me.ipc.send("deleteCategoria", id);
+		me.idDiario = event.target.id;
+		me.ipc.send("getUnDiario", me.idDiario)
+	    me.ipc.on("resultSentUnDiario", function (evt, result) {
+	    	var fecha = result[0].FECHA;
+	    	var splitted = fecha.split("/",3);
+			var dia = String(splitted[0]);
+			(<HTMLInputElement>document.getElementById('editDia')).value = dia;
+			(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
+			(<HTMLSelectElement>document.getElementById('editGrupo')).selectedIndex = result[0].ID_CATEGORIA -1;
+			(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;
+	    });		
+	}
+
+	public updateDiario(event) {
+		let me = this;
+		var dia = (<HTMLInputElement>document.getElementById('editDia')).value;
+		var importe = (<HTMLInputElement>document.getElementById('editImporte')).value;
+		var grupo = (<HTMLInputElement>document.getElementById('editGrupo')).value;
+		var detalle = (<HTMLInputElement>document.getElementById('editDetalle')).value;
+		var fecha = me.setFecha(dia);
+		if ((dia == "") || (importe == "")) {
+			if (dia == "") {
+				(<HTMLInputElement>document.getElementById('editDia')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('diaError')).style.visibility="visible";
+			}
+			if (importe == "") {
+				(<HTMLInputElement>document.getElementById('editImporte')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('importeError')).style.visibility="visible";
+			}
+		} else {
+			(<HTMLInputElement>document.getElementById('editDia')).value = "";
+			(<HTMLInputElement>document.getElementById('editImporte')).value = "";
+			(<HTMLInputElement>document.getElementById('editDetalle')).value = "";
+			me.ipc.send("updateDiario", me.idDiario, fecha, importe, grupo, detalle);
+			me.closeInsertDiario();
+		}
+	    
 	    this.getDiario();
 	}
 
 	public removeDiario(event) {
 		var id = event.target.id;
 		let me = this;
-	    me.ipc.send("deleteCategoria", id);
+	    me.ipc.send("removeDiario", id);
 	    this.getDiario();
 	}
 

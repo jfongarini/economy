@@ -138,7 +138,7 @@ ipcMain.on('deleteCategoria', (event, arg) => {
 
 function getDiario() {
   ipcMain.on("getDiario", (event, arg) => {
-    let result = knex('Diario').where('ID_PERSONA', arg)
+    let result = knex('Diario').where('ID_PERSONA', arg).orderBy('FECHA')
     result.then(function (rows) {
       mainWindow.webContents.send("resultSentDiario", rows);
     })
@@ -148,20 +148,27 @@ function getDiario() {
 
 getDiario();
 
+ipcMain.on("getUnDiario", (event, id) => {
+  let result = knex('Diario').where('ID', id)
+  result.then(function (rows) {
+    mainWindow.webContents.send("resultSentUnDiario", rows);
+  })
+});
+
 ipcMain.on('insertDiario', (event, personaActualID, fecha, importe, grupo, detalle) => {
   knex('Diario').insert({ID_PERSONA: personaActualID, ID_CATEGORIA: grupo, FECHA: fecha, MONTO: importe, DETALLE: detalle})
   .then( function (result) {
   })
 });
 
-ipcMain.on('deleteDiario', (event, arg) => {
+ipcMain.on('removeDiario', (event, arg) => {
   knex('Diario').where('ID', arg).del()
   .then( function (result) {
   })
 });
 
-ipcMain.on('updateDiario', (event, arg) => {
-  knex('Diario').where('ID', arg).del()
+ipcMain.on('updateDiario', (event, id, fecha, importe, grupo, detalle) => {
+  knex('Diario').where('ID', id).update({ID_CATEGORIA: grupo, FECHA: fecha, MONTO: importe, DETALLE: detalle})
   .then( function (result) {
   })
 });
