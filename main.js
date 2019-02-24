@@ -174,3 +174,54 @@ ipcMain.on('updateDiario', (event, id, fecha, importe, grupo, detalle) => {
 });
 
 ///////////////////////////////////////////
+
+//-- Tarjeta
+
+function getTarjeta() {
+  ipcMain.on("getTarjeta", (event, arg) => {
+    let result = knex('Tarjeta').where('ID_PERSONA', arg)
+    result.then(function (rows) {
+      event.returnValue = rows;
+    })
+    
+  });
+}
+
+function getTarjetaConsumo() {
+  ipcMain.on("getTarjetaConsumo", (event) => {
+    let result = knex('TarjetaConsumo')
+    result.then(function (rows) {
+      event.returnValue = rows;
+    })
+  });
+}
+
+getTarjeta();
+getTarjetaConsumo();
+
+ipcMain.on("getUnTC", (event, id) => {
+  let result = knex('TarjetaConsumo').where('ID', id)
+  result.then(function (rows) {
+    mainWindow.webContents.send("resultSentUnTC", rows);
+  })
+});
+
+ipcMain.on('insertTC', (event, tarjeta, nombre, importe, cantCuota, fCuota) => {
+  knex('TarjetaConsumo').insert({ID_TARJETA: tarjeta, NOMBRE: nombre, MONTO: importe, CUOTAS: cantCuota, F_PRI_CUOTA: fCuota})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('removeTC', (event, arg) => {
+  knex('TarjetaConsumo').where('ID', arg).del()
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('updateTC', (event, id, tarjeta, nombre, importe, cantCuota, fCuota) => {
+  knex('TarjetaConsumo').where('ID', id).update({ID_TARJETA: tarjeta, NOMBRE: nombre, MONTO: importe, CUOTAS: cantCuota, F_PRI_CUOTA: fCuota})
+  .then( function (result) {
+  })
+});
+
+///////////////////////////////////////////

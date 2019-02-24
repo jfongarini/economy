@@ -1,178 +1,119 @@
-<div class="titulos">
-  SANTANDER
+<div ng-cloak id={{tarjeta.ID}} *ngFor="let tarjeta of listTarjetaConsumo" >
+    <div  ng-cloak id={{tarjeta.ID}} class="titulos" >
+      {{tarjeta.NOMBRE}}
+    </div>
+    <div ng-cloak id={{tarjeta.ID}} id=content class="content fade-in">
+      <table ng-cloak id=table class=main-table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Ene</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Abr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Ago</th>
+            <th>Sep</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dic</th>
+            <th>...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-cloak id={{tarjetaConsumo.ID}} class="data-row fade-in" *ngFor="let tarjetaConsumo of tarjeta.consumo" >
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.NOMBRE}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m01}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m02}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m03}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m04}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m05}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m06}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m07}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m08}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m09}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m10}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m11}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m12}}</td>
+            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m13}}</td>
+            <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTarjetaConsumo($event)"></i></td>
+          </tr>
+          <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+            <td>Total</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m01}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m02}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m03}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m04}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m05}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m06}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m07}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m08}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m09}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m10}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m11}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m12}}</td>
+            <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m13}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
-<div id=content class="content fade-in">
-  <table ng-cloak id=table class=main-table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto1</td>
-        <td>500</td>
-        <td>500</td>
-        <td>500</td>
-        <td>500</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto2</td>
-        <td>200</td>
-        <td>200</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto3</td>
-        <td>600</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+<div class=diario-add id="formNuevoTC">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card nuevo-diario">
+      <form id="testform" onsubmit="return false;">
+        <div class=form-field><label>Tarjeta:</label> 
+          <select name=tarjeta id="submitTarjeta" required>
+            <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
+          </select>
+        </div> 
+        <input type="text" placeholder="Nombre" id="submitNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <label class="input-error" id="nombreConsumoError">*Obligatorio</label>  
+        <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
+        <label class="input-error" id="importeError">*Obligatorio</label> 
+        <input type="number" placeholder="Cuotas" id="submitCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
+        <label class="input-error" id="cuotasError">*Obligatorio</label> 
+        <div class=form-field><label>Mes Primer Cuota:</label>
+            <input type="month" id="submitMes" (click)="blankInputMes()" ng-pattern-restrict required />
+        </div>
+        <label class="input-error" id="mesError">*Obligatorio</label> 
+        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertTC()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertTC()"></i></label>
+      </form>
+    </div>
+  </div>
 </div>
 
-<div class="titulos">
-  ML
+<div class=diario-add id="formEditTC">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card nuevo-diario">
+      <form id="testform" onsubmit="return false;">
+        <div class=form-field><label>Tarjeta:</label> 
+          <select name=tarjeta id="editTarjeta" required>
+            <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
+          </select>
+        </div> 
+        <input type="text" placeholder="Nombre" id="editNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <label class="input-error" id="nombreConsumoError">*Obligatorio</label> 
+        <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
+        <label class="input-error" id="importeError">*Obligatorio</label> 
+        <input type="number" placeholder="Cuotas" id="editCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
+        <label class="input-error" id="cuotasError">*Obligatorio</label> 
+        <div class=form-field><label>Mes Primer Cuota:</label>
+            <input type="month" id="editMes" (click)="blankInputMes()" ng-pattern-restrict required />
+        </div>
+        <label class="input-error" id="mesError">*Obligatorio</label> 
+        <label class="button-main"><i class="fa fa-check botton-check" (click)="updateTC()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertTC()"></i></label> 
+      </form>
+    </div>
+  </div>
 </div>
-<div id=content class="content fade-in">
-  <table ng-cloak id=table class=main-table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto1</td>
-        <td>500</td>
-        <td>500</td>
-        <td>500</td>
-        <td>500</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto2</td>
-        <td>200</td>
-        <td>200</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gasto3</td>
-        <td>600</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
 <div class=foot>
   <footer>
-    <label class="foot-button" ng-click="getTurnosDiaAnterior()">Nuevo</label>
+    <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaFormInsert()">Nuevo</label>
   </footer>
 </div>
