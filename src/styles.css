@@ -204,15 +204,19 @@ th {
 
 ul {
   list-style-type: none;
-  margin: 0;
-  /*top: 0;*/
-  background-color: #0d4239;
-  padding: 0;
-  width: 200px;
-  height: 100%;
-  position: fixed;
-  overflow: auto;
-  box-shadow: 0 4px 4px #1f5a50
+    /* margin: 0; */
+    /* top: 0; */
+    background-color: #0d4239;
+    padding: 0;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    box-shadow: 0 4px 4px #1f5a50;
+    font-size: 12px;
+    left: 0px;
+    /* margin-top: 0px; */
+    margin-top: 36px;
 }
 
 li a {
@@ -346,6 +350,7 @@ li a {
 }
     
 .form-field{
+    padding-right: 5px;
     font-size: 13px;
     margin-bottom: 17px
 }
@@ -511,7 +516,7 @@ li a {
 }
 
 .nuevo-diario{
-    width: 250px;
+    width: 350px;
     padding: 20px;
     margin: 10px;
 }
@@ -524,11 +529,11 @@ li a {
 
 .card label{
     width: auto;
+    padding: 5px;
 }
 
 .card input {
     font-size: 13px;
-    margin-bottom: 20px;
 }
 
 .card.servicios button{
@@ -730,6 +735,9 @@ tr:hover i{
   color: #4abdac;
 }
 
+.botton-close{
+  color: #de1a1a;
+}
 
 .button-main {
   cursor: pointer;
@@ -750,15 +758,37 @@ tr:hover i{
   box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
 }
 
+.principal{
+  padding-top: 40px;
+}
+
 .main-main-app {
   list-style-type: none;
   margin: 0;
   top: 0;
   background-color: #0d4239;
   padding: 0;
-  /* width: 200px; */
-  height: 100%;
-  position: initial;
+  width: 100%;
+  /*height: 100%; */
+  position: fixed;
+  overflow: auto;
+  box-shadow: 0 4px 4px #40776e;
+  display: block;
+  color: #7ca99e;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.main-main-app2 {
+  list-style-type: none;
+  margin: 0;
+  top: 0;
+  background-color: #0d4239;
+  padding: 0;
+  width: 100%;
+  /*height: 100%; */
+  position: fixed;
   overflow: auto;
   box-shadow: 0 4px 4px #40776e;
   display: block;
@@ -769,21 +799,23 @@ tr:hover i{
 }
 
 .desp-main-app {
-  display: none;
-  list-style-type: none;
-  margin: 0;
-  top: 0;
-  background-color: #0d4239;
-  padding: 0;
-  /* width: 200px; */
-  height: 100%;
-  position: initial;
-  overflow: auto;
-  box-shadow: 0 4px 4px #40776e;
-  color: #7ca99e;
-  padding: 8px 16px;
-  text-decoration: none;
-  font-size: 15px;
+    display: none;
+    list-style-type: none;
+    /*margin: 0; */
+    top: 0;
+    background-color: #0d4239;
+    padding: 0;
+    width: 100%;
+    /* height: 100%; */
+    position: fixed;
+    overflow: auto;
+    box-shadow: 0 4px 4px #40776e;
+    color: #7ca99e;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    padding-top: 10px;
+    margin-top: 28px;
 }
 
 .totalColor {

@@ -1,3 +1,4 @@
+<div class="principal" id="principal">
 <div class="titulos">
   CATEGOR&Iacute;AS DE INGRESOS
 </div>
@@ -44,4 +45,54 @@
 
     </div>
   </div>
+</div>
+
+<div class="titulos">
+  TARJETAS
+</div>
+<div id=content class="content fade-in">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card categorias">
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <label class="foot-button" (click)="insertTarjeta()">Nuevo</label>  
+        <table id=table>
+          <tbody>
+          <tr ng-cloak id={{tarjeta.ID}} class="data-row fade-in" *ngFor="let tarjeta of tarjetas" >
+          <td>{{tarjeta.NOMBRE}}</td>
+          <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)"></i></td>
+          </tr>
+          </tbody>
+        </table>
+        <label  ng-cloak class=form-message></label>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="titulos">
+  INVERSIONES
+</div>
+<div id=content class="content fade-in">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card categorias">
+      <form onsubmit="return false;">
+        <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <label class="foot-button" (click)="insertInversion()">Nuevo</label>  
+        <table id=table>
+          <tbody>
+          <tr ng-cloak id={{inversion.ID}} class="data-row fade-in" *ngFor="let inversion of inversiones" >
+          <td>{{inversion.NOMBRE}}</td>
+          <td class="delete" ><i class="fa fa-times tachoi" data-id={{inversion.ID}} (click)="removeInversion($event)"></i></td>
+          </tr>
+          </tbody>
+        </table>
+        <label  ng-cloak class=form-message></label>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 </div>

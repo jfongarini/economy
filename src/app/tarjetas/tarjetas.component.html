@@ -1,3 +1,4 @@
+<div class="principal" id="principal">
 <div ng-cloak id={{tarjeta.ID}} *ngFor="let tarjeta of listTarjetaConsumo" >
     <div  ng-cloak id={{tarjeta.ID}} class="titulos" >
       {{tarjeta.NOMBRE}}
@@ -24,21 +25,21 @@
         </thead>
         <tbody>
           <tr ng-cloak id={{tarjetaConsumo.ID}} class="data-row fade-in" *ngFor="let tarjetaConsumo of tarjeta.consumo" >
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.NOMBRE}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m01}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m02}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m03}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m04}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m05}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m06}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m07}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m08}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m09}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m10}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m11}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m12}}</td>
-            <td data-id={{tarjetaConsumo.ID}}>{{tarjetaConsumo.meses.m13}}</td>
-            <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTarjetaConsumo($event)"></i></td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.NOMBRE}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m01}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m02}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m03}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m04}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m05}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m06}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m07}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m08}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m09}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m10}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m11}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m12}}</td>
+            <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m13}}</td>
+            <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTC($event)"></i></td>
           </tr>
           <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
             <td>Total</td>
@@ -55,6 +56,7 @@
             <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m11}}</td>
             <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m12}}</td>
             <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m13}}</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -64,23 +66,34 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card nuevo-diario">
       <form id="testform" onsubmit="return false;">
-        <div class=form-field><label>Tarjeta:</label> 
+        <div class=form-field>
+          <label><strong>Tarjeta:</strong></label> 
           <select name=tarjeta id="submitTarjeta" required>
             <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
           </select>
         </div> 
-        <input type="text" placeholder="Nombre" id="submitNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
-        <label class="input-error" id="nombreConsumoError">*Obligatorio</label>  
-        <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
-        <label class="input-error" id="importeError">*Obligatorio</label> 
-        <input type="number" placeholder="Cuotas" id="submitCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
-        <label class="input-error" id="cuotasError">*Obligatorio</label> 
-        <div class=form-field><label>Mes Primer Cuota:</label>
-            <input type="month" id="submitMes" (click)="blankInputMes()" ng-pattern-restrict required />
+        <div class=form-field>
+          <label><strong>Nombre:</strong></label>
+          <input type="text" placeholder="Nombre" id="submitNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+          <label class="input-error" id="nombreConsumoError">*Obligatorio</label> 
         </div>
-        <label class="input-error" id="mesError">*Obligatorio</label> 
+        <div class=form-field>
+          <label><strong>Valor de Cuota:</strong></label>
+          <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
+          <label class="input-error" id="importeError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Cantidad de Cuotas:</strong></label>
+          <input type="number" placeholder="Cuotas" id="submitCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
+          <label class="input-error" id="cuotasError">*Obligatorio</label>
+        </div>
+        <div class=form-field>
+          <label><strong>Mes Primer Cuota:</strong></label>
+          <input type="month" id="submitMes" ng-pattern-restrict required />        
+          <label class="input-error" id="mesError">*Oblig</label> 
+        </div>
         <label class="button-main"><i class="fa fa-check botton-check" (click)="insertTC()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertTC()"></i></label>
+        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertTC()"></i></label>
       </form>
     </div>
   </div>
@@ -90,23 +103,34 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card nuevo-diario">
       <form id="testform" onsubmit="return false;">
-        <div class=form-field><label>Tarjeta:</label> 
+        <div class=form-field>
+          <label><strong>Tarjeta:</strong></label> 
           <select name=tarjeta id="editTarjeta" required>
             <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
           </select>
         </div> 
-        <input type="text" placeholder="Nombre" id="editNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
-        <label class="input-error" id="nombreConsumoError">*Obligatorio</label> 
-        <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
-        <label class="input-error" id="importeError">*Obligatorio</label> 
-        <input type="number" placeholder="Cuotas" id="editCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
-        <label class="input-error" id="cuotasError">*Obligatorio</label> 
-        <div class=form-field><label>Mes Primer Cuota:</label>
-            <input type="month" id="editMes" (click)="blankInputMes()" ng-pattern-restrict required />
+        <div class=form-field>
+          <label><strong>Nombre:</strong></label>
+          <input type="text" placeholder="Nombre" id="editNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+          <label class="input-error" id="nombreConsumoError">*Obligatorio</label> 
         </div>
-        <label class="input-error" id="mesError">*Obligatorio</label> 
+        <div class=form-field>
+          <label><strong>Valor de Cuota:</strong></label>
+          <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
+          <label class="input-error" id="importeError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Cantidad de Cuotas:</strong></label>
+          <input type="number" placeholder="Cuotas" id="editCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
+          <label class="input-error" id="cuotasError">*Obligatorio</label>
+        </div>
+        <div class=form-field>
+          <label><strong>Mes Primer Cuota:</strong></label>
+          <input type="month" id="editMes" ng-pattern-restrict required />        
+          <label class="input-error" id="mesError">*Oblig</label> 
+        </div>
         <label class="button-main"><i class="fa fa-check botton-check" (click)="updateTC()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertTC()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertTC()"></i></label> 
       </form>
     </div>
   </div>
@@ -116,4 +140,5 @@
   <footer>
     <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaFormInsert()">Nuevo</label>
   </footer>
+</div>
 </div>

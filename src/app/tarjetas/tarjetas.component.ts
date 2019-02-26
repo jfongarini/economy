@@ -99,9 +99,9 @@ export class TarjetasComponent implements OnInit {
 		me.listTarjetaConsumoAux[j]['meses'] = [];		
 		let fecha = me.listTarjetaConsumoAux[j]['F_PRI_CUOTA']
 		let cantCuotas = me.listTarjetaConsumoAux[j]['CUOTAS']
-		let splitted = fecha.split("/",2);
-		let fechaMes = +splitted[0];
-		let fechaAnno = +splitted[1];
+		let splitted = fecha.split("-",2);
+		let fechaMes = +splitted[1];
+		let fechaAnno = +splitted[0];
 		let personaActualAnno = this.persona[4];
 		if (fechaAnno != personaActualAnno) {
 			let sumaFecha = fechaMes + cantCuotas;
@@ -166,7 +166,7 @@ export class TarjetasComponent implements OnInit {
 		var nombreConsumo = (<HTMLInputElement>document.getElementById('submitNombreConsumo')).value;
 		var importe = (<HTMLInputElement>document.getElementById('submitImporte')).value;
 		var cantCuota = (<HTMLInputElement>document.getElementById('submitCuotas')).value;
-		var fCuota = (<HTMLInputElement>document.getElementById('submitMes')).value;
+		var fCuota = (<HTMLInputElement>document.querySelector('input[type="month"]')).value;
 		if ((nombreConsumo == "") || (importe == "") || (cantCuota == "") || (fCuota == "")) {
 			if (nombreConsumo == "") {
 				(<HTMLInputElement>document.getElementById('submitNombreConsumo')).style.borderColor="red"; 
@@ -212,18 +212,15 @@ export class TarjetasComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('cuotasError')).style.visibility="hidden";
 	}
 
-	public blankInputMes() {
-		(<HTMLInputElement>document.getElementById('submitMes')).style.borderColor=""; 
-		(<HTMLInputElement>document.getElementById('mesError')).style.visibility="hidden";
-	}
-
 	public habilitaFormInsert() {
 		(<HTMLInputElement>document.getElementById('formNuevoTC')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 	}
 
-
 	public closeInsertTC() {
+		this.blankInputNombreConsumo();
+		this.blankInputCoutas();
+		this.blankInputImporte();
 		(<HTMLInputElement>document.getElementById('formNuevoTC')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('formEditTC')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";
@@ -241,6 +238,7 @@ export class TarjetasComponent implements OnInit {
 			(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
 			(<HTMLInputElement>document.getElementById('editCuotas')).value = result[0].CUOTAS;
 			(<HTMLInputElement>document.getElementById('editMes')).value = result[0].F_PRI_CUOTA;
+			(<HTMLInputElement>document.querySelector('input[type="month"]')).value = result[0].F_PRI_CUOTA;
 	    });		
 	}
 

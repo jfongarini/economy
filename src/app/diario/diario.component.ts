@@ -59,7 +59,8 @@ export class DiarioComponent implements OnInit {
 
 	getCategorias(){
 		let me = this;
-	    me.ipc.send("getCategorias")
+		let personaActualID = this.persona[0];
+	    me.ipc.send("getCategorias", personaActualID)
 	    me.ipc.on("resultSentCategorias", function (evt, result) {
 			me.listCategoria = [];
 			for (var i = 0; i < result.length; i++) {				
@@ -163,6 +164,8 @@ export class DiarioComponent implements OnInit {
 	}
 
 	public closeInsertDiario() {
+		this.blankInputDia();
+		this.blankInputImporte();
 		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('formEditDiario')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";

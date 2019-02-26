@@ -1,3 +1,4 @@
+<div class="principal" id="principal">
 <div class="titulos">
   INGRESOS
 </div>
@@ -65,18 +66,28 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card nuevo-diario">
       <form id="testform" onsubmit="return false;">
-        <input type="number" placeholder="Dia" id="submitDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
-        <label class="input-error" id="diaError">*Obligatorio</label> 
-        <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
-        <label class="input-error" id="importeError">*Obligatorio</label> 
-        <div class=form-field><label>Categor&iacute;a:</label> 
+        <div class=form-field>
+          <label><strong>Dia:</strong></label>
+          <input type="number" placeholder="Dia" id="submitDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
+          <label class="input-error" id="diaError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Importe:</strong></label>
+          <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
+          <label class="input-error" id="importeError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Categor&iacute;a:</strong></label> 
           <select name=categoria id="submitGrupo" required>
             <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
           </select>
         </div> 
-        <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <div class=form-field>
+          <label><strong>Detalle:</strong></label>
+          <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        </div>
         <label class="button-main"><i class="fa fa-check botton-check" (click)="insertDiario()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertDiario()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertDiario()"></i></label> 
       </form>
     </div>
   </div>
@@ -85,18 +96,28 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card nuevo-diario">
       <form id="testform" onsubmit="return false;">
-        <input type="number" placeholder="Dia" id="editDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
-        <label class="input-error" id="diaError">*Obligatorio</label> 
-        <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
-        <label class="input-error" id="importeError">*Obligatorio</label> 
-        <div class=form-field><label>Categor&iacute;a:</label> 
+        <div class=form-field>
+          <label><strong>Dia:</strong></label>
+          <input type="number" placeholder="Dia" id="editDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
+          <label class="input-error" id="diaError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Importe:</strong></label>
+          <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
+          <label class="input-error" id="importeError">*Obligatorio</label> 
+        </div>
+        <div class=form-field>
+          <label><strong>Categor&iacute;a:</strong></label> 
           <select name=categoria id="editGrupo" required>
             <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
           </select>
         </div> 
-        <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        <div class=form-field>
+          <label><strong>Detalle:</strong></label>
+          <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        </div> 
         <label class="button-main"><i class="fa fa-check botton-check" (click)="updateDiario()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-check" (click)="closeInsertDiario()"></i></label> 
+        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertDiario()"></i></label> 
       </form>
     </div>
   </div>
@@ -105,4 +126,5 @@
   <footer>
     <label class="foot-button" id="bottonHabilitaForm" (click)="habilitaFormInsert()">Nuevo</label>
   </footer>
+</div>
 </div>

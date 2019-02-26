@@ -68,6 +68,8 @@ export class AppComponent implements OnInit {
 		me.ipc.send("updatePersona", me.personaId, nombreSend, mesSend, annoSend);
 		this.getPersona();
 
+		(<HTMLDivElement>document.getElementById('principal')).style.paddingTop = "40px";
+		(<HTMLUListElement>document.getElementById('menu')).style.marginTop = "36px";
 		(<HTMLInputElement>document.getElementById('desp-main-div')).style.display = "none";
 
 	}
