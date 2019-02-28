@@ -18,7 +18,7 @@
         <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.MONTO}}</td>
         <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.nombreCategoria}}</td>
         <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.DETALLE}}</td>
-        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioI.ID}} (click)="removeDiario($event)"></i></td>
+        <td class="delete" ><i class="material-icons tachoi" data-id={{diarioI.ID}} (click)="removeDiario($event)">clear</i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
@@ -50,7 +50,7 @@
         <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.MONTO}}</td>
         <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.nombreCategoria}}</td>
         <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.DETALLE}}</td>
-        <td class="delete" ><i class="fa fa-times tachoi" data-id={{diarioG.ID}} (click)="removeDiario($event)"></i></td>
+        <td class="delete" ><i class="material-icons tachoi" data-id={{diarioG.ID}} (click)="removeDiario($event)">clear</i></td>
       </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
@@ -86,8 +86,8 @@
           <label><strong>Detalle:</strong></label>
           <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
         </div>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertDiario()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertDiario()"></i></label> 
+        <label class="button-main"><i class="material-icons botton-check" (click)="insertDiario()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertDiario()">clear</i></label> 
       </form>
     </div>
   </div>
@@ -116,8 +116,8 @@
           <label><strong>Detalle:</strong></label>
           <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
         </div> 
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="updateDiario()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertDiario()"></i></label> 
+        <label class="button-main"><i class="material-icons botton-check" (click)="updateDiario()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertDiario()">clear</i></label> 
       </form>
     </div>
   </div>

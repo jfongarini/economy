@@ -184,4 +184,18 @@ export class InversionesComponent implements OnInit {
 	    this.getInversionDiario();
   		this.getInversionDiarioFinal();
 	}
+
+	public pagado(event) {
+		let me = this;
+		var id = event.target.id;
+		let result = me.ipc.sendSync("getUnEstado", id);
+		let estado = result[0].FINALIZADO;
+		let fin = 0;
+		if (estado == 0) {
+			fin = 1;
+		}
+		me.ipc.send("setUnEstado", id, fin);
+	    this.getInversionDiario();
+  		this.getInversionDiarioFinal();
+  	}
 }

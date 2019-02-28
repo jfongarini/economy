@@ -6,13 +6,14 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card categorias">
       <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaIngreso()" ng-pattern-restrict required>
         <label class="foot-button" (click)="insertCategoriaIngreso()">Nuevo</label>  
+        <label class="input-error" id="submitIerror">*Obligatorio</label> 
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaI.ID}} class="data-row fade-in" *ngFor="let categoriaI of listI" >
           <td>{{categoriaI.NOMBRE}}</td>
-          <td class="delete" ><i class="fa fa-times tachoi" data-id={{categoriaI.ID}} (click)="removeCategoria($event)"></i></td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaI.ID}} (click)="removeCategoria($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -30,13 +31,14 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card categorias">
       <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
-        <label class="foot-button" (click)="insertCategoriaGasto()">Nuevo</label>  
+        <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaGasto()" ng-pattern-restrict required>
+        <label class="foot-button" (click)="insertCategoriaGasto()">Nuevo</label>
+        <label class="input-error" id="submitGerror">*Obligatorio</label>  
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaG.ID}} class="data-row fade-in" *ngFor="let categoriaG of listG" >
           <td>{{categoriaG.NOMBRE}}</td>
-          <td class="delete" ><i class="fa fa-times tachoi" data-id={{categoriaG.ID}} (click)="removeCategoria($event)"></i></td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaG.ID}} (click)="removeCategoria($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -54,13 +56,14 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card categorias">
       <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputTarjeta()" ng-pattern-restrict required>
         <label class="foot-button" (click)="insertTarjeta()">Nuevo</label>  
+        <label class="input-error" id="submitTerror">*Obligatorio</label> 
         <table id=table>
           <tbody>
           <tr ng-cloak id={{tarjeta.ID}} class="data-row fade-in" *ngFor="let tarjeta of tarjetas" >
           <td>{{tarjeta.NOMBRE}}</td>
-          <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)"></i></td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -78,13 +81,14 @@
   <div class=fila-tarjetas-configuracion>
      <div class="card categorias">
       <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" ng-pattern-restrict required>
+        <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputInversion()" ng-pattern-restrict required>
         <label class="foot-button" (click)="insertInversion()">Nuevo</label>  
+        <label class="input-error" id="submitVerror">*Obligatorio</label> 
         <table id=table>
           <tbody>
           <tr ng-cloak id={{inversion.ID}} class="data-row fade-in" *ngFor="let inversion of inversiones" >
           <td>{{inversion.NOMBRE}}</td>
-          <td class="delete" ><i class="fa fa-times tachoi" data-id={{inversion.ID}} (click)="removeInversion($event)"></i></td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{inversion.ID}} (click)="removeInversion($event)">clear</i></td>
           </tr>
           </tbody>
         </table>

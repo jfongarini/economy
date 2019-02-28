@@ -22,10 +22,10 @@
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.MONTO}}</td>
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.DETALLE}}</td>
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.GANANCIA}}</td>
-            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO > 0"><i class="fa fa-dollar-sign"></i></td>
-            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO < 1"><i class="fa fa-creative-commons-nc"></i></td>
-            <td class="delete" ><i class="fa fa-comment-dollar tachoi" data-id={{inversionDiario.ID}} (click)="pagado($event)"></i></td>
-            <td class="delete" ><i class="fa fa-times tachoi" data-id={{inversionDiario.ID}} (click)="removeI($event)"></i></td>
+            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO > 0"><i class="material-icons bola-roja">fiber_manual_record</i></td>
+            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO < 1"><i class="material-icons bola-verde">fiber_manual_record</i></td>
+            <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="pagado($event)">cached</i></td>
+            <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="removeI($event)">clear</i></td>
           </tr>
         </tbody>
       </table>
@@ -60,8 +60,8 @@
           <label><strong>Detalle:</strong></label>
           <input type="text" placeholder="Detalle" id="submitDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
         </div>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertI()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertI()"></i></label>
+        <label class="button-main"><i class="material-icons botton-check" (click)="insertI()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertI()">clear</i></label>
       </form>
     </div>
   </div>
@@ -97,8 +97,8 @@
           <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
           <label class="input-error" id="detalleError">*Obligatorio</label> 
         </div>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="updateI()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertI()"></i></label> 
+        <label class="button-main"><i class="material-icons botton-check" (click)="updateI()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertI()">clear</i></label> 
       </form>
     </div>
   </div>

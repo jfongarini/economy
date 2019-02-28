@@ -298,4 +298,17 @@ ipcMain.on('updateInversionDiario', (event, id, inversion, monto, fecha, detalle
   .then( function (result) {
   })
 });
+
+ipcMain.on("getUnEstado", (event, id) => {
+  let result = knex('InversionDiario').where('ID', id)
+  result.then(function (rows) {
+    event.returnValue = rows;
+  })
+});
+
+ipcMain.on('setUnEstado', (event, id, finalizdo) => {
+  knex('InversionDiario').where('ID', id).update({FINALIZADO: finalizdo})
+  .then( function (result) {
+  })
+});
 ///////////////////////////////////////////

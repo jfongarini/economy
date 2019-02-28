@@ -697,6 +697,11 @@ tr:hover i{
   /* margin-top: 5px; */
 }
 
+.main-add{
+    position: initial;
+    margin-left: 250px;
+}
+
 .diario-add{
   user-select: none;
   font-size: 13px;
@@ -754,9 +759,7 @@ tr:hover i{
   cursor: pointer;
 }
 
-.button-main:hover {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
-}
+
 
 .principal{
   padding-top: 40px;
@@ -842,6 +845,7 @@ tr:hover i{
   margin: 5px;
   padding: 15px;
   background-color: #e27c60;
+  display: inline-block;
 }
 
 .foot-button a, .foot-button a:visited, .foot-button a:hover, .foot-button a:active {
@@ -855,4 +859,12 @@ tr:hover i{
 
 .foot-button:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
+}
+
+.bola-verde{
+  color: #68ca68;
+}
+
+.bola-roja{
+  color: #de1e1e;
 }

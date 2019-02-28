@@ -65,25 +65,55 @@ export class ConfiguracionComponent implements OnInit {
 		this.getTarjetas();
 		this.getInversiones();
 	}
+
+	public blankInputCategoriaIngreso() {
+		(<HTMLInputElement>document.getElementById('submitI')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('submitIerror')).style.visibility="hidden";
+	}
+
+	public blankInputCategoriaGasto() {
+		(<HTMLInputElement>document.getElementById('submitG')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('submitGerror')).style.visibility="hidden";
+	}
+
+	public blankInputTarjeta() {
+		(<HTMLInputElement>document.getElementById('submitT')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('submitTerror')).style.visibility="hidden";
+	}
+
+	public blankInputInversion() {
+		(<HTMLInputElement>document.getElementById('submitV')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('submitVerror')).style.visibility="hidden";
+	}
  
 	public insertCategoriaGasto() {
 		event.preventDefault();
 		let personaActualID = this.persona[0];
 		var res = (<HTMLInputElement>document.getElementById('submitG')).value;
-		(<HTMLInputElement>document.getElementById('submitG')).value = "";
-		let me = this;
-	    me.ipc.send("insertCategoriaGasto", personaActualID, res);
-	    this.getCategorias();
+		if (res == ""){
+			(<HTMLInputElement>document.getElementById('submitG')).style.borderColor="red"; 
+			(<HTMLInputElement>document.getElementById('submitGerror')).style.visibility="visible";
+		} else {
+			this.blankInputCategoriaGasto();
+			let me = this;
+		    me.ipc.send("insertCategoriaGasto", personaActualID, res);
+		    this.getCategorias();
+		}
 	}
 
 	public insertCategoriaIngreso() {
 		event.preventDefault();
 		let personaActualID = this.persona[0];
 		var res = (<HTMLInputElement>document.getElementById('submitI')).value;
-		(<HTMLInputElement>document.getElementById('submitI')).value = "";
-		let me = this;
-	    me.ipc.send("insertCategoriaIngreso", personaActualID, res);
-	    this.getCategorias();
+		if (res == ""){
+			(<HTMLInputElement>document.getElementById('submitI')).style.borderColor="red"; 
+			(<HTMLInputElement>document.getElementById('submitIerror')).style.visibility="visible";
+		} else {
+			this.blankInputCategoriaIngreso();
+			let me = this;
+		    me.ipc.send("insertCategoriaIngreso", personaActualID, res);
+		    this.getCategorias();
+		}
 	}
 
 	public removeCategoria(event) {
@@ -97,10 +127,15 @@ export class ConfiguracionComponent implements OnInit {
 		event.preventDefault();
 		let personaActualID = this.persona[0];
 		var res = (<HTMLInputElement>document.getElementById('submitT')).value;
-		(<HTMLInputElement>document.getElementById('submitT')).value = "";
-		let me = this;
-	    me.ipc.send("insertTarjeta", personaActualID, res);
-	    this.getTarjetas();
+		if (res == ""){
+			(<HTMLInputElement>document.getElementById('submitT')).style.borderColor="red"; 
+			(<HTMLInputElement>document.getElementById('submitTerror')).style.visibility="visible";
+		} else {
+			this.blankInputTarjeta();
+			let me = this;
+		    me.ipc.send("insertTarjeta", personaActualID, res);
+		    this.getTarjetas();
+		}
 	}
 
 	public removeTarjeta(event) {
@@ -115,10 +150,15 @@ export class ConfiguracionComponent implements OnInit {
 		event.preventDefault();
 		let personaActualID = this.persona[0];
 		var res = (<HTMLInputElement>document.getElementById('submitV')).value;
-		(<HTMLInputElement>document.getElementById('submitV')).value = "";
-		let me = this;
-	    me.ipc.send("insertInversion", personaActualID, res);
-	    this.getInversiones();
+		if (res == ""){
+			(<HTMLInputElement>document.getElementById('submitV')).style.borderColor="red"; 
+			(<HTMLInputElement>document.getElementById('submitVerror')).style.visibility="visible";
+		} else {
+			this.blankInputInversion();
+			let me = this;
+		    me.ipc.send("insertInversion", personaActualID, res);
+		    this.getInversiones();
+		}
 	}
 
 	public removeInversion(event) {

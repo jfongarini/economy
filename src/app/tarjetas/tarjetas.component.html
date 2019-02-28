@@ -39,7 +39,7 @@
             <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m11}}</td>
             <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m12}}</td>
             <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m13}}</td>
-            <td class="delete" ><i class="fa fa-times tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTC($event)"></i></td>
+            <td class="delete" ><i class="material-icons tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTC($event)">clear</i></td>
           </tr>
           <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
             <td>Total</td>
@@ -92,8 +92,8 @@
           <input type="month" id="submitMes" ng-pattern-restrict required />        
           <label class="input-error" id="mesError">*Oblig</label> 
         </div>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="insertTC()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertTC()"></i></label>
+        <label class="button-main"><i class="material-icons botton-check" (click)="insertTC()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertTC()">clear</i></label>
       </form>
     </div>
   </div>
@@ -129,8 +129,8 @@
           <input type="month" id="editMes" ng-pattern-restrict required />        
           <label class="input-error" id="mesError">*Oblig</label> 
         </div>
-        <label class="button-main"><i class="fa fa-check botton-check" (click)="updateTC()"></i></label> 
-        <label class="button-main"><i class="fa fa-times botton-close" (click)="closeInsertTC()"></i></label> 
+        <label class="button-main"><i class="material-icons botton-check" (click)="updateTC()">done</i></label> 
+        <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertTC()">clear</i></label> 
       </form>
     </div>
   </div>

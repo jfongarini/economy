@@ -349,14 +349,34 @@
     </tbody>
   </table>
 </div>
-
-<div class=banner>
-  <div class="separator"></div>
-  <label class="banner-button" ng-click="">+1</label>
-  <div class="separator"></div>
-  <label class=banner-button ng-click="">+10</label>
-  <div class="separator"></div>
-  <label class=banner-button ng-click="">+Todos</label>
-  <div class="separator"></div>
+<div class="titulos">
+  COMPARACI&Oacute;N
 </div>
+<div class=main-add id="formNuevoDiario">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card nuevo-diario">
+      <form id="testform" onsubmit="return false;">
+        <div class=form-field>
+          <label><strong>Saldo Disponible:</strong></label>
+          <input type="number" placeholder="Importe" id="submitSaldo" step=".01" required>
+        </div>
+        <div class=form-field>
+          <label><strong>Billetera:</strong></label>
+          <input type="number" placeholder="Importe" id="submitBilletera" step=".01" required>
+        </div>
+        <div class=form-field>
+          <label><strong>Banco:</strong></label> 
+          <input type="number" placeholder="Importe" id="submitBanco" step=".01" required>
+        </div> 
+        <div class=form-field>
+            <label class="button-main"><i class="material-icons botton-check" (click)="checkComparacion()">done</i></label>
+        </div> 
+        <div class=form-field>
+            <label *ngIf="!compara"><i class="material-icons bola-roja">error</i></label>
+            <label *ngIf="compara"><i class="material-icons bola-verde">thumb_up_alt</i></label>
+            <label class="input-error" id="saldoError">{{mensaje}}</label>
+        </div> 
+      </form>
+    </div>
+  </div>
 </div>
