@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppComponent } from '../app.component';
-declare let electron: any;
+declare var electron: any;
+declare var require: any;
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -13,10 +15,10 @@ export class MainComponent implements OnInit {
   public list: Array<string>;
   public compara: boolean;
   public mensaje: string;
-  public resumen: new Array();
-  public categoriaPrimaria: new Array();
-  public categoriaSecundaria: new Array();
-  public meses: new Array();
+  public resumen = new Array();
+  public categoriaPrimaria = new Array();
+  public categoriaSecundaria = new Array();
+  public meses = new Array();
 
   public diarioLength: number;
   public listDiario: Array<string>;
@@ -60,7 +62,7 @@ export class MainComponent implements OnInit {
     var splitted = fecha.split("/",3);
     let personaActualAnno = String(this.persona[4]);
     let fechaAnno = splitted[2];
-    if (fechaAnno == personaActualAnno)) {
+    if (fechaAnno == personaActualAnno) {
       estado = true;
     } 
     return estado;
@@ -84,6 +86,7 @@ export class MainComponent implements OnInit {
     let personaActualID = this.persona[0];    
       me.ipc.send("getDiario", personaActualID)
       me.ipc.on("resultSentDiario", function (evt, result) {
+        me.listDiario = [];
         me.diarioLength = result.length;
         for (var i = 0; i < me.diarioLength; i++) {
           me.listDiario.push(result[i]);
@@ -94,27 +97,50 @@ export class MainComponent implements OnInit {
 
   generarResumen(){
     let me = this;
-    me.resumen[0]['ingresos'] = [];  
-    me.resumen[1]['gastos'] = [];
-    me.resumen[2]['inversiones'] = [];
+    me.resumen['ingresos'] = [];
+    me.resumen['gastos'] = [];
+    me.resumen['inversiones'] = [];
     let valido = false;
     for (var i = 0; i < me.diarioLength; i++) {   
-      let sendFecha = me.listDiario.FECHA;
-      let fechaValida = me.getFecha(sendFecha);
+      let sendFecha = me.listDiario[i]['FECHA'];
+      let fechaValida = me.getAnnoValido(sendFecha);
       if (fechaValida) {
-        let idCat = me.listDiario[i].ID_CATEGORIA;
+        let idCat = me.listDiario[i]['ID_CATEGORIA'];
         let giCat = me.listCategoria[idCat-1]['GI'];
         let nombreCat =  me.listCategoria[idCat-1]['NOMBRE'];
-        var splitted = fecha.split("/",3);
+        var splitted = sendFecha.split("/",3);
         let mesCat = splitted[1];
-        let mes = "";
-        if (mesCat < 10) {
-          mes = 'm0'+mesCat;
+        let mes = 'm'+mesCat;
+        if (giCat == 'G') {
+          let estadoCate = this.getSafe(() => me.resumen['gastos'][nombreCat]);
+          if (estadoCate == undefined) {
+            me.resumen['gastos'][nombreCat] = [];
+          }
+          let estadoMes = this.getSafe(() => me.resumen['gastos'][nombreCat][mes]);
+          if (estadoMes == undefined) {
+            me.resumen['gastos'][nombreCat][mes] = 0;
+          }            
+          me.resumen['gastos'][nombreCat][mes] = me.resumen['gastos'][nombreCat][mes] + +me.listDiario[i]['MONTO'];
         } else {
-          mes = 'm'+mesCat;
-        }
-        
+          let estadoCate = this.getSafe(() => me.resumen['ingresos'][nombreCat]);
+          if (estadoCate == undefined) {
+            me.resumen['ingresos'][nombreCat] = [];
+          }
+          let estadoMes = this.getSafe(() => me.resumen['ingresos'][nombreCat][mes]);
+          if (estadoMes == undefined) {
+            me.resumen['ingresos'][nombreCat][mes] = 0;
+          }
+          me.resumen['ingresos'][nombreCat][mes] = me.resumen['ingresos'][nombreCat][mes] + +me.listDiario[i]['MONTO'];
+        } 
       }
     }
+  }
+
+  getSafe(fn) {
+      try {
+          return fn();
+      } catch (e) {
+          return undefined;
+      }
   }
 }
