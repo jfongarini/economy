@@ -85,6 +85,7 @@ function getPersona() {
     let result = knex('Persona').where('ID', 1)
     result.then(function (rows) {
       mainWindow.webContents.send("resultSentPersona", rows);
+      //event.returnValue = rows;
     })
   });
 }
@@ -106,7 +107,8 @@ function getCategorias() {
   ipcMain.on("getCategorias", (event, arg) => {
     let result = knex('Categoria').where('ID_PERSONA', arg)
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSentCategorias", rows);
+  //mainWindow.webContents.send("resultSentCategorias", rows);
+      event.returnValue = rows;
     })
   });
 
@@ -164,10 +166,21 @@ function getDiario() {
   ipcMain.on("getDiario", (event, arg) => {
     let result = knex('Diario').where('ID_PERSONA', arg).orderBy('FECHA')
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSentDiario", rows);
+      //mainWindow.webContents.send("resultSentDiario", rows);
+      event.returnValue = rows;
     })
   });
 
+}
+
+function getTarjeta() {
+  ipcMain.on("getTarjeta", (event, arg) => {
+    let result = knex('Tarjeta').where('ID_PERSONA', arg)
+    result.then(function (rows) {
+      event.returnValue = rows;
+    })
+    
+  });
 }
 
 getDiario();
@@ -175,7 +188,8 @@ getDiario();
 ipcMain.on("getUnDiario", (event, id) => {
   let result = knex('Diario').where('ID', id)
   result.then(function (rows) {
-    mainWindow.webContents.send("resultSentUnDiario", rows);
+    //mainWindow.webContents.send("resultSentUnDiario", rows);
+    event.returnValue = rows;
   })
 });
 
@@ -227,6 +241,7 @@ ipcMain.on("getUnTC", (event, id) => {
   let result = knex('TarjetaConsumo').where('ID', id)
   result.then(function (rows) {
     mainWindow.webContents.send("resultSentUnTC", rows);
+    //event.returnValue = rows;
   })
 });
 
@@ -277,7 +292,8 @@ getInversionDiario();
 ipcMain.on("getUnInversionDiario", (event, id) => {
   let result = knex('InversionDiario').where('ID', id)
   result.then(function (rows) {
-    mainWindow.webContents.send("resultSentUnInversionDiario", rows);
+    //mainWindow.webContents.send("resultSentUnInversionDiario", rows);
+    event.returnValue = rows;
   })
 });
 

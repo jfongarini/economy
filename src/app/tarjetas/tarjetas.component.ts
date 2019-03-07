@@ -231,6 +231,7 @@ export class TarjetasComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 		let me = this;
 		me.idTC = event.target.id;
+		//let result = me.ipc.sendSync("getUnTC", me.idTC)
 		me.ipc.send("getUnTC", me.idTC)
 	    me.ipc.on("resultSentUnTC", function (evt, result) {
 	    	(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = result[0].ID_TARJETA -1;

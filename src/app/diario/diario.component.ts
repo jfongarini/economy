@@ -60,14 +60,15 @@ export class DiarioComponent implements OnInit {
 	getCategorias(){
 		let me = this;
 		let personaActualID = this.persona[0];
-	    me.ipc.send("getCategorias", personaActualID)
-	    me.ipc.on("resultSentCategorias", function (evt, result) {
+		let result = me.ipc.sendSync("getCategorias", personaActualID);
+	    //me.ipc.send("getCategorias", personaActualID)
+	    //me.ipc.on("resultSentCategorias", function (evt, result) {
 			me.listCategoria = [];
-			for (var i = 0; i < result.length; i++) {				
+			for (var i = 0; i < result.length; i++) {			
 				me.listCategoria.push(result[i]);				
 			}
 			me.ref.detectChanges()
-	    });
+	    //});
 	}
 
 	getDiario(){
@@ -77,8 +78,9 @@ export class DiarioComponent implements OnInit {
 		let idCat = 0;
 		let fechaValida = false;
 		let personaActualID = this.persona[0];		
-	    me.ipc.send("getDiario", personaActualID)
-	    me.ipc.on("resultSentDiario", function (evt, result) {
+//	    me.ipc.send("getDiario", personaActualID)
+	    let result = me.ipc.sendSync("getDiario", personaActualID);
+//	    me.ipc.on("resultSentDiario", function (evt, result) {
 			me.listDiarioG = [];
 			me.listDiarioI = [];
 			me.totalIngreso = 0;
@@ -101,7 +103,7 @@ export class DiarioComponent implements OnInit {
 				}		
 			}
 			me.ref.detectChanges()
-	    });
+//	    });
 	}
 
 	getTotalIngreso():string {		
@@ -176,8 +178,9 @@ export class DiarioComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 		let me = this;
 		me.idDiario = event.target.id;
-		me.ipc.send("getUnDiario", me.idDiario)
-	    me.ipc.on("resultSentUnDiario", function (evt, result) {
+		let result = me.ipc.sendSync("getUnDiario", me.idDiario);
+		//me.ipc.send("getUnDiario", me.idDiario)
+	    //me.ipc.on("resultSentUnDiario", function (evt, result) {
 	    	var fecha = result[0].FECHA;
 	    	var splitted = fecha.split("/",3);
 			var dia = String(splitted[0]);
@@ -185,7 +188,7 @@ export class DiarioComponent implements OnInit {
 			(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
 			(<HTMLSelectElement>document.getElementById('editGrupo')).selectedIndex = result[0].ID_CATEGORIA -1;
 			(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;
-	    });		
+	    //});		
 	}
 
 	public updateDiario(event) {

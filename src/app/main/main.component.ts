@@ -29,11 +29,13 @@ export class MainComponent implements OnInit {
 
   constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.compara = false;
     this.mensaje = "";
-    this.getCategorias();
-    this.generarResumen();
+    await this.getCategorias();
+    await this.getDiario();
+    await this.generarResumen();
+    await this.refactorList();
   }
 
   checkComparacion(){
@@ -71,15 +73,31 @@ export class MainComponent implements OnInit {
   getCategorias(){
     let me = this;
     let personaActualID = this.persona[0];
-      me.ipc.send("getCategorias", personaActualID)
-      me.ipc.on("resultSentCategorias", function (evt, result) {
+    let result = me.ipc.sendSync("getCategorias", personaActualID);
+      //me.ipc.send("getCategorias", personaActualID)
+      //me.ipc.on("resultSentCategorias", function (evt, result) {
         me.listCategoria = [];
         me.categoriaLength = result.length;
         for (var i = 0; i < me.categoriaLength; i++) {       
           me.listCategoria.push(result[i]);       
         }
         me.ref.detectChanges()
-      });
+      //});
+  }
+
+  getDiario(){
+    let me = this;
+    let personaActualID = this.persona[0];  
+    let result = me.ipc.sendSync("getDiario", personaActualID);  
+    //me.ipc.send("getDiario", personaActualID)
+    //me.ipc.on("resultSentDiario", function (evt, result) {
+      me.listDiario = [];
+      me.diarioLength = result.length;
+      for (var i = 0; i < me.diarioLength; i++) {
+        me.listDiario.push(result[i]);
+      }
+      me.ref.detectChanges()
+   // });
   }
 
   getUnDiario(diarioCategoria){
@@ -94,7 +112,7 @@ export class MainComponent implements OnInit {
     me.ref.detectChanges()
   }
 
-  generarResumen(){
+  async generarResumen(){
     let me = this;
     let valido = false;
     for (var i = 0; i < me.categoriaLength; i++) { 
@@ -102,56 +120,50 @@ export class MainComponent implements OnInit {
       let idCat = me.listCategoria[i]['ID'];
       let giCat = me.listCategoria[i]['GI'];
       let nombreCat =  me.listCategoria[i]['NOMBRE'];
-      this.getUnDiario(idCat);
+     // this.getUnDiario(idCat);
       for (var j = 0; j < me.diarioLength; j++) { 
-        let sendFecha = me.listDiario[j]['FECHA'];
-        let fechaValida = me.getAnnoValido(sendFecha);
-        if (fechaValida) {
-          let splitted = sendFecha.split("/",3);
-          let mesCat = splitted[1];
-          let mes = 'm'+mesCat;
-          if (giCat == 'G') {
-            let estadoCate = this.getSafe(() => me.resumenG[i]);
-            if (estadoCate == undefined) {
-              me.resumenG[i] = [];
+        let idDiarioCat = me.listDiario[j]['ID_CATEGORIA'];
+        if (idDiarioCat == idCat) {
+          let sendFecha = me.listDiario[j]['FECHA'];
+          let fechaValida = me.getAnnoValido(sendFecha);
+          if (fechaValida) {
+            let splitted = sendFecha.split("/",3);
+            let mesCat = splitted[1];
+            let mes = 'm'+mesCat;
+            if (giCat == 'G') {
+
+              let estadoCate = this.getSafe(() => me.resumenG[i]);
+              if (estadoCate == undefined) {
+                me.resumenG[i] = [];
+              }
+              let estadoNombre = this.getSafe(() => me.resumenG[i]['nombre']);
+              if (estadoNombre == undefined) {
+                me.resumenG[i]['nombre'] = nombreCat;
+              }  
+              let estadoMes = this.getSafe(() => me.resumenG[i][mes]);
+              if (estadoMes == undefined) {
+                me.resumenG[i][mes] = 0;
+              }            
+              me.resumenG[i][mes] = me.resumenG[i][mes] + +me.listDiario[j]['MONTO'];
+            } else {
+              let estadoCate = this.getSafe(() => me.resumenI[i]);
+              if (estadoCate == undefined) {
+                me.resumenI[i] = [];
+              }
+              let estadoNombre = this.getSafe(() => me.resumenI[i]['nombre']);
+              if (estadoNombre == undefined) {
+                me.resumenI[i]['nombre'] = nombreCat;
+              }  
+              let estadoMes = this.getSafe(() => me.resumenI[i][mes]);
+              if (estadoMes == undefined) {
+                me.resumenI[i][mes] = 0;
+              }            
+              me.resumenI[i][mes] = me.resumenI[i][mes] + +me.listDiario[j]['MONTO'];
             }
-            let estadoNombre = this.getSafe(() => me.resumenG[i]['nombre']);
-            if (estadoNombre == undefined) {
-              me.resumenG[i]['nombre'] = nombreCat;
-            }  
-            let estadoMes = this.getSafe(() => me.resumenG[i][mes]);
-            if (estadoMes == undefined) {
-              me.resumenG[i][mes] = 0;
-            }            
-            me.resumenG[i][mes] = me.resumenG[i][mes] + +me.listDiario[j]['MONTO'];
-            console.log(me.resumenG);
-          } else {
-            let estadoCate = this.getSafe(() => me.resumenI[i]);
-            if (estadoCate == undefined) {
-              me.resumenI[i] = [];
-            }
-            let estadoNombre = this.getSafe(() => me.resumenI[i]['nombre']);
-            if (estadoNombre == undefined) {
-              me.resumenI[i]['nombre'] = nombreCat;
-            }  
-            let estadoMes = this.getSafe(() => me.resumenI[i][mes]);
-            if (estadoMes == undefined) {
-              me.resumenI[i][mes] = 0;
-            }            
-            me.resumenI[i][mes] = me.resumenI[i][mes] + +me.listDiario[j]['MONTO'];
           }
         }
       }
     }
-    console.log('Lista completa');
-    console.log(me.resumenG);
-    console.log(me.resumenI);
-    console.log('-----------');
-    console.log(me.resumenG);
-    console.log('-----------');
-    console.log(me.resumenG[0]);
-    console.log('-----------');
-
   }
 
   getSafe(fn) {
@@ -160,5 +172,23 @@ export class MainComponent implements OnInit {
       } catch (e) {
           return undefined;
       }
+  }
+
+  refactorList(){
+    let me = this;
+    for (var i = 0; i < me.resumenI.length; i++) {
+      let position = this.getSafe(() => me.resumenI[i]);
+      if (position == undefined) {        
+        me.resumenI.splice(i,1);
+        i--
+      }      
+    };
+    for (var i = 0; i < me.resumenG.length; i++) {
+      let position = this.getSafe(() => me.resumenG[i]);
+      if (position == undefined) {        
+        me.resumenG.splice(i,1);
+        i--
+      }
+    };
   }
 }

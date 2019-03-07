@@ -22,8 +22,9 @@ export class ConfiguracionComponent implements OnInit {
 	getCategorias(){
 		let me = this;
 		let personaActualID = this.persona[0];
-	    me.ipc.send("getCategorias", personaActualID)
-	    me.ipc.on("resultSentCategorias", function (evt, result) {
+	    //me.ipc.send("getCategorias", personaActualID)
+	    //me.ipc.on("resultSentCategorias", function (evt, result) {
+	    let result = me.ipc.sendSync("getCategorias", personaActualID)
 			me.listG = [];
 			me.listI = [];
 			for (var i = 0; i < result.length; i++) {
@@ -34,7 +35,7 @@ export class ConfiguracionComponent implements OnInit {
 				}				
 			}
 			me.ref.detectChanges()
-	    });
+	    //});
 	}
 
 	getTarjetas(){

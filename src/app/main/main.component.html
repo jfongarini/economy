@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-     <tr ng-cloak id={{ingreso}} class="data-row fade-in" *ngFor="let ingreso of resumenG" >
+     <tr ng-cloak id={{ingreso}} class="data-row fade-in" *ngFor="let ingreso of resumenI" >
             <td data-id={{ingreso}}>{{ingreso.nombre}}</td>
             <td data-id={{ingreso}}>{{ingreso.m01}}</td>
             <td data-id={{ingreso}}>{{ingreso.m02}}</td>
@@ -36,7 +36,6 @@
             <td data-id={{ingreso}}>{{ingreso.m10}}</td>
             <td data-id={{ingreso}}>{{ingreso.m11}}</td>
             <td data-id={{ingreso}}>{{ingreso.m12}}</td>
-            <td data-id={{ingreso}}>{{ingreso.m13}}</td>
           </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
@@ -80,111 +79,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Alimentacion</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Cigarrillos</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Gas</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Luz</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Ocio</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Supermercado</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Varios</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+     <tr ng-cloak id={{gasto}} class="data-row fade-in" *ngFor="let gasto of resumenG" >
+            <td data-id={{gasto}}>{{gasto.nombre}}</td>
+            <td data-id={{gasto}}>{{gasto.m01}}</td>
+            <td data-id={{gasto}}>{{gasto.m02}}</td>
+            <td data-id={{gasto}}>{{gasto.m03}}</td>
+            <td data-id={{gasto}}>{{gasto.m04}}</td>
+            <td data-id={{gasto}}>{{gasto.m05}}</td>
+            <td data-id={{gasto}}>{{gasto.m06}}</td>
+            <td data-id={{gasto}}>{{gasto.m07}}</td>
+            <td data-id={{gasto}}>{{gasto.m08}}</td>
+            <td data-id={{gasto}}>{{gasto.m09}}</td>
+            <td data-id={{gasto}}>{{gasto.m10}}</td>
+            <td data-id={{gasto}}>{{gasto.m11}}</td>
+            <td data-id={{gasto}}>{{gasto.m12}}</td>
+          </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
         <td></td>
@@ -204,107 +113,6 @@
   </table>
 </div>
 
-<div class="titulos">
-  COMPARACION
-</div>
-<div id=content class="content fade-in">
-  <table ng-cloak id=table class=main-table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Saldo Disponible</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Billetera</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Banco</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Varios</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
-        <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 <div class="titulos">
   COMPARACI&Oacute;N
 </div>
