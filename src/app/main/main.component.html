@@ -22,66 +22,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Sueldo</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-        <td>30000</td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Banco</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Otro</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr ng-cloak class="data-row fade-in">
-        <td>Billetera</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
+     <tr ng-cloak id={{ingreso}} class="data-row fade-in" *ngFor="let ingreso of resumenG" >
+            <td data-id={{ingreso}}>{{ingreso.nombre}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m01}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m02}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m03}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m04}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m05}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m06}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m07}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m08}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m09}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m10}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m11}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m12}}</td>
+            <td data-id={{ingreso}}>{{ingreso.m13}}</td>
+          </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
         <td></td>

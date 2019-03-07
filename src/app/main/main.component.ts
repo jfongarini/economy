@@ -15,12 +15,13 @@ export class MainComponent implements OnInit {
   public list: Array<string>;
   public compara: boolean;
   public mensaje: string;
-  public resumen = new Array();
-  public categoriaPrimaria = new Array();
-  public categoriaSecundaria = new Array();
+  public resumenG = new Array();
+  public resumenI = new Array();
+  public resumenV = new Array();
   public meses = new Array();
 
   public diarioLength: number;
+  public categoriaLength: number;
   public listDiario: Array<string>;
   public listDiarioG: Array<string>;
   public listDiarioI: Array<string>;
@@ -32,7 +33,6 @@ export class MainComponent implements OnInit {
     this.compara = false;
     this.mensaje = "";
     this.getCategorias();
-    this.getDiario();
     this.generarResumen();
   }
 
@@ -74,66 +74,84 @@ export class MainComponent implements OnInit {
       me.ipc.send("getCategorias", personaActualID)
       me.ipc.on("resultSentCategorias", function (evt, result) {
         me.listCategoria = [];
-        for (var i = 0; i < result.length; i++) {       
+        me.categoriaLength = result.length;
+        for (var i = 0; i < me.categoriaLength; i++) {       
           me.listCategoria.push(result[i]);       
         }
         me.ref.detectChanges()
       });
   }
 
-  getDiario(){
+  getUnDiario(diarioCategoria){
     let me = this;
     let personaActualID = this.persona[0];    
-      me.ipc.send("getDiario", personaActualID)
-      me.ipc.on("resultSentDiario", function (evt, result) {
-        me.listDiario = [];
-        me.diarioLength = result.length;
-        for (var i = 0; i < me.diarioLength; i++) {
-          me.listDiario.push(result[i]);
-        }
-        me.ref.detectChanges()
-      });
+    let result = me.ipc.sendSync("getDiarioCategoria", personaActualID, diarioCategoria)
+    me.listDiario = [];
+    me.diarioLength = result.length;
+    for (var i = 0; i < me.diarioLength; i++) {
+      me.listDiario.push(result[i]);
+    }
+    me.ref.detectChanges()
   }
 
   generarResumen(){
     let me = this;
-    me.resumen['ingresos'] = [];
-    me.resumen['gastos'] = [];
-    me.resumen['inversiones'] = [];
     let valido = false;
-    for (var i = 0; i < me.diarioLength; i++) {   
-      let sendFecha = me.listDiario[i]['FECHA'];
-      let fechaValida = me.getAnnoValido(sendFecha);
-      if (fechaValida) {
-        let idCat = me.listDiario[i]['ID_CATEGORIA'];
-        let giCat = me.listCategoria[idCat-1]['GI'];
-        let nombreCat =  me.listCategoria[idCat-1]['NOMBRE'];
-        var splitted = sendFecha.split("/",3);
-        let mesCat = splitted[1];
-        let mes = 'm'+mesCat;
-        if (giCat == 'G') {
-          let estadoCate = this.getSafe(() => me.resumen['gastos'][nombreCat]);
-          if (estadoCate == undefined) {
-            me.resumen['gastos'][nombreCat] = [];
+    for (var i = 0; i < me.categoriaLength; i++) { 
+      let suma = 0;
+      let idCat = me.listCategoria[i]['ID'];
+      let giCat = me.listCategoria[i]['GI'];
+      let nombreCat =  me.listCategoria[i]['NOMBRE'];
+      this.getUnDiario(idCat);
+      for (var j = 0; j < me.diarioLength; j++) { 
+        let sendFecha = me.listDiario[j]['FECHA'];
+        let fechaValida = me.getAnnoValido(sendFecha);
+        if (fechaValida) {
+          let splitted = sendFecha.split("/",3);
+          let mesCat = splitted[1];
+          let mes = 'm'+mesCat;
+          if (giCat == 'G') {
+            let estadoCate = this.getSafe(() => me.resumenG[i]);
+            if (estadoCate == undefined) {
+              me.resumenG[i] = [];
+            }
+            let estadoNombre = this.getSafe(() => me.resumenG[i]['nombre']);
+            if (estadoNombre == undefined) {
+              me.resumenG[i]['nombre'] = nombreCat;
+            }  
+            let estadoMes = this.getSafe(() => me.resumenG[i][mes]);
+            if (estadoMes == undefined) {
+              me.resumenG[i][mes] = 0;
+            }            
+            me.resumenG[i][mes] = me.resumenG[i][mes] + +me.listDiario[j]['MONTO'];
+            console.log(me.resumenG);
+          } else {
+            let estadoCate = this.getSafe(() => me.resumenI[i]);
+            if (estadoCate == undefined) {
+              me.resumenI[i] = [];
+            }
+            let estadoNombre = this.getSafe(() => me.resumenI[i]['nombre']);
+            if (estadoNombre == undefined) {
+              me.resumenI[i]['nombre'] = nombreCat;
+            }  
+            let estadoMes = this.getSafe(() => me.resumenI[i][mes]);
+            if (estadoMes == undefined) {
+              me.resumenI[i][mes] = 0;
+            }            
+            me.resumenI[i][mes] = me.resumenI[i][mes] + +me.listDiario[j]['MONTO'];
           }
-          let estadoMes = this.getSafe(() => me.resumen['gastos'][nombreCat][mes]);
-          if (estadoMes == undefined) {
-            me.resumen['gastos'][nombreCat][mes] = 0;
-          }            
-          me.resumen['gastos'][nombreCat][mes] = me.resumen['gastos'][nombreCat][mes] + +me.listDiario[i]['MONTO'];
-        } else {
-          let estadoCate = this.getSafe(() => me.resumen['ingresos'][nombreCat]);
-          if (estadoCate == undefined) {
-            me.resumen['ingresos'][nombreCat] = [];
-          }
-          let estadoMes = this.getSafe(() => me.resumen['ingresos'][nombreCat][mes]);
-          if (estadoMes == undefined) {
-            me.resumen['ingresos'][nombreCat][mes] = 0;
-          }
-          me.resumen['ingresos'][nombreCat][mes] = me.resumen['ingresos'][nombreCat][mes] + +me.listDiario[i]['MONTO'];
-        } 
+        }
       }
     }
+    console.log('Lista completa');
+    console.log(me.resumenG);
+    console.log(me.resumenI);
+    console.log('-----------');
+    console.log(me.resumenG);
+    console.log('-----------');
+    console.log(me.resumenG[0]);
+    console.log('-----------');
+
   }
 
   getSafe(fn) {

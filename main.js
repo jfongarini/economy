@@ -312,3 +312,21 @@ ipcMain.on('setUnEstado', (event, id, finalizdo) => {
   })
 });
 ///////////////////////////////////////////
+
+
+
+function getDiarioCategoria() {
+
+  ipcMain.on("getDiarioCategoria", (event, id, categoria) => {
+    let result = knex('Diario').where('ID_PERSONA', id).andWhere('ID_CATEGORIA', categoria)
+    result.then(function (rows) {
+      event.returnValue = rows;
+    })
+  });
+
+}
+
+
+getDiarioCategoria();
+
+///////////////////////////////////////////
