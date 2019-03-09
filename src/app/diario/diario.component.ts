@@ -90,9 +90,10 @@ export class DiarioComponent implements OnInit {
 				fechaValida = me.getFecha(sendFecha);
 				if (fechaValida) {
 					idCat = result[i].ID_CATEGORIA;
-					giCat = me.listCategoria[idCat-1]['GI'];
+					let categoria = me.listCategoria.find(cate => cate['ID'] === idCat);
+					giCat = categoria['GI'];
 					result[i].dia = me.diaDiario; 
-					result[i].nombreCategoria = me.listCategoria[idCat-1]['NOMBRE'];
+					result[i].nombreCategoria = categoria['NOMBRE'];
 					if (giCat == 'G') {
 						me.listDiarioG.push(result[i]);
 						me.totalGasto = me.totalGasto + result[i].MONTO;
@@ -181,13 +182,15 @@ export class DiarioComponent implements OnInit {
 		let result = me.ipc.sendSync("getUnDiario", me.idDiario);
 		//me.ipc.send("getUnDiario", me.idDiario)
 	    //me.ipc.on("resultSentUnDiario", function (evt, result) {
-	    	var fecha = result[0].FECHA;
-	    	var splitted = fecha.split("/",3);
-			var dia = String(splitted[0]);
-			(<HTMLInputElement>document.getElementById('editDia')).value = dia;
-			(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
-			(<HTMLSelectElement>document.getElementById('editGrupo')).selectedIndex = result[0].ID_CATEGORIA -1;
-			(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;
+    	var fecha = result[0].FECHA;
+    	var splitted = fecha.split("/",3);
+		var dia = String(splitted[0]);
+		(<HTMLInputElement>document.getElementById('editDia')).value = dia;
+		(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
+		let idCat = result[0].ID_CATEGORIA;
+		let categoria = me.listCategoria.findIndex(cate => cate['ID'] === idCat);
+		(<HTMLSelectElement>document.getElementById('editGrupo')).selectedIndex = categoria;
+		(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;
 	    //});		
 	}
 

@@ -136,7 +136,10 @@ export class InversionesComponent implements OnInit {
 		me.idInversionesDiario = event.target.id;
 		me.ipc.send("getUnInversionDiario", me.idInversionesDiario)
 	    me.ipc.on("resultSentUnInversionDiario", function (evt, result) {
-	    	(<HTMLSelectElement>document.getElementById('editInversion')).selectedIndex = result[0].ID_INVERSION -1;
+	    	let idInv = result[0].ID_INVERSION;
+			let inver = me.listInversiones.findIndex(inv => inv['ID'] === idInv);
+			(<HTMLSelectElement>document.getElementById('editInversion')).selectedIndex = inver;
+	    	//(<HTMLSelectElement>document.getElementById('editInversion')).selectedIndex = result[0].ID_INVERSION -1;
 	    	(<HTMLInputElement>document.getElementById('editMonto')).value = result[0].MONTO;
 			(<HTMLInputElement>document.getElementById('editGanancia')).value = result[0].GANANCIA;
 			(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;

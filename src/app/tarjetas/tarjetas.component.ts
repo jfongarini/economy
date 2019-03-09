@@ -234,7 +234,10 @@ export class TarjetasComponent implements OnInit {
 		//let result = me.ipc.sendSync("getUnTC", me.idTC)
 		me.ipc.send("getUnTC", me.idTC)
 	    me.ipc.on("resultSentUnTC", function (evt, result) {
-	    	(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = result[0].ID_TARJETA -1;
+	    	let idTarj = result[0].ID_TARJETA;
+			let tarj = me.listTarjeta.findIndex(tar => tar['ID'] === idTarj);
+			(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = tarj;
+	    	//(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = result[0].ID_TARJETA -1;
 	    	(<HTMLInputElement>document.getElementById('editNombreConsumo')).value = result[0].NOMBRE;
 			(<HTMLInputElement>document.getElementById('editImporte')).value = result[0].MONTO;
 			(<HTMLInputElement>document.getElementById('editCuotas')).value = result[0].CUOTAS;

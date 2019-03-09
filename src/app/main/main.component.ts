@@ -16,30 +16,44 @@ export class MainComponent implements OnInit {
   public compara: boolean;
   public mensaje: string;
   public resumenG = new Array();
+  public resumenTotalG = new Array();
   public resumenI = new Array();
+  public resumenTotalI = new Array();
   public resumenV = new Array();
+  public resumenTotalV = new Array();
   public meses = new Array();
 
   public diarioLength: number;
   public categoriaLength: number;
   public listDiario: Array<string>;
-  public listDiarioG: Array<string>;
-  public listDiarioI: Array<string>;
   public listCategoria: Array<string>;
+
+  public listInversiones: Array<string>;
+  public listInversionesDiario: Array<string>;
+  public inversionesLength: number;
+  public inversionesDiarioLength: number;
+
+  public total: number;
 
   constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
   async ngOnInit() {
     this.compara = false;
     this.mensaje = "";
+    await this.generarTotales();
     await this.getCategorias();
     await this.getDiario();
-    await this.generarResumen();
+    await this.getInversiones();
+    await this.getInversionDiario();
+    
+    await this.generarResumenDiario();
+    await this.generarResumenInver();
     await this.refactorList();
   }
 
   checkComparacion(){
-    var saldo = +(<HTMLInputElement>document.getElementById('submitSaldo')).value;
+    let me = this;
+    var saldo = me.total;
     var billetera = +(<HTMLInputElement>document.getElementById('submitBilletera')).value;
     var banco = +(<HTMLInputElement>document.getElementById('submitBanco')).value;
     var saldoReal = billetera + banco;
@@ -59,7 +73,27 @@ export class MainComponent implements OnInit {
     }
   }
 
-  getAnnoValido(fecha):boolean {
+  getCompara():string {
+    let me = this;
+    let personaActualMes = String(this.persona[2]);
+    let mes = "";
+    let personaActualMesInt = +personaActualMes;
+    if (personaActualMesInt < 10) {
+      mes = 'm0'+personaActualMes;
+    } else {
+      mes = 'm'+personaActualMes;
+    }    
+    let ingresoSuma = 0;
+    let gastoSuma = 0;
+    let inversionSuma = 0;
+    gastoSuma = me.resumenTotalG[mes];    
+    ingresoSuma = me.resumenTotalI[mes];   
+    inversionSuma = me.resumenTotalV[mes];
+    me.total = ingresoSuma + inversionSuma + gastoSuma;
+    return String(me.total);
+  }
+
+  getAnnoValidoDiario(fecha):boolean {
     let estado = false;
     var splitted = fecha.split("/",3);
     let personaActualAnno = String(this.persona[4]);
@@ -68,6 +102,37 @@ export class MainComponent implements OnInit {
       estado = true;
     } 
     return estado;
+  }
+
+  getAnnoValidoInver(fecha):boolean {
+    let estado = false;
+    var splitted = fecha.split("-",3);
+    let personaActualAnno = String(this.persona[4]);
+    let fechaAnno = splitted[0];
+    if (fechaAnno == personaActualAnno) {
+      estado = true;
+    } 
+    return estado;
+  }
+
+  generarTotales(){
+    let me = this;
+    me.resumenTotalI = [];
+    me.resumenTotalG = [];
+    me.resumenTotalV = [];
+    let k = ''
+    for (var i = 0; i < 12; i++) {
+      let j = i+1;
+      if (j < 10) {
+        k = '0'+j;
+      } else {
+        k = String(j);
+      }
+      let mes = 'm'+k;
+      me.resumenTotalI[mes] = 0;      
+      me.resumenTotalG[mes] = 0;
+      me.resumenTotalV[mes] = 0;
+    }
   }
 
   getCategorias(){
@@ -100,19 +165,7 @@ export class MainComponent implements OnInit {
    // });
   }
 
-  getUnDiario(diarioCategoria){
-    let me = this;
-    let personaActualID = this.persona[0];    
-    let result = me.ipc.sendSync("getDiarioCategoria", personaActualID, diarioCategoria)
-    me.listDiario = [];
-    me.diarioLength = result.length;
-    for (var i = 0; i < me.diarioLength; i++) {
-      me.listDiario.push(result[i]);
-    }
-    me.ref.detectChanges()
-  }
-
-  async generarResumen(){
+  generarResumenDiario(){
     let me = this;
     let valido = false;
     for (var i = 0; i < me.categoriaLength; i++) { 
@@ -125,7 +178,7 @@ export class MainComponent implements OnInit {
         let idDiarioCat = me.listDiario[j]['ID_CATEGORIA'];
         if (idDiarioCat == idCat) {
           let sendFecha = me.listDiario[j]['FECHA'];
-          let fechaValida = me.getAnnoValido(sendFecha);
+          let fechaValida = me.getAnnoValidoDiario(sendFecha);
           if (fechaValida) {
             let splitted = sendFecha.split("/",3);
             let mesCat = splitted[1];
@@ -145,6 +198,7 @@ export class MainComponent implements OnInit {
                 me.resumenG[i][mes] = 0;
               }            
               me.resumenG[i][mes] = me.resumenG[i][mes] + +me.listDiario[j]['MONTO'];
+              me.resumenTotalG[mes] = me.resumenTotalG[mes] + +me.listDiario[j]['MONTO'];
             } else {
               let estadoCate = this.getSafe(() => me.resumenI[i]);
               if (estadoCate == undefined) {
@@ -159,12 +213,78 @@ export class MainComponent implements OnInit {
                 me.resumenI[i][mes] = 0;
               }            
               me.resumenI[i][mes] = me.resumenI[i][mes] + +me.listDiario[j]['MONTO'];
+              me.resumenTotalI[mes] = me.resumenTotalI[mes] + +me.listDiario[j]['MONTO'];
             }
           }
         }
       }
     }
   }
+
+  getInversiones(){
+    let me = this;    
+    let personaActualID = this.persona[0];
+    let result = me.ipc.sendSync("getInversiones", personaActualID)
+    me.listInversiones = [];      
+    me.inversionesLength = result.length; 
+    for (var i = 0; i < me.inversionesLength; i++) {    
+      me.listInversiones.push(result[i]);                 
+    }
+    me.ref.detectChanges()
+  }
+
+  getInversionDiario(){
+    let me = this;    
+    let result2 = me.ipc.sendSync("getInversionDiario")
+    me.inversionesDiarioLength = result2.length;     
+    me.listInversionesDiario = [];
+    for (var j = 0; j < me.inversionesDiarioLength; j++) {         
+      me.listInversionesDiario.push(result2[j]);   
+    }
+    me.ref.detectChanges()                    
+  }
+
+  generarResumenInver(){
+    let me = this;
+    let valido = false;
+    for (var i = 0; i < me.inversionesLength; i++) { 
+      let idInv = me.listInversiones[i]['ID'];
+      let nombreInv = me.listInversiones[i]['NOMBRE'];
+      for (var j = 0; j < me.inversionesDiarioLength; j++) { 
+        let idDiarioInv = me.listInversionesDiario[j]['ID_INVERSION'];
+        if (idDiarioInv == idInv) {
+          let sendFecha = me.listInversionesDiario[j]['FECHA'];
+          let fechaValida = me.getAnnoValidoInver(sendFecha);
+          if (fechaValida) {
+            let splitted = sendFecha.split("-",3);
+            let mesInv = splitted[1];
+            let mes = 'm'+mesInv;
+            let estadoInv = this.getSafe(() => me.resumenV[i]);
+            if (estadoInv == undefined) {
+              me.resumenV[i] = [];
+            }
+            let estadoNombre = this.getSafe(() => me.resumenV[i]['nombre']);
+            if (estadoNombre == undefined) {
+              me.resumenV[i]['nombre'] = nombreInv;
+            }  
+            let estadoMes = this.getSafe(() => me.resumenV[i][mes]);
+            if (estadoMes == undefined) {
+              me.resumenV[i][mes] = 0;
+            }            
+            let estadoFin = me.listInversionesDiario[j]['FINALIZADO'];
+            if (estadoFin == 0) {
+              me.resumenTotalV[mes] = me.resumenTotalV[mes] - +me.listInversionesDiario[j]['MONTO'];
+              me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'];
+            } else {
+              me.resumenTotalV[mes] = me.resumenTotalV[mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
+              me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
+            }
+                       
+          }
+        }
+      }
+    }
+  }  
 
   getSafe(fn) {
       try {
@@ -187,6 +307,13 @@ export class MainComponent implements OnInit {
       let position = this.getSafe(() => me.resumenG[i]);
       if (position == undefined) {        
         me.resumenG.splice(i,1);
+        i--
+      }
+    };
+    for (var i = 0; i < me.resumenV.length; i++) {
+      let position = this.getSafe(() => me.resumenV[i]);
+      if (position == undefined) {        
+        me.resumenV.splice(i,1);
         i--
       }
     };

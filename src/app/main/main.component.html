@@ -37,20 +37,20 @@
             <td data-id={{ingreso}}>{{ingreso.m11}}</td>
             <td data-id={{ingreso}}>{{ingreso.m12}}</td>
           </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c" >
         <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{resumenTotalI.m01}}</td>
+        <td>{{resumenTotalI.m02}}</td>
+        <td>{{resumenTotalI.m03}}</td>
+        <td>{{resumenTotalI.m04}}</td>
+        <td>{{resumenTotalI.m05}}</td>
+        <td>{{resumenTotalI.m06}}</td>
+        <td>{{resumenTotalI.m07}}</td>
+        <td>{{resumenTotalI.m08}}</td>
+        <td>{{resumenTotalI.m09}}</td>
+        <td>{{resumenTotalI.m10}}</td>
+        <td>{{resumenTotalI.m11}}</td>
+        <td>{{resumenTotalI.m12}}</td>
       </tr>
     </tbody>
   </table>
@@ -96,18 +96,75 @@
           </tr>
       <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
         <td>Total</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{resumenTotalG.m01}}</td>
+        <td>{{resumenTotalG.m02}}</td>
+        <td>{{resumenTotalG.m03}}</td>
+        <td>{{resumenTotalG.m04}}</td>
+        <td>{{resumenTotalG.m05}}</td>
+        <td>{{resumenTotalG.m06}}</td>
+        <td>{{resumenTotalG.m07}}</td>
+        <td>{{resumenTotalG.m08}}</td>
+        <td>{{resumenTotalG.m09}}</td>
+        <td>{{resumenTotalG.m10}}</td>
+        <td>{{resumenTotalG.m11}}</td>
+        <td>{{resumenTotalG.m12}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="titulos">
+  INVERSIONES
+</div>
+<div id=content class="content fade-in">
+  <table ng-cloak id=table class=main-table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Ene</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Abr</th>
+        <th>May</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>Ago</th>
+        <th>Sep</th>
+        <th>Oct</th>
+        <th>Nov</th>
+        <th>Dic</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr ng-cloak id={{inversion}} class="data-row fade-in" *ngFor="let inversion of resumenV" >
+            <td data-id={{inversion}}>{{inversion.nombre}}</td>
+            <td data-id={{inversion}}>{{inversion.m01}}</td>
+            <td data-id={{inversion}}>{{inversion.m02}}</td>
+            <td data-id={{inversion}}>{{inversion.m03}}</td>
+            <td data-id={{inversion}}>{{inversion.m04}}</td>
+            <td data-id={{inversion}}>{{inversion.m05}}</td>
+            <td data-id={{inversion}}>{{inversion.m06}}</td>
+            <td data-id={{inversion}}>{{inversion.m07}}</td>
+            <td data-id={{inversion}}>{{inversion.m08}}</td>
+            <td data-id={{inversion}}>{{inversion.m09}}</td>
+            <td data-id={{inversion}}>{{inversion.m10}}</td>
+            <td data-id={{inversion}}>{{inversion.m11}}</td>
+            <td data-id={{inversion}}>{{inversion.m12}}</td>
+          </tr>
+      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+        <td>Total</td>
+        <td>{{resumenTotalV.m01}}</td>
+        <td>{{resumenTotalV.m02}}</td>
+        <td>{{resumenTotalV.m03}}</td>
+        <td>{{resumenTotalV.m04}}</td>
+        <td>{{resumenTotalV.m05}}</td>
+        <td>{{resumenTotalV.m06}}</td>
+        <td>{{resumenTotalV.m07}}</td>
+        <td>{{resumenTotalV.m08}}</td>
+        <td>{{resumenTotalV.m09}}</td>
+        <td>{{resumenTotalV.m10}}</td>
+        <td>{{resumenTotalV.m11}}</td>
+        <td>{{resumenTotalV.m12}}</td>
       </tr>
     </tbody>
   </table>
@@ -122,7 +179,7 @@
       <form id="testform" onsubmit="return false;">
         <div class=form-field>
           <label><strong>Saldo Disponible:</strong></label>
-          <input type="number" placeholder="Importe" id="submitSaldo" step=".01" required>
+          {{getCompara()}}
         </div>
         <div class=form-field>
           <label><strong>Billetera:</strong></label>
