@@ -81,11 +81,12 @@ app.on('activate', () => {
 
 //Separar fecha
 function getPersona() {
-  ipcMain.on("getPersona", function () {
+  //ipcMain.on("getPersona", function () {
+  ipcMain.on("getPersona", (event) => {
     let result = knex('Persona').where('ID', 1)
     result.then(function (rows) {
-      mainWindow.webContents.send("resultSentPersona", rows);
-      //event.returnValue = rows;
+      //mainWindow.webContents.send("resultSentPersona", rows);
+      event.returnValue = rows;
     })
   });
 }
@@ -117,43 +118,64 @@ function getCategorias() {
 getCategorias();
 
 ipcMain.on('insertCategoriaGasto', (event, id, arg) => {
-  knex('Categoria').insert({ID_PERSONA: id, NOMBRE: arg, GI: 'G'})
+  knex('Categoria').insert({ID_PERSONA: id, NOMBRE: arg, GI: 'G', VIGENTE: 0})
   .then( function (result) {
   })
 });
 
 ipcMain.on('insertCategoriaIngreso', (event, id, arg) => {
-  knex('Categoria').insert({ID_PERSONA: id, NOMBRE: arg, GI: 'I'})
+  knex('Categoria').insert({ID_PERSONA: id, NOMBRE: arg, GI: 'I', VIGENTE: 0})
   .then( function (result) {
   })
 });
 
-ipcMain.on('deleteCategoria', (event, arg) => {
-  knex('Categoria').where('ID', arg).del()
+ipcMain.on('deleteCategoria', (event, id, nombre) => {
+  let nombreAux = '*' +nombre
+  knex('Categoria').where('ID', id).update({NOMBRE: nombreAux, VIGENTE: 1})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('updateCategoria', (event, id, nombre) => {
+  knex('Categoria').where('ID', id).update({NOMBRE: nombre})
   .then( function (result) {
   })
 });
 
 ipcMain.on('insertTarjeta', (event, id, arg) => {
-  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: arg})
+  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: argv})
   .then( function (result) {
   })
 });
 
-ipcMain.on('deleteTarjeta', (event, arg) => {
-  knex('Tarjeta').where('ID', arg).del()
+ipcMain.on('deleteTarjeta', (event, id, nombre) => {
+  let nombreAux = '*' +nombre
+  knex('Tarjeta').where('ID', id).update({NOMBRE: nombreAux, VIGENTE: 1})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('updateTarjeta', (event, id, nombre) => {
+  knex('Tarjeta').where('ID', id).update({NOMBRE: nombre})
   .then( function (result) {
   })
 });
 
 ipcMain.on('insertInversion', (event, id, arg) => {
-  knex('Inversion').insert({ID_PERSONA: id, NOMBRE: arg})
+  knex('Inversion').insert({ID_PERSONA: id, NOMBRE: arg, VIGENTE: 0})
   .then( function (result) {
   })
 });
 
-ipcMain.on('deleteInversion', (event, arg) => {
-  knex('Inversion').where('ID', arg).del()
+ipcMain.on('deleteInversion', (event, id, nombre) => {
+  let nombreAux = '*' +nombre
+  knex('Inversion').where('ID', id).update({NOMBRE: nombreAux, VIGENTE: 1})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('updateInversion', (event, id, nombre) => {
+  knex('Inversion').where('ID', id).update({NOMBRE: nombre})
   .then( function (result) {
   })
 });

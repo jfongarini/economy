@@ -7,13 +7,14 @@
      <div class="card categorias">
       <form onsubmit="return false;">
         <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaIngreso()" ng-pattern-restrict required>
-        <label class="foot-button" (click)="insertCategoriaIngreso()">Nuevo</label>  
+        <label class="foot-button" id="nuevoBotonCI" (click)="insertCategoriaIngreso()">Nuevo</label>  
+        <label class="foot-button oculto" id="editBotonCI" (click)="updateCategoriaI()">Editar</label>  
         <label class="input-error" id="submitIerror">*Obligatorio</label> 
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaI.ID}} class="data-row fade-in" *ngFor="let categoriaI of listI" >
-          <td>{{categoriaI.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaI.ID}} (click)="removeCategoria($event)">clear</i></td>
+          <td data-id={{categoriaI.ID}} (click)="preUpdateCategoriaI($event)">{{categoriaI.NOMBRE}}</td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaI.ID}} (click)="removeCategoriaI($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -32,13 +33,14 @@
      <div class="card categorias">
       <form onsubmit="return false;">
         <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaGasto()" ng-pattern-restrict required>
-        <label class="foot-button" (click)="insertCategoriaGasto()">Nuevo</label>
+        <label class="foot-button" id="nuevoBotonCG"(click)="insertCategoriaGasto()">Nuevo</label> 
+        <label class="foot-button oculto" id="editBotonCG" (click)="updateCategoriaG()">Editar</label>  
         <label class="input-error" id="submitGerror">*Obligatorio</label>  
         <table id=table>
           <tbody>
           <tr ng-cloak id={{categoriaG.ID}} class="data-row fade-in" *ngFor="let categoriaG of listG" >
-          <td>{{categoriaG.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaG.ID}} (click)="removeCategoria($event)">clear</i></td>
+          <td data-id={{categoriaG.ID}} (click)="preUpdateCategoriaG($event)">{{categoriaG.NOMBRE}}</td>
+          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaG.ID}} (click)="removeCategoriaG($event)">clear</i></td>
           </tr>
           </tbody>
         </table>
@@ -57,12 +59,13 @@
      <div class="card categorias">
       <form onsubmit="return false;">
         <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputTarjeta()" ng-pattern-restrict required>
-        <label class="foot-button" (click)="insertTarjeta()">Nuevo</label>  
+        <label class="foot-button" id="nuevoBotonT" (click)="insertTarjeta()">Nuevo</label>  
+        <label class="foot-button oculto" id="editBotonT" (click)="updateTarjeta()">Editar</label> 
         <label class="input-error" id="submitTerror">*Obligatorio</label> 
         <table id=table>
           <tbody>
           <tr ng-cloak id={{tarjeta.ID}} class="data-row fade-in" *ngFor="let tarjeta of tarjetas" >
-          <td>{{tarjeta.NOMBRE}}</td>
+          <td data-id={{tarjeta.ID}} (click)="preUpdateTarjeta($event)">{{tarjeta.NOMBRE}}</td>
           <td class="delete" ><i class="material-icons tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)">clear</i></td>
           </tr>
           </tbody>
@@ -82,7 +85,8 @@
      <div class="card categorias">
       <form onsubmit="return false;">
         <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputInversion()" ng-pattern-restrict required>
-        <label class="foot-button" (click)="insertInversion()">Nuevo</label>  
+        <label class="foot-button" id="nuevoBotonV" (click)="insertInversion()">Nuevo</label>  
+        <label class="foot-button oculto" id="editBotonV" (click)="updateInversion()">Editar</label> 
         <label class="input-error" id="submitVerror">*Obligatorio</label> 
         <table id=table>
           <tbody>

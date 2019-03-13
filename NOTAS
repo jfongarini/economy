@@ -1,0 +1,9 @@
+- Al eliminar una categoria o tarjeta no se debe eliminar de la base, se debe poner etiqueta de no vigente, para que no deje de mostrar el nombre, sino que lo muestre con * ---- ok
+
+- cargue datos al principio ---- ok
+
+- generar base de datos vacia si no existe ya.
+
+- graficos
+
+- pantalla de inicio seleccionar persona

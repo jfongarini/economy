@@ -868,3 +868,7 @@ tr:hover i{
 .bola-roja{
   color: #de1e1e;
 }
+
+.oculto{
+  display: none;
+}

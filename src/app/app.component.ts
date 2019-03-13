@@ -23,19 +23,20 @@ export class AppComponent implements OnInit {
 
 	getPersona(){
 		let me = this;
-	    me.ipc.send("getPersona")
-	    me.ipc.on("resultSentPersona", function (evt, result) {
+	    //me.ipc.send("getPersona")
+	    //me.ipc.on("resultSentPersona", function (evt, result) {
+	    	let result = me.ipc.sendSync("getPersona"); 
 	    	me.personaId = result[0].ID;
 			me.personaNombre = result[0].NOMBRE;
 			me.personaMesActNum = result[0].MES;
 			me.personaMesActNom = me.meses[me.personaMesActNum -1];
 			me.personaAnno = result[0].ANNO;
 			me.ref.detectChanges()
-	    });
+	    //});
 	}
 
-	ngOnInit() {
-		this.getPersona();
+	async ngOnInit() {
+		await this.getPersona();
 	}
 
 	public updatePersona() {
@@ -75,13 +76,14 @@ export class AppComponent implements OnInit {
 	}
 
 	getPersonaActual(): any {
-		this.persona = [];
-		this.persona.push(this.personaId);
-		this.persona.push(this.personaNombre);
-		this.persona.push(this.personaMesActNum);
-		this.persona.push(this.personaMesActNom);
-		this.persona.push(this.personaAnno); 
+		let me = this;
+		me.persona = [];
+		me.persona.push(me.personaId);
+		me.persona.push(me.personaNombre);
+		me.persona.push(me.personaMesActNum);
+		me.persona.push(me.personaMesActNom);
+		me.persona.push(me.personaAnno); 
 
-		return this.persona;
+		return me.persona;
 	}
 }

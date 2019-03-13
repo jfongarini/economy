@@ -10,7 +10,7 @@ import { ConfiguracionComponent } from './configuracion/configuracion.component'
 import { TarjetasComponent } from './tarjetas/tarjetas.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch:'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
   { path: 'diario', component: DiarioComponent },
   { path: 'inversiones', component: InversionesComponent },
