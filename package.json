@@ -30,6 +30,7 @@
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.4",
     "electron": "^4.0.2",
+    "electron-chartjs": "^1.0.0",
     "electron-packager": "^13.0.1",
     "font-awesome": "^4.7.0",
     "knex": "^0.16.3",

@@ -2,8 +2,17 @@
 
 - cargue datos al principio ---- ok
 
-- generar base de datos vacia si no existe ya.
+- generar base de datos vacia si no existe.
 
 - graficos
+	ingresos, gastos por categoria - torta 100%
+	ingresos, gastos, remanente
+
 
 - pantalla de inicio seleccionar persona
+
+- embellecer css
+
+- instalador
+
+- updates
