@@ -5,8 +5,9 @@
 - generar base de datos vacia si no existe.
 
 - graficos
-	ingresos, gastos por categoria - torta 100%
-	ingresos, gastos, remanente
+	anual y mensual - ingresos, gastos por categoria - torta 100% (4)
+	anual - ingresos, gastos, remanente - lineal (1)
+	anual - inversiones - gastos, ingresos - barra (1)
 
 
 - pantalla de inicio seleccionar persona
@@ -16,3 +17,13 @@
 - instalador
 
 - updates
+
+
+
+
+- Resumen - hacer tabla saldo actual, saldo anterior.
+
+in 	id_persona 	fecha 	 	saldo 
+1   1			01/2019  	100
+2	1			02/2019		200
+3	1			03/2019		200

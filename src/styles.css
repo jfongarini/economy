@@ -872,3 +872,9 @@ tr:hover i{
 .oculto{
   display: none;
 }
+
+
+.graf-caja{
+  margin-left: 250px;
+  padding-top: 100px;
+}

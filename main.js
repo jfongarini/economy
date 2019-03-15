@@ -100,6 +100,28 @@ ipcMain.on('updatePersona', (event, id, nombre, mes, anno) => {
   })
 });
 
+function getSaldo() {
+  ipcMain.on("getSaldo", (event, arg) => {
+    let result = knex('Saldo').where('ID_PERSONA', arg)
+    result.then(function (rows) {
+      event.returnValue = rows;
+    })
+  });
+}
+
+getSaldo();
+
+ipcMain.on('updateSaldo', (event, id, saldo) => {
+  knex('Saldo').where('ID', id).update({ SALDO: saldo })
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('insertSaldo', (event, id, fecha, saldo) => {
+  knex('Saldo').insert({ID_PERSONA: id, FECHA: fecha, SALDO: saldo})
+  .then( function (result) {
+  })
+});
 ///////////////////////////////////////////
 
 //-- Configuracion

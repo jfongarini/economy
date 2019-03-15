@@ -170,6 +170,111 @@
   </table>
 </div>
 
+<div id=content class="content fade-in">
+  <table ng-cloak id=table class=main-table>
+    <thead>
+      <tr style="background-color: #e8a87c">
+        <th></th>
+        <th>Ene</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Abr</th>
+        <th>May</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>Ago</th>
+        <th>Sep</th>
+        <th>Oct</th>
+        <th>Nov</th>
+        <th>Dic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-cloak class="data-row fade-in">
+        <td>Saldo Disponible</td>
+        <td>{{listSaldos.m01}}</td>
+        <td>{{listSaldos.m02}}</td>
+        <td>{{listSaldos.m03}}</td>
+        <td>{{listSaldos.m04}}</td>
+        <td>{{listSaldos.m05}}</td>
+        <td>{{listSaldos.m06}}</td>
+        <td>{{listSaldos.m07}}</td>
+        <td>{{listSaldos.m08}}</td>
+        <td>{{listSaldos.m09}}</td>
+        <td>{{listSaldos.m10}}</td>
+        <td>{{listSaldos.m11}}</td>
+        <td>{{listSaldos.m12}}</td>
+      </tr>
+      <tr ng-cloak class="data-row fade-in">
+        <td>Saldo Anterior</td>
+        <td *ngIf="listSaldos.m01 > 0" >{{listSaldos.m13}}</td>
+        <td *ngIf="listSaldos.m01 <= 0" >0</td>
+        <td *ngIf="listSaldos.m02 > 0" >{{listSaldos.m01}}</td>
+        <td *ngIf="listSaldos.m02 <= 0" >0</td>
+        <td *ngIf="listSaldos.m03 > 0" >{{listSaldos.m02}}</td>
+        <td *ngIf="listSaldos.m03 <= 0" >0</td>
+        <td *ngIf="listSaldos.m04 > 0" >{{listSaldos.m03}}</td>
+        <td *ngIf="listSaldos.m04 <= 0" >0</td>
+        <td *ngIf="listSaldos.m05 > 0" >{{listSaldos.m04}}</td>
+        <td *ngIf="listSaldos.m05 <= 0" >0</td>
+        <td *ngIf="listSaldos.m06 > 0" >{{listSaldos.m05}}</td>
+        <td *ngIf="listSaldos.m06 <= 0" >0</td>
+        <td *ngIf="listSaldos.m07 > 0" >{{listSaldos.m06}}</td>
+        <td *ngIf="listSaldos.m07 <= 0" >0</td>
+        <td *ngIf="listSaldos.m08 > 0" >{{listSaldos.m07}}</td>
+        <td *ngIf="listSaldos.m08 <= 0" >0</td>
+        <td *ngIf="listSaldos.m09 > 0" >{{listSaldos.m08}}</td>
+        <td *ngIf="listSaldos.m09 <= 0" >0</td>
+        <td *ngIf="listSaldos.m10 > 0" >{{listSaldos.m09}}</td>
+        <td *ngIf="listSaldos.m10 <= 0" >0</td>
+        <td *ngIf="listSaldos.m11 > 0" >{{listSaldos.m10}}</td>
+        <td *ngIf="listSaldos.m11 <= 0" >0</td>
+        <td *ngIf="listSaldos.m12 > 0" >{{listSaldos.m11}}</td>
+        <td *ngIf="listSaldos.m12 <= 0" >0</td>
+      </tr>
+      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+        <td>Total</td>
+        <td *ngIf="listSaldos.m01 > 0" >{{listSaldos.m01 + listSaldos.m13}}</td>
+        <td *ngIf="listSaldos.m01 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m02 > 0">{{listSaldos.m02 + listSaldos.m01}}</td>
+        <td *ngIf="listSaldos.m02 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m03 > 0" >{{listSaldos.m03 + listSaldos.m02}}</td>
+        <td *ngIf="listSaldos.m03 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m04 > 0" >{{listSaldos.m04 + listSaldos.m03}}</td>
+        <td *ngIf="listSaldos.m04 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m05 > 0" >{{listSaldos.m05 + listSaldos.m04}}</td>
+        <td *ngIf="listSaldos.m05 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m06 > 0" >{{listSaldos.m06 + listSaldos.m05}}</td>
+        <td *ngIf="listSaldos.m06 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m07 > 0" >{{listSaldos.m07 + listSaldos.m06}}</td>
+        <td *ngIf="listSaldos.m07 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m08 > 0" >{{listSaldos.m08 + listSaldos.m07}}</td>
+        <td *ngIf="listSaldos.m08 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m09 > 0" >{{listSaldos.m09 + listSaldos.m08}}</td>
+        <td *ngIf="listSaldos.m09 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m10 > 0" >{{listSaldos.m10 + listSaldos.m09}}</td>
+        <td *ngIf="listSaldos.m10 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m11 > 0" >{{listSaldos.m11 + listSaldos.m10}}</td>
+        <td *ngIf="listSaldos.m11 <= 0" >0</td>
+
+        <td *ngIf="listSaldos.m12 > 0" >{{listSaldos.m12 + listSaldos.m11}}</td>
+        <td *ngIf="listSaldos.m12 <= 0" >0</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <div class="titulos">
   COMPARACI&Oacute;N
 </div>
@@ -179,7 +284,7 @@
       <form id="testform" onsubmit="return false;">
         <div class=form-field>
           <label><strong>Saldo Disponible:</strong></label>
-          {{getCompara()}}
+          {{getTotalDisponible()}}
         </div>
         <div class=form-field>
           <label><strong>Billetera:</strong></label>
