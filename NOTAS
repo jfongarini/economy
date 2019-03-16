@@ -6,7 +6,7 @@
 
 - graficos
 	anual y mensual - ingresos, gastos por categoria - torta 100% (4)
-	anual - ingresos, gastos, remanente - lineal (1)
+	anual - ingresos, gastos, remanente - lineal (1)  -- ok
 	anual - inversiones - gastos, ingresos - barra (1)
 
 
@@ -21,7 +21,7 @@
 
 
 
-- Resumen - hacer tabla saldo actual, saldo anterior.
+- Resumen - hacer tabla saldo actual, saldo anterior.  ---- ok
 
 in 	id_persona 	fecha 	 	saldo 
 1   1			01/2019  	100

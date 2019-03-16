@@ -369,7 +369,7 @@ export class MainComponent implements OnInit {
             let estadoFin = me.listInversionesDiario[j]['FINALIZADO'];
             if (estadoFin == 0) {
               me.resumenTotalV[mes] = me.resumenTotalV[mes] - +me.listInversionesDiario[j]['MONTO'];
-              me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'];
+              me.resumenV[i][mes] = me.resumenV[i][mes] - +me.listInversionesDiario[j]['MONTO'];
             } else {
               me.resumenTotalV[mes] = me.resumenTotalV[mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
               me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
