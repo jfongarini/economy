@@ -36,6 +36,7 @@ export class MainComponent implements OnInit {
   public inversionesLength: number;
   public inversionesDiarioLength: number;
   public total: number;
+  public sumaFinal: number;
 
   constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -57,7 +58,7 @@ export class MainComponent implements OnInit {
 
   checkComparacion(){
     let me = this;
-    var saldo = me.total;
+    var saldo = me.sumaFinal;
     var billetera = +(<HTMLInputElement>document.getElementById('submitBilletera')).value;
     var banco = +(<HTMLInputElement>document.getElementById('submitBanco')).value;
     var saldoReal = billetera + banco;
@@ -201,8 +202,8 @@ export class MainComponent implements OnInit {
       saldoAnterior = estadoSaldoAux['SALDO'];
     }
 
-    let sumaFinal = saldoActual + saldoAnterior;
-    return String(sumaFinal);
+    me.sumaFinal = saldoActual + saldoAnterior;
+    return String(me.sumaFinal);
 
   }
 

@@ -37,7 +37,7 @@
             <td data-id={{ingreso}}>{{ingreso.m11}}</td>
             <td data-id={{ingreso}}>{{ingreso.m12}}</td>
           </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c" >
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td>{{resumenTotalI.m01}}</td>
         <td>{{resumenTotalI.m02}}</td>
@@ -94,7 +94,7 @@
             <td data-id={{gasto}}>{{gasto.m11}}</td>
             <td data-id={{gasto}}>{{gasto.m12}}</td>
           </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td>{{resumenTotalG.m01}}</td>
         <td>{{resumenTotalG.m02}}</td>
@@ -151,7 +151,7 @@
             <td data-id={{inversion}}>{{inversion.m11}}</td>
             <td data-id={{inversion}}>{{inversion.m12}}</td>
           </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td>{{resumenTotalV.m01}}</td>
         <td>{{resumenTotalV.m02}}</td>
@@ -170,10 +170,13 @@
   </table>
 </div>
 
+<div class="titulos">
+  RESUMEN
+</div>
 <div id=content class="content fade-in">
-  <table ng-cloak id=table class=main-table>
+  <table ng-cloak id=table class=main-table style="font-weight=bold">
     <thead>
-      <tr style="background-color: #e8a87c">
+      <tr class="color-total">
         <th></th>
         <th>Ene</th>
         <th>Feb</th>
@@ -232,7 +235,7 @@
         <td *ngIf="listSaldos.m12 > 0" >{{listSaldos.m11}}</td>
         <td *ngIf="listSaldos.m12 <= 0" >0</td>
       </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td *ngIf="listSaldos.m01 > 0" >{{listSaldos.m01 + listSaldos.m13}}</td>
         <td *ngIf="listSaldos.m01 <= 0" >0</td>
@@ -294,10 +297,10 @@
           <label><strong>Banco:</strong></label> 
           <input type="number" placeholder="Importe" id="submitBanco" step=".01" required>
         </div> 
-        <div class=form-field>
+        <div class="form-field float-left">
             <label class="button-main"><i class="material-icons botton-check" (click)="checkComparacion()">done</i></label>
         </div> 
-        <div class=form-field>
+        <div class="form-field padding200">
             <label *ngIf="!compara"><i class="material-icons bola-roja">error</i></label>
             <label *ngIf="compara"><i class="material-icons bola-verde">thumb_up_alt</i></label>
             <label class="input-error" id="saldoError">{{mensaje}}</label>

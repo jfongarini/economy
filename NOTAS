@@ -1,14 +1,5 @@
-- Al eliminar una categoria o tarjeta no se debe eliminar de la base, se debe poner etiqueta de no vigente, para que no deje de mostrar el nombre, sino que lo muestre con * ---- ok
-
-- cargue datos al principio ---- ok
 
 - generar base de datos vacia si no existe.
-
-- graficos
-	anual y mensual - ingresos, gastos por categoria - torta 100% (4)
-	anual - ingresos, gastos, remanente - lineal (1)  -- ok
-	anual - inversiones - gastos, ingresos - barra (1)
-
 
 - pantalla de inicio seleccionar persona
 
@@ -17,13 +8,3 @@
 - instalador
 
 - updates
-
-
-
-
-- Resumen - hacer tabla saldo actual, saldo anterior.  ---- ok
-
-in 	id_persona 	fecha 	 	saldo 
-1   1			01/2019  	100
-2	1			02/2019		200
-3	1			03/2019		200

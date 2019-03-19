@@ -41,7 +41,7 @@
             <td data-id={{tarjetaConsumo.ID}} (click)="habilitaFormEdit($event)">{{tarjetaConsumo.meses.m13}}</td>
             <td class="delete" ><i class="material-icons tachoi" data-id={{tarjetaConsumo.ID}} (click)="removeTC($event)">clear</i></td>
           </tr>
-          <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+          <tr ng-cloak class="data-row fade-in color-total">
             <td>Total</td>
             <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m01}}</td>
             <td data-id={{tarjeta.ID}}>{{tarjeta.gasto.m02}}</td>

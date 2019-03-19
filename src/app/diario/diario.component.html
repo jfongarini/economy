@@ -20,7 +20,7 @@
         <td data-id={{diarioI.ID}} (click)="habilitaFormEdit($event)">{{diarioI.DETALLE}}</td>
         <td class="delete" ><i class="material-icons tachoi" data-id={{diarioI.ID}} (click)="removeDiario($event)">clear</i></td>
       </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td>{{getTotalIngreso()}}</td>
         <td></td>
@@ -52,7 +52,7 @@
         <td data-id={{diarioG.ID}} (click)="habilitaFormEdit($event)">{{diarioG.DETALLE}}</td>
         <td class="delete" ><i class="material-icons tachoi" data-id={{diarioG.ID}} (click)="removeDiario($event)">clear</i></td>
       </tr>
-      <tr ng-cloak class="data-row fade-in" style="background-color: #e8a87c">
+      <tr ng-cloak class="data-row fade-in color-total">
         <td>Total</td>
         <td>{{getTotalGasto()}}</td>
         <td></td>

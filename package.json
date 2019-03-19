@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "main": "main.js",
   "scripts": {
-    "electron": "ng build --base-href ./index.html && electron .",
+    "electron": "ng build --base-href ./index.html && cp src\\login.html dist && electron .",
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
@@ -27,6 +27,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "angular": "^1.7.8",
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.4",
     "electron": "^4.0.2",

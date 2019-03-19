@@ -1,7 +1,8 @@
 
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: #4abdac;
+  /*background-color: #4abdac;*/
+  background-color: #E1E2E1;  
   margin-left: 0px;
   margin-top: 0px;
   font-family: 'Roboto', sans-serif;
@@ -175,16 +176,16 @@ table {
 }
 
 
-table>tbody>tr:nth-child(odd) {
+/*table>tbody>tr:nth-child(odd) {
     background-color: #F7F7F7
-}
+}*/
 
 table tr{
     height: 30px
 }
 
 tr:hover td {
-    background-color: #292961;
+    background-color: #259085;
     color: white;
     cursor: pointer
 }
@@ -206,7 +207,7 @@ ul {
   list-style-type: none;
     /* margin: 0; */
     /* top: 0; */
-    background-color: #0d4239;
+    background-color: #003d33;
     padding: 0;
     width: 200px;
     height: 100%;
@@ -227,7 +228,7 @@ li a {
 }
 
   li a:hover {
-    background-color: #57575d;
+    background-color: #259085;
     color: #FFFFFF;
     cursor: pointer
   }
@@ -516,9 +517,13 @@ li a {
 }
 
 .nuevo-diario{
-    width: 350px;
+    /*width: 350px;*/
     padding: 20px;
-    margin: 10px;
+    /*margin: 10px;*/
+    margin-left: 0px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    margin-right: 20px;
 }
 
 .servicios{
@@ -668,16 +673,17 @@ tr:hover i{
   padding-top: 6px;
   padding-bottom: 2px;
   margin-left: 250px;
-  color: #653c30;
+  color: #95ccbe;
   font-weight: bold;
   list-style-type: none;
   top: 0;
-  background-color: #e27d60;
+  background-color: #00695c;
   overflow: auto;
-  box-shadow: 0 4px 4px #e27d60;
+  box-shadow: 0 4px 4px #00695c;
   border-left-width: 3px;
   padding-left: 50px;
   margin-top: 5px;
+  margin-right: 20px;
 }
 
 .main-app {
@@ -769,7 +775,7 @@ tr:hover i{
   list-style-type: none;
   margin: 0;
   top: 0;
-  background-color: #0d4239;
+  background-color: #003d33;
   padding: 0;
   width: 100%;
   /*height: 100%; */
@@ -844,7 +850,7 @@ tr:hover i{
   cursor: pointer;
   margin: 5px;
   padding: 15px;
-  background-color: #e27c60;
+  /*background-color: #e27c60;*/
   display: inline-block;
 }
 
@@ -877,4 +883,21 @@ tr:hover i{
 .graf-caja{
   margin-left: 250px;
   padding-top: 100px;
+}
+
+.color-total{
+  background-color: #259085;
+}
+
+.float-left{
+  float: left;
+}
+
+.padding200{
+    padding-left: 200px;
+}
+
+.foot-button-color{
+  color: #00695c;
+  font-size: 60px;
 }

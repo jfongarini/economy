@@ -6,6 +6,8 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
+let child
+var personaLogin = 1;
 let knex = require("knex")({
   client: "sqlite3",
   connection: {
@@ -28,7 +30,7 @@ function createWindow() {
     slashes: true
   }))
 
-  mainWindow.once("ready-to-show", () => { mainWindow.show() })
+ // mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
@@ -40,6 +42,16 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null
   })
+
+  child = new BrowserWindow({parent: win,width:400,height:300,frame:false})
+    child.loadURL(url.format({
+        //pathname:path.join(__dirname,'./dist/login.html'),
+        pathname:path.join(__dirname,'./dist/login.html'),
+        protocol:'file',
+        slashes:true
+    }))
+
+    child.openDevTools()
    
 }
 
@@ -76,15 +88,45 @@ app.on('activate', () => {
 
 //-- Common
 
+getPersonaAll();
+inicio();
+
+function inicio(){
+
+  getPersona();
+  getSaldo();
+  getCategorias();
+  getDiario();
+  getTarjeta();
+  getTarjetaConsumo();
+  getInversiones();
+  getInversionDiario();
+  getDiarioCategoria();
+
+}
+
 ///////////////////////////////////////////
 
 //-- Main
 
-//Separar fecha
-function getPersona() {
+ipcMain.on('loginok', (event, arg) => {
+  
+  personaLogin = arg;
+  //personaLogin = arg;
+  //mainWindow.once("ready-to-show", () => { mainWindow.show() })
+  child.close()
+  //inicio();
+  if (personaLogin != 1) {
+    mainWindow.reload()
+  }
+  mainWindow.show()  
+  
+  })
+
+function getPersonaAll() {
   //ipcMain.on("getPersona", function () {
-  ipcMain.on("getPersona", (event) => {
-    let result = knex('Persona').where('ID', 1)
+  ipcMain.on("getPersonaAll", (event) => {
+    let result = knex('Persona')
     result.then(function (rows) {
       //mainWindow.webContents.send("resultSentPersona", rows);
       event.returnValue = rows;
@@ -92,7 +134,21 @@ function getPersona() {
   });
 }
 
-getPersona();
+
+
+function getPersona() {
+  //ipcMain.on("getPersona", function () {
+  //console.log('--------------');
+  //console.log(personaLogin);
+  //console.log('--------------');
+  ipcMain.on("getPersona", (event) => {
+    let result = knex('Persona').where('ID', personaLogin)
+    result.then(function (rows) {
+      //mainWindow.webContents.send("resultSentPersona", rows);
+      event.returnValue = rows;
+    })
+  });
+}
 
 ipcMain.on('updatePersona', (event, id, nombre, mes, anno) => {
   knex('Persona').where('ID', id).update({ NOMBRE: nombre, MES: mes, ANNO: anno })
@@ -108,8 +164,6 @@ function getSaldo() {
     })
   });
 }
-
-getSaldo();
 
 ipcMain.on('updateSaldo', (event, id, saldo) => {
   knex('Saldo').where('ID', id).update({ SALDO: saldo })
@@ -137,8 +191,6 @@ function getCategorias() {
   });
 
 }
-
-getCategorias();
 
 ipcMain.on('insertCategoriaGasto', (event, id, arg) => {
   knex('Categoria').insert({ID_PERSONA: id, NOMBRE: arg, GI: 'G', VIGENTE: 0})
@@ -228,8 +280,6 @@ function getTarjeta() {
   });
 }
 
-getDiario();
-
 ipcMain.on("getUnDiario", (event, id) => {
   let result = knex('Diario').where('ID', id)
   result.then(function (rows) {
@@ -279,9 +329,6 @@ function getTarjetaConsumo() {
   });
 }
 
-getTarjeta();
-getTarjetaConsumo();
-
 ipcMain.on("getUnTC", (event, id) => {
   let result = knex('TarjetaConsumo').where('ID', id)
   result.then(function (rows) {
@@ -330,9 +377,6 @@ function getInversionDiario() {
     })
   });
 }
-
-getInversiones();
-getInversionDiario();
 
 ipcMain.on("getUnInversionDiario", (event, id) => {
   let result = knex('InversionDiario').where('ID', id)
@@ -388,6 +432,5 @@ function getDiarioCategoria() {
 }
 
 
-getDiarioCategoria();
 
 ///////////////////////////////////////////
