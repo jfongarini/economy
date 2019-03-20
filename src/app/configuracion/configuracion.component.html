@@ -1,106 +1,108 @@
 <div class="principal" id="principal">
-<div class="titulos">
-  CATEGOR&Iacute;AS DE INGRESOS
-</div>
-<div id=content class="content fade-in">
-  <div class=fila-tarjetas-configuracion>
-     <div class="card categorias">
-      <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaIngreso()" ng-pattern-restrict required>
-        <label class="foot-button" id="nuevoBotonCI" (click)="insertCategoriaIngreso()">Nuevo</label>  
-        <label class="foot-button oculto" id="editBotonCI" (click)="updateCategoriaI()">Editar</label>  
-        <label class="input-error" id="submitIerror">*Obligatorio</label> 
-        <table id=table>
-          <tbody>
-          <tr ng-cloak id={{categoriaI.ID}} class="data-row fade-in" *ngFor="let categoriaI of listI" >
-          <td data-id={{categoriaI.ID}} (click)="preUpdateCategoriaI($event)">{{categoriaI.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaI.ID}} (click)="removeCategoriaI($event)">clear</i></td>
-          </tr>
-          </tbody>
-        </table>
-        <label  ng-cloak class=form-message></label>
-      </form>
+  <div class="columna_uno">
+    <div class="titulos conf">
+      CATEGOR&Iacute;AS DE INGRESOS
+    </div>
+    <div id=content class="content fade-in">
+      <div class=fila-tarjetas-configuracion>
+         <div class="card categorias">
+          <form onsubmit="return false;">
+            <input type="text" placeholder="Nombre" id="submitI" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaIngreso()" ng-pattern-restrict required>
+            <label class="foot-button" id="nuevoBotonCI"><i class="material-icons md-30" (click)="insertCategoriaIngreso()">add_circle</i></label>  
+            <label class="foot-button oculto" id="editBotonCI"><i class="material-icons md-30" (click)="updateCategoriaI()">edit</i></label>
+            <label class="input-error" id="submitIerror">*Obligatorio</label> 
+            <table id=table>
+              <tbody>
+              <tr ng-cloak id={{categoriaI.ID}} class="data-row fade-in" *ngFor="let categoriaI of listI" >
+              <td data-id={{categoriaI.ID}} (click)="preUpdateCategoriaI($event)">{{categoriaI.NOMBRE}}</td>
+              <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaI.ID}} (click)="removeCategoriaI($event)">clear</i></td>
+              </tr>
+              </tbody>
+            </table>
+            <label  ng-cloak class=form-message></label>
+          </form>
 
+        </div>
+      </div>
+    </div>
+
+    <div class="titulos conf">
+      CATEGOR&Iacute;AS DE GASTOS
+    </div>
+    <div id=content class="content fade-in">
+      <div class=fila-tarjetas-configuracion>
+         <div class="card categorias">
+          <form onsubmit="return false;">
+            <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaGasto()" ng-pattern-restrict required>
+            <label class="foot-button" id="nuevoBotonCG"><i class="material-icons md-30" (click)="insertCategoriaGasto()">add_circle</i></label>
+            <label class="foot-button oculto" id="editBotonCG"><i class="material-icons md-30" (click)="updateCategoriaG()">edit</i></label> 
+            <label class="input-error" id="submitGerror">*Obligatorio</label>  
+            <table id=table>
+              <tbody>
+              <tr ng-cloak id={{categoriaG.ID}} class="data-row fade-in" *ngFor="let categoriaG of listG" >
+              <td data-id={{categoriaG.ID}} (click)="preUpdateCategoriaG($event)">{{categoriaG.NOMBRE}}</td>
+              <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaG.ID}} (click)="removeCategoriaG($event)">clear</i></td>
+              </tr>
+              </tbody>
+            </table>
+            <label  ng-cloak class=form-message></label>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
+  <div class="columna_dos">
+    <div class="titulos conf">
+      TARJETAS
+    </div>
+    <div id=content class="content fade-in">
+      <div class=fila-tarjetas-configuracion>
+         <div class="card categorias">
+          <form onsubmit="return false;">
+            <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputTarjeta()" ng-pattern-restrict required>
+            <label class="foot-button" id="nuevoBotonT"><i class="material-icons md-30" (click)="insertTarjeta()">add_circle</i></label>
+            <label class="foot-button oculto" id="editBotonT"><i class="material-icons md-30" (click)="updateTarjeta()">edit</i></label>
+            <label class="input-error" id="submitTerror">*Obligatorio</label> 
+            <table id=table>
+              <tbody>
+              <tr ng-cloak id={{tarjeta.ID}} class="data-row fade-in" *ngFor="let tarjeta of tarjetas" >
+              <td data-id={{tarjeta.ID}} (click)="preUpdateTarjeta($event)">{{tarjeta.NOMBRE}}</td>
+              <td class="delete" ><i class="material-icons tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)">clear</i></td>
+              </tr>
+              </tbody>
+            </table>
+            <label  ng-cloak class=form-message></label>
+          </form>
 
-<div class="titulos">
-  CATEGOR&Iacute;AS DE GASTOS
-</div>
-<div id=content class="content fade-in">
-  <div class=fila-tarjetas-configuracion>
-     <div class="card categorias">
-      <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitG" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputCategoriaGasto()" ng-pattern-restrict required>
-        <label class="foot-button" id="nuevoBotonCG"(click)="insertCategoriaGasto()">Nuevo</label> 
-        <label class="foot-button oculto" id="editBotonCG" (click)="updateCategoriaG()">Editar</label>  
-        <label class="input-error" id="submitGerror">*Obligatorio</label>  
-        <table id=table>
-          <tbody>
-          <tr ng-cloak id={{categoriaG.ID}} class="data-row fade-in" *ngFor="let categoriaG of listG" >
-          <td data-id={{categoriaG.ID}} (click)="preUpdateCategoriaG($event)">{{categoriaG.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{categoriaG.ID}} (click)="removeCategoriaG($event)">clear</i></td>
-          </tr>
-          </tbody>
-        </table>
-        <label  ng-cloak class=form-message></label>
-      </form>
+        </div>
+      </div>
+    </div>
 
+    <div class="titulos conf">
+      INVERSIONES
+    </div>
+    <div id=content class="content fade-in">
+      <div class=fila-tarjetas-configuracion>
+         <div class="card categorias">
+          <form onsubmit="return false;">
+            <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputInversion()" ng-pattern-restrict required>
+            <label class="foot-button" id="nuevoBotonV"><i class="material-icons md-30" (click)="insertInversion()">add_circle</i></label>
+            <label class="foot-button oculto" id="editBotonV"><i class="material-icons md-30" (click)="updateInversion()">edit</i></label>
+            <label class="input-error" id="submitVerror">*Obligatorio</label> 
+            <table id=table>
+              <tbody>
+              <tr ng-cloak id={{inversion.ID}} class="data-row fade-in" *ngFor="let inversion of inversiones" >
+              <td>{{inversion.NOMBRE}}</td>
+              <td class="delete" ><i class="material-icons tachoi" data-id={{inversion.ID}} (click)="removeInversion($event)">clear</i></td>
+              </tr>
+              </tbody>
+            </table>
+            <label  ng-cloak class=form-message></label>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="titulos">
-  TARJETAS
-</div>
-<div id=content class="content fade-in">
-  <div class=fila-tarjetas-configuracion>
-     <div class="card categorias">
-      <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitT" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputTarjeta()" ng-pattern-restrict required>
-        <label class="foot-button" id="nuevoBotonT" (click)="insertTarjeta()">Nuevo</label>  
-        <label class="foot-button oculto" id="editBotonT" (click)="updateTarjeta()">Editar</label> 
-        <label class="input-error" id="submitTerror">*Obligatorio</label> 
-        <table id=table>
-          <tbody>
-          <tr ng-cloak id={{tarjeta.ID}} class="data-row fade-in" *ngFor="let tarjeta of tarjetas" >
-          <td data-id={{tarjeta.ID}} (click)="preUpdateTarjeta($event)">{{tarjeta.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{tarjeta.ID}} (click)="removeTarjeta($event)">clear</i></td>
-          </tr>
-          </tbody>
-        </table>
-        <label  ng-cloak class=form-message></label>
-      </form>
-
-    </div>
-  </div>
-</div>
-
-<div class="titulos">
-  INVERSIONES
-</div>
-<div id=content class="content fade-in">
-  <div class=fila-tarjetas-configuracion>
-     <div class="card categorias">
-      <form onsubmit="return false;">
-        <input type="text" placeholder="Nombre" id="submitV" maxlength="25" pattern="^[^\s].*([A-zÀ-ž\s]){2,25}" (click)="blankInputInversion()" ng-pattern-restrict required>
-        <label class="foot-button" id="nuevoBotonV" (click)="insertInversion()">Nuevo</label>  
-        <label class="foot-button oculto" id="editBotonV" (click)="updateInversion()">Editar</label> 
-        <label class="input-error" id="submitVerror">*Obligatorio</label> 
-        <table id=table>
-          <tbody>
-          <tr ng-cloak id={{inversion.ID}} class="data-row fade-in" *ngFor="let inversion of inversiones" >
-          <td>{{inversion.NOMBRE}}</td>
-          <td class="delete" ><i class="material-icons tachoi" data-id={{inversion.ID}} (click)="removeInversion($event)">clear</i></td>
-          </tr>
-          </tbody>
-        </table>
-        <label  ng-cloak class=form-message></label>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 </div>

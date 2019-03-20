@@ -626,6 +626,7 @@ div .bb {
 .delete{
     text-align: right;
     padding-right: 8px;
+    width: 30px;
 }
 
 .tachoi {
@@ -863,16 +864,14 @@ tr:hover i{
   cursor: pointer;
 }
 
-.foot-button:hover {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .6);
-}
-
 .bola-verde{
   color: #68ca68;
+  width: 30px;
 }
 
 .bola-roja{
   color: #de1e1e;
+  width: 30px;
 }
 
 .oculto{
@@ -882,7 +881,11 @@ tr:hover i{
 
 .graf-caja{
   margin-left: 250px;
-  padding-top: 100px;
+  margin-top: 20px;
+  background-color: white;
+  display: block;
+  width: 591px;
+  height: 295px;
 }
 
 .color-total{
@@ -897,7 +900,29 @@ tr:hover i{
     padding-left: 200px;
 }
 
-.foot-button-color{
+.material-icons.md-60{
   color: #00695c;
   font-size: 60px;
+}
+
+.material-icons.md-30{
+  color: #00695c;
+  font-size: 30px;
+}
+
+.titulos.conf{
+  width: 250px;
+}
+
+.titulos.graf_bar{
+  width: 540px;
+}
+
+
+.columna_uno{
+  float: left;
+}
+
+.columna_dos{
+  margin-left: 40%;
 }
