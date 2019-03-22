@@ -1,34 +1,12 @@
 <div class="principal" id="principal">
 	<div>
-		<div class="titulos graf_bar">
+		<div class="titulos graf_bar" style="width: 35%;">
 		  INGRESOS Y GASTOS
 		</div>
-		<div class="graf-caja">  
+		<div class="graf-caja" style="width: 38%; height: 50%;">  
 			<canvas id="resumen" class="chart chart-bar"></canvas>
 		</div>
 	</div>
-	<div>
-		<div class="titulos graf_bar">
-		  INGRESOS
-		</div>
-		<div>
-			<div class="titulos">
-		  		ANUAL
-			</div>
-			<div class="graf-caja">  
-				<canvas id="anualCatI" class="chart chart-bar"></canvas>
-			</div>
-		</div>
-		<div>
-			<div class="titulos">
-			   MENSUAL
-			</div>
-			<div class="graf-caja">  
-				<canvas id="mesCatI" class="chart chart-bar"></canvas>
-			</div>
-		</div>
-	</div>
-
 	<div>
 		<div class="titulos graf_bar">
 		  INVERSIONES
@@ -37,6 +15,30 @@
 			<canvas id="inversiones" class="chart chart-bar"></canvas>
 		</div>
 	</div>
+	<div>
+		<div class="titulos graf_bar">
+		  INGRESOS
+		</div>
+		<div>
+			<div class="titulos graf_pie">
+				<label class="titulos graf_pie_nombre">ANUAL</label>
+		  		
+			</div>
+			<div class="graf-caja grafico_pie">  
+				<canvas id="anualCatI" class="chart chart-bar"></canvas>
+			</div>
+		</div>
+		<div>
+			<div class="titulos graf_pie2">
+			   MENSUAL
+			</div>
+			<div class="graf-caja grafico_pie2">  
+				<canvas id="mesCatI" class="chart chart-bar"></canvas>
+			</div>
+		</div>
+	</div>
+
+	
 	<div>
 		<div class="titulos graf_bar">
 		  GASTOS

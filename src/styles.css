@@ -884,8 +884,7 @@ tr:hover i{
   margin-top: 20px;
   background-color: white;
   display: block;
-  width: 591px;
-  height: 295px;
+  width: 60%;
 }
 
 .color-total{
@@ -915,9 +914,19 @@ tr:hover i{
 }
 
 .titulos.graf_bar{
-  width: 540px;
+  width: 60%;
 }
 
+.titulos.graf_pie{
+  width: 35%;
+  float: left;
+  margin-right: 20px;
+  padding-left: unset;
+}
+
+.titulos.graf_pie_nombre{
+  padding-left: 30px;
+}
 
 .columna_uno{
   float: left;
@@ -925,4 +934,20 @@ tr:hover i{
 
 .columna_dos{
   margin-left: 40%;
+}
+
+.graf-caja.grafico_pie{
+  width: 35%;
+  float: left;
+}
+
+.titulos.graf_pie{
+  width: 35%;
+  margin-right: 20px;
+}
+
+.graf-caja.grafico_pie2{
+  width: 35%;
+  float: left;
+  margin-left: 20px;
 }
