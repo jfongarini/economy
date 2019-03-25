@@ -134,8 +134,9 @@ export class InversionesComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 		let me = this;
 		me.idInversionesDiario = event.target.id;
-		me.ipc.send("getUnInversionDiario", me.idInversionesDiario)
-	    me.ipc.on("resultSentUnInversionDiario", function (evt, result) {
+		let result = me.ipc.sendSync("getUnInversionDiario", me.idInversionesDiario);
+		//me.ipc.send("getUnInversionDiario", me.idInversionesDiario)
+	    //me.ipc.on("resultSentUnInversionDiario", function (evt, result) {
 	    	let idInv = result[0].ID_INVERSION;
 			let inver = me.listInversiones.findIndex(inv => inv['ID'] === idInv);
 			(<HTMLSelectElement>document.getElementById('editInversion')).selectedIndex = inver;
@@ -145,7 +146,7 @@ export class InversionesComponent implements OnInit {
 			(<HTMLInputElement>document.getElementById('editDetalle')).value = result[0].DETALLE;
 			(<HTMLInputElement>document.getElementById('editFecha')).value = result[0].FECHA;
 			(<HTMLInputElement>document.querySelector('input[type="date"]')).value = result[0].FECHA;
-	    });		
+	    //});		
 	}
 
 	public updateI(event) {

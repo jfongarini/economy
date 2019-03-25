@@ -1,6 +1,6 @@
 const ipc = require('electron').ipcRenderer;
 const electron = require('electron');
 
-function closeInsertDiario(id) {
+function enterApp(id) {
         ipc.sendSync('loginok', id)
     }

@@ -43,7 +43,7 @@ function createWindow() {
     win = null
   })
 
-  child = new BrowserWindow({parent: win,width:400,height:300,frame:false})
+  child = new BrowserWindow({parent: win,width:450,height:140,frame:false})
     child.loadURL(url.format({
         //pathname:path.join(__dirname,'./dist/login.html'),
         pathname:path.join(__dirname,'./dist/login.html'),

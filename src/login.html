@@ -4,14 +4,16 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="../src/styles.css">
+    <link rel="stylesheet" href="../node_modules/material-design-icons/iconfont/material-icons.css">
     <title>Login Page</title>    
     <script src="../node_modules/angular/angular.min.js"></script>
 </head>
 <body ng-app="loginApp" ng-controller="loginCtrl">
-    <div class="container">
+    <div class="containerLogin">
         <div ng-cloak id={{persona.ID}} ng-repeat="persona in listPersonas" >
-            <label class="foot-button" id={{persona.ID}} onClick="closeInsertDiario(id)">{{persona.NOMBRE}}</label>
+            <label class="labelLogin" id={{persona.ID}} onClick="enterApp(id)">{{persona.NOMBRE}}</label>
         </div>
+        <label class="labelLogin" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
     </div>
     
     <script src="../src/js/render.js";></script>
