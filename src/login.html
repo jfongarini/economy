@@ -8,12 +8,17 @@
     <title>Login Page</title>    
     <script src="../node_modules/angular/angular.min.js"></script>
 </head>
-<body ng-app="loginApp" ng-controller="loginCtrl">
+<body ng-app="loginApp" ng-controller="loginCtrl" class="containerLogin">
     <div class="containerLogin">
         <div ng-cloak id={{persona.ID}} ng-repeat="persona in listPersonas" >
-            <label class="labelLogin" id={{persona.ID}} onClick="enterApp(id)">{{persona.NOMBRE}}</label>
+            <div>
+                <label class="labelLogin" id={{persona.ID}} onClick="enterApp(id)">{{persona.primerLetra}}</label>
+            </div>
+            <div>
+                <label class="labelNombre" id={{persona.ID}} onClick="enterApp(id)">{{persona.NOMBRE}}</label>
+            </div>
         </div>
-        <label class="labelLogin" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+        <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
     </div>
     
     <script src="../src/js/render.js";></script>
