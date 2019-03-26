@@ -10,7 +10,7 @@
 </head>
 <body ng-app="loginApp" ng-controller="loginCtrl" class="containerLogin">
     <div class="containerLogin">
-        <div ng-cloak id={{persona.ID}} ng-repeat="persona in listPersonas" >
+        <div ng-cloak class="float-left" id={{persona.ID}} ng-repeat="persona in listPersonas" >
             <div>
                 <label class="labelLogin" id={{persona.ID}} onClick="enterApp(id)">{{persona.primerLetra}}</label>
             </div>
@@ -18,7 +18,9 @@
                 <label class="labelNombre" id={{persona.ID}} onClick="enterApp(id)">{{persona.NOMBRE}}</label>
             </div>
         </div>
-        <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+        <div class="div_add_login">
+            <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+        </div>        
     </div>
     
     <script src="../src/js/render.js";></script>

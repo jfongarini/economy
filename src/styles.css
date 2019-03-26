@@ -900,7 +900,8 @@ tr:hover i{
 }
 
 .material-icons.md-60{
-  color: #00695c;
+  /*color: #00695c;*/
+  color: #40776e;
   font-size: 60px;
 }
 
@@ -967,14 +968,14 @@ tr:hover i{
     margin-top: 20px;
     margin-right: 20px;
     /* padding: 35px; */
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 20px;
+    /* padding-bottom: 10px; */
     /* background-color: #e27c60; */
     /* background-color: #4abdac; */
     /* background-color: #003d33; */
     /* background-color: #E1E2E1; */
-    background-color: #7ca99e;
-    /* background-color: #40776e; */
+    /* background-color: #7ca99e;*/
+    background-color: #40776e; 
     /* color: white; */
     display: inline-block;
     /* float: left; */
@@ -992,8 +993,8 @@ tr:hover i{
     /* background-color: #4abdac; */
     /* background-color: #003d33; */
     /* background-color: #E1E2E1; */
-    /* background-color: #7ca99e; */
-    background-color: #40776e; 
+     background-color: #7ca99e; 
+    /* background-color: #40776e; */
 }
 
 .login_add{
@@ -1013,9 +1014,10 @@ tr:hover i{
   margin-right: 20px;
   margin-bottom: 20px;
   /* padding: 35px; */
-  /* padding-top: 35px; */
+  padding-top: 5px;
   /* padding-bottom: 35px; */
-  background-color: #e27c60;
+  background-color: #5d8a73;
+  /*background-color: #e27c60;*/
   /* background-color: #4abdac; */
   /* background-color: #003d33; */
   /* background-color: #E1E2E1; */
@@ -1025,9 +1027,14 @@ tr:hover i{
   display: inline-block;
   /* float: left; */
   width: 120px;
+  height: 20px;
   text-align: center;
   /* border-top-left-radius: 10px; */
   /* border-top-right-radius: 10px; */
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+.div_add_login{
+  padding-top: 40px;
 }
