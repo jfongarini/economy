@@ -43,13 +43,18 @@ function createWindow() {
     win = null
   })
 
-  child = new BrowserWindow({parent: win,width:450,height:143,frame:false})
+  //child = new BrowserWindow({parent: win,width:450,height:143,frame:false})
+  child = new BrowserWindow({parent: mainWindow, modal: true, show: false})
     child.loadURL(url.format({
         //pathname:path.join(__dirname,'./dist/login.html'),
         pathname:path.join(__dirname,'./dist/login.html'),
         protocol:'file',
         slashes:true
     }))
+
+    child.once('ready-to-show', () => {
+  child.show()
+})
 
     child.openDevTools()
    
@@ -112,7 +117,6 @@ function inicio(){
 ipcMain.on('loginok', (event, arg) => {
   
   personaLogin = arg;
-  //personaLogin = arg;
   //mainWindow.once("ready-to-show", () => { mainWindow.show() })
   child.close()
   //inicio();
