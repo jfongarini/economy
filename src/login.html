@@ -11,16 +11,24 @@
 <body ng-app="loginApp" ng-controller="loginCtrl" class="containerLogin">
     <div class="containerLogin">
         <div ng-cloak class="float-left" id={{persona.ID}} ng-repeat="persona in listPersonas" >
-            <div>
-                <label class="labelLogin" id={{persona.ID}} onClick="enterApp(id)">{{persona.primerLetra}}</label>
-            </div>
-            <div>
-                <label class="labelNombre" id={{persona.ID}} onClick="enterApp(id)">{{persona.NOMBRE}}</label>
+            <div class="card categorias" id={{persona.ID}} onClick="enterApp(id)">
+                <div ng-cloak class="float-inherit">
+                    <label>Nombre: </label>
+                    <label>{{persona.NOMBRE}}</label>
+                </div>
+                <div ng-cloak class="float-inherit">
+                    <label>Mes: </label>
+                    <label>{{persona.MES}}</label>
+                </div>
+                <div ng-cloak class="float-inherit">
+                    <label>Año: </label>
+                    <label>{{persona.ANNO}}</label>
+                </div>
             </div>
         </div>
-        <div class="div_add_login">
-            <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
-        </div>        
+        <div class="card categorias" id={{persona.ID}} onClick="enterApp(id)">
+                <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+            </div>        
     </div>
     
     <script src="../src/js/render.js";></script>
