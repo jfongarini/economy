@@ -283,7 +283,7 @@ li a {
 }
 
 .modal {
-    display: none
+    display: block
 }
 
 .modalConf {

@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="main-main-app" onclick="showDiv()">
+<div id="main-main-app-id" class="main-main-app blur" onclick="showDiv()">
   <div class="main-app">
     <label>{{personaMesActNom}}</label>  
   </div>
@@ -25,7 +25,7 @@
   <label class="button-main"><i class="material-icons botton-check" (click)="updatePersona()">done</i></label>
 </div>
 <div>
-  <ul id=menu class=menu>
+  <ul id=menu class="menu blur">
     <li><a routerLink="home" routerLinkActive="active"><i class="material-icons">home</i><span class="link-label"> RESUMEN</span></a></li>
     <li><a routerLink="diario" routerLinkActive="active"><i class="material-icons">attach_money</i><span class="link-label"> DIARIO</span></a></li>
     <li><a routerLink="tarjetas" routerLinkActive="active"><i class="material-icons">credit_card</i><span class="link-label"> TARJETAS</span></a></li>
@@ -35,4 +35,31 @@
   </ul>
 
 </div>
+
 <router-outlet></router-outlet>
+
+<div id="modal01" class="modal modal-on">
+    <div class="modal-content">
+      <div class="containerLogin">
+        <div ng-cloak class="float-left" id={{persona}} *ngFor="let persona of listPersonas" >
+            <div routerLink="home" class="card categorias" id={{persona.ID}}  (click)="enterApp($event)">
+                <div ng-cloak class="float-inherit">
+                    <label>Nombre: </label>
+                    <label>{{persona.NOMBRE}}</label>
+                </div>
+                <div ng-cloak class="float-inherit">
+                    <label>Mes: </label>
+                    <label>{{persona.MES}}</label>
+                </div>
+                <div ng-cloak class="float-inherit">
+                    <label>Año: </label>
+                    <label>{{persona.ANNO}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="card categorias" id={{persona}}  (click)="enterApp($event)">
+                <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+            </div>        
+    </div>
+    </div>
+  </div>

@@ -9,6 +9,7 @@ declare var require: any;
 })
 export class AppComponent implements OnInit {
   	title = 'economia';
+  	public listPersonas: Array<any>;
   	public ipc = electron.ipcRenderer;
   	public personaId: number;
 	public personaNombre: string;
@@ -35,9 +36,28 @@ export class AppComponent implements OnInit {
 	    //});
 	}
 
+	gelAllPersona(){
+		let me = this;
+		let result = me.ipc.sendSync("getPersonaAll"); 
+		me.listPersonas = result;
+	}
+
 	async ngOnInit() {
+		await this.gelAllPersona();
 		await this.getPersona();
 	}
+
+	public enterApp(event) {
+		let me = this;
+		let id = event.currentTarget.id;
+        me.ipc.send('loginok', id)
+        me.getPersona();
+        (<HTMLInputElement>document.getElementById('modal01')).style.display = "none";
+        //(<HTMLDivElement>document.getElementById('modal01')).classList.remove("modal-on");
+        (<HTMLDivElement>document.getElementById('main-main-app-id')).classList.remove("blur");
+        (<HTMLDivElement>document.getElementById('menu')).classList.remove("blur");
+        //(<HTMLDivElement>document.getElementById('principal')).style.filter = "none";
+    }
 
 	public updatePersona() {
 		let me = this;

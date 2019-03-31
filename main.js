@@ -6,7 +6,7 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
-let child
+// let child
 var personaLogin = 1;
 let knex = require("knex")({
   client: "sqlite3",
@@ -33,7 +33,7 @@ function createWindow() {
  // mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
   
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -44,19 +44,23 @@ function createWindow() {
   })
 
   //child = new BrowserWindow({parent: win,width:450,height:143,frame:false})
-  child = new BrowserWindow({parent: mainWindow, modal: true, show: false})
-    child.loadURL(url.format({
-        //pathname:path.join(__dirname,'./dist/login.html'),
-        pathname:path.join(__dirname,'./dist/login.html'),
-        protocol:'file',
-        slashes:true
-    }))
+//   child = new BrowserWindow({parent: mainWindow, modal: true, show: false})
+//     child.loadURL(url.format({
+//         //pathname:path.join(__dirname,'./dist/login.html'),
+//         pathname:path.join(__dirname,'./dist/login.html'),
+//         protocol:'file',
+//         slashes:true
+//     }))
 
-    child.once('ready-to-show', () => {
-  child.show()
-})
+//     child.once('ready-to-show', () => {
+//   child.show()
+// })
 
-    child.openDevTools()
+//     child.openDevTools()
+
+     mainWindow.once('ready-to-show', () => {
+   mainWindow.show()
+ })
    
 }
 
@@ -118,12 +122,13 @@ ipcMain.on('loginok', (event, arg) => {
   
   personaLogin = arg;
   //mainWindow.once("ready-to-show", () => { mainWindow.show() })
-  child.close()
+  //child.close()
   //inicio();
   if (personaLogin != 1) {
-    mainWindow.reload()
+    inicio();
+    //mainWindow.reload()
   }
-  mainWindow.show()  
+  //mainWindow.show()  
   
   })
 
