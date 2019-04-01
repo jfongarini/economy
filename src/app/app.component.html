@@ -41,15 +41,15 @@
 <div id="modal01" class="modal modal-on">
     <div class="modal-content">
       <div class="containerLogin">
-        <div ng-cloak class="float-left" id={{persona}} *ngFor="let persona of listPersonas" >
+        <div ng-cloak class="float-left padding10" id={{persona}} *ngFor="let persona of listPersonas" >
             <div routerLink="home" class="card categorias" id={{persona.ID}}  (click)="enterApp($event)">
-                <img src="./assets/icons/10.png">
+                <img class="imagen-log" src="./assets/icons/10.png">
                 <div ng-cloak class="float-inherit">
                     <label>{{persona.NOMBRE}}</label>
                 </div>
             </div>
         </div>
-        <div class="card categorias" id={{persona}}  (click)="enterApp($event)">
+        <div class="card-login" id={{persona}}  (click)="enterApp($event)">
           <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
         </div>        
     </div>

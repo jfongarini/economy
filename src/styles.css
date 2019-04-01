@@ -116,11 +116,23 @@ body {
 
 
 .card, .banner-busqueda{
-    margin-top: 10px;
+/*    margin-top: 10px;
     background-color: #FFF;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);*/
 }
 
+.card-login{
+      bottom: 0px;
+    float: right;
+    right: 0px;
+    position: absolute;
+}
+
+.imagen-log{
+  border-radius: 50%;
+  background-color: cadetblue;
+  block-size: 130px;
+}
 
 .separator {
     border-left: 1px solid #c2c1c1;
@@ -325,7 +337,8 @@ li a {
 }
 
 .modal-content {
-    width: 360px;
+    width: 500px;
+    height: 200px;
 }
 
 #cv {
@@ -512,8 +525,8 @@ li a {
 }
 
 .categorias{
-    width: 250px;
-    padding: 20px
+/*    width: 250px;
+    padding: 20px*/
 }
 
 .nuevo-diario{
@@ -533,8 +546,8 @@ li a {
 }
 
 .card label{
-    width: auto;
-    padding: 5px;
+/*    width: auto;
+    padding: 5px;*/
 }
 
 .card input {
@@ -897,16 +910,22 @@ tr:hover i{
 
 .float-inherit{
   float: inherit;
+  text-align: center;
 }
 
 .padding200{
     padding-left: 200px;
 }
 
+.padding10{
+    padding-right: 10px;
+}
+
+
 .material-icons.md-60{
-  /*color: #00695c;*/
-  color: #40776e;
-  font-size: 60px;
+    color: #00695c;
+    /* color: #40776e; */
+    font-size: 60px;
 }
 
 .material-icons.md-30{
@@ -995,7 +1014,7 @@ tr:hover i{
 
 .containerLogin{
     /* background-color: #4abdac; */
-     background-color: #003d33; 
+    /* background-color: #003d33; */
     /* background-color: #E1E2E1; */
     /* background-color: #7ca99e; */
     /* background-color: #40776e; */
