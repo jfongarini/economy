@@ -43,23 +43,15 @@
       <div class="containerLogin">
         <div ng-cloak class="float-left" id={{persona}} *ngFor="let persona of listPersonas" >
             <div routerLink="home" class="card categorias" id={{persona.ID}}  (click)="enterApp($event)">
+                <img src="./assets/icons/10.png">
                 <div ng-cloak class="float-inherit">
-                    <label>Nombre: </label>
                     <label>{{persona.NOMBRE}}</label>
-                </div>
-                <div ng-cloak class="float-inherit">
-                    <label>Mes: </label>
-                    <label>{{persona.MES}}</label>
-                </div>
-                <div ng-cloak class="float-inherit">
-                    <label>Año: </label>
-                    <label>{{persona.ANNO}}</label>
                 </div>
             </div>
         </div>
         <div class="card categorias" id={{persona}}  (click)="enterApp($event)">
-                <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
-            </div>        
+          <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+        </div>        
     </div>
     </div>
   </div>
