@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 	public persona: Array<any>;
 	public meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
               "Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    public imagenes = [1,2,3,4,5,6,7,8,9,10];
 
 	constructor(private ref: ChangeDetectorRef) { }	
 
@@ -105,5 +106,61 @@ export class AppComponent implements OnInit {
 		me.persona.push(me.personaAnno); 
 
 		return me.persona;
+	}
+
+	public blankInputNombre() {
+		(<HTMLInputElement>document.getElementById('newNombre')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('nombreError')).style.visibility="hidden";
+	}
+
+	public blankInputAnno() {
+		(<HTMLInputElement>document.getElementById('newAnno')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('annoError')).style.visibility="hidden";
+	}
+
+	public newLoginFrom() {		
+		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "block";
+	}
+
+
+	public newL(event) {
+		let me = this;
+		var nombre = (<HTMLInputElement>document.getElementById('newNombre')).value;
+		var mes = (<HTMLInputElement>document.getElementById('newMes')).value;
+		var anno = (<HTMLInputElement>document.getElementById('newAnno')).value;
+		var imagen = (<HTMLInputElement>document.getElementById('newImagen')).value;
+
+		if ((nombre == "") || (anno == "")) {
+			if (nombre == "") {
+				(<HTMLInputElement>document.getElementById('newNombre')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('nombreError')).style.visibility="visible";
+			}
+			if (anno == "") {
+				(<HTMLInputElement>document.getElementById('newAnno')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('annoError')).style.visibility="visible";
+			}
+		} else {
+			(<HTMLInputElement>document.getElementById('newNombre')).value = "";
+			(<HTMLInputElement>document.getElementById('newAnno')).value = "";
+			(<HTMLInputElement>document.getElementById('newMes')).value = "Enero";
+			(<HTMLInputElement>document.getElementById('newImagen')).value = "1";
+			var nuevoMes = me.meses.indexOf(mes) + 1;
+			me.ipc.send("newUsuario", nombre, nuevoMes, anno, imagen);
+			me.closeInsertL();
+		}	    
+	    this.gelAllPersona();
+	}
+
+	public removeL(event) {
+		var id = event.target.id;
+		let me = this;
+	    me.ipc.send("removeLogin", id);
+	    this.gelAllPersona();
+	}
+
+	public closeInsertL() {
+		this.blankInputNombre();
+		this.blankInputAnno();
+		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "none";
 	}
 }

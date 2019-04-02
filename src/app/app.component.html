@@ -42,16 +42,47 @@
     <div class="modal-content">
       <div class="containerLogin">
         <div ng-cloak class="float-left padding10" id={{persona}} *ngFor="let persona of listPersonas" >
-            <div routerLink="home" class="card categorias" id={{persona.ID}}  (click)="enterApp($event)">
-                <img class="imagen-log" src="./assets/icons/10.png">
-                <div ng-cloak class="float-inherit">
+            <div routerLink="home" class="delloginDiv">
+                <i class="material-icons dellogin" data-id={{persona.ID}} (click)="removeL($event)">clear</i>
+                <img class="imagen-log" src="./assets/icons/1.png" id={{persona.ID}}  (click)="enterApp($event)">
+                <div ng-cloak class="float-inherit" id={{persona.ID}}  (click)="enterApp($event)">
                     <label>{{persona.NOMBRE}}</label>
                 </div>
             </div>
         </div>
-        <div class="card-login" id={{persona}}  (click)="enterApp($event)">
-          <label class="login_add" onClick="newPersona()"><i class="material-icons md-60">add_circle</i></label>
+        <div ng-cloak class="float-left padding0">
+            <div routerLink="home" class="card_login_add" (click)="newLoginFrom()">
+                <label class="login_add"><i class="material-icons md-130">add_circle</i></label>
+            </div>
+        </div>
+        <div class="nuevo-usuario" id="nuevo-usuario-id">
+          <form class="form-login" id="testform" onsubmit="return false;">
+            <div class=form-field>
+              <label><strong>Nombre:</strong></label> 
+              <input type="text" placeholder="Nombre" id="newNombre" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" (click)="blankInputNombre()" ng-pattern-restrict required>
+              <label class="input-error" id="nombreError">*Obligatorio</label> 
+            </div> 
+            <div class=form-field>
+              <label><strong>Mes:</strong></label>
+              <select name=mes id="newMes" required>
+                <option *ngFor="let mes of meses">{{mes}}</option>
+              </select>
+            </div>
+            <div class=form-field>
+              <label><strong>Año:</strong></label>
+              <input type="anno" placeholder="Año" id="newAnno" (click)="blankInputAnno()" step="1" required>
+              <label class="input-error" id="annoError">*Obligatorio</label> 
+            </div>
+            <div class=form-field>
+              <label><strong>Imágen:</strong></label>
+              <select name=imagen id="newImagen" required>
+                <option *ngFor="let imagen of imagenes">{{imagen}}</option>
+              </select>
+            </div>
+            <label class="button-main"><i class="material-icons botton-check" (click)="newL()">done</i></label> 
+            <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertL()">clear</i></label> 
+          </form>
         </div>        
-    </div>
+      </div>
     </div>
   </div>

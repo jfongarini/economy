@@ -116,9 +116,9 @@ body {
 
 
 .card, .banner-busqueda{
-/*    margin-top: 10px;
+    margin-top: 10px;
     background-color: #FFF;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);*/
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 .card-login{
@@ -132,6 +132,7 @@ body {
   border-radius: 50%;
   background-color: cadetblue;
   block-size: 130px;
+  cursor: pointer;
 }
 
 .separator {
@@ -337,8 +338,9 @@ li a {
 }
 
 .modal-content {
-    width: 500px;
-    height: 200px;
+/*    width: 500px;
+    height: 200px;*/
+  display: table;
 }
 
 #cv {
@@ -525,8 +527,8 @@ li a {
 }
 
 .categorias{
-/*    width: 250px;
-    padding: 20px*/
+    width: 250px;
+    padding: 20px
 }
 
 .nuevo-diario{
@@ -921,6 +923,14 @@ tr:hover i{
     padding-right: 10px;
 }
 
+.padding0{
+    padding-right: 0px;
+}
+
+.material-icons.md-130{
+    font-size: 130px;
+    color: white;
+}
 
 .material-icons.md-60{
     color: #00695c;
@@ -1025,7 +1035,7 @@ tr:hover i{
   padding-top: 25px;
   width: auto;
   background-color: transparent;
-  margin: 5px;
+  cursor: pointer;
 }
 
 .labelNombre{
@@ -1060,4 +1070,43 @@ tr:hover i{
 
 .div_add_login{
   padding-top: 40px;
+}
+
+.card_login_add{
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: cadetblue;
+}
+
+.dellogin{
+  display: block;
+  position: absolute;
+  margin-left: 96px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background-color: white;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+
+div:hover .dellogin i {
+    visibility: visible;
+    background-color: black;
+}
+
+i.dellogin:hover{
+    visibility: visible;
+    background-color: black;
+}
+
+.nuevo-usuario{
+  padding-top: 160px;
+  display: none;
+}
+
+.form-login{
+  border-top: 1px solid;
+  padding-top: 12px;
 }

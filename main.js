@@ -135,7 +135,7 @@ ipcMain.on('loginok', (event, arg) => {
 function getPersonaAll() {
   //ipcMain.on("getPersona", function () {
   ipcMain.on("getPersonaAll", (event) => {
-    let result = knex('Persona')
+    let result = knex('Persona').where('VIGENTE', 0)
     result.then(function (rows) {
       //mainWindow.webContents.send("resultSentPersona", rows);
       event.returnValue = rows;
@@ -227,7 +227,7 @@ ipcMain.on('updateCategoria', (event, id, nombre) => {
 });
 
 ipcMain.on('insertTarjeta', (event, id, arg) => {
-  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: argv})
+  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: arg})
   .then( function (result) {
   })
 });
@@ -441,5 +441,20 @@ function getDiarioCategoria() {
 }
 
 
+///////////////////////////////////////////
 
+//-- Login
+
+
+ipcMain.on('removeLogin', (event, id, vigente) => {
+  knex('Persona').where('ID', id).update({VIGENTE: 1})
+  .then( function (result) {
+  })
+});
+
+ipcMain.on('newUsuario', (event, nombre, mes, anno, imagen) => {
+  knex('Persona').insert({NOMBRE: nombre, MES: mes, ANNO: anno, IMAGEN: imagen, VIGENTE: 0})
+  .then( function (result) {
+  })
+});
 ///////////////////////////////////////////
