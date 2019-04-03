@@ -19,7 +19,7 @@ let knex = require("knex")({
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, webPreferences:{
+  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, webPreferences:{
         nodeIntegration: true
       } })
 
@@ -30,10 +30,10 @@ function createWindow() {
     slashes: true
   }))
 
- // mainWindow.once("ready-to-show", () => { mainWindow.show() })
+  mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
   
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
@@ -58,9 +58,6 @@ function createWindow() {
 
 //     child.openDevTools()
 
-     mainWindow.once('ready-to-show', () => {
-   mainWindow.show()
- })
    
 }
 

@@ -1090,16 +1090,10 @@ tr:hover i{
   cursor: pointer;
 }
 
-
-div:hover .dellogin i {
+div.delloginDiv:hover i.dellogin {
     visibility: visible;
-    background-color: black;
 }
 
-i.dellogin:hover{
-    visibility: visible;
-    background-color: black;
-}
 
 .nuevo-usuario{
   padding-top: 160px;
