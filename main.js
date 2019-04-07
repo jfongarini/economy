@@ -17,6 +17,13 @@ let knex = require("knex")({
   "debug": false
 });
 
+// knex.raw('CREATE DATABASE IF NOT EXISTS database12.sqlite3;'
+//     ).then(function() {
+//         knex.destroy();
+//         knexConnect.connection.database = 'database12.sqlite3';
+//         knex = require('knex')(knexConnect);
+//     })
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, webPreferences:{
@@ -156,8 +163,8 @@ function getPersona() {
   });
 }
 
-ipcMain.on('updatePersona', (event, id, nombre, mes, anno) => {
-  knex('Persona').where('ID', id).update({ NOMBRE: nombre, MES: mes, ANNO: anno })
+ipcMain.on('updatePersona', (event, id, nombre, mes, anno, imagen) => {
+  knex('Persona').where('ID', id).update({ NOMBRE: nombre, MES: mes, ANNO: anno, IMAGEN: imagen })
   .then( function (result) {
   })
 });

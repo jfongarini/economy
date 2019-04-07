@@ -34,6 +34,7 @@
     "electron-chartjs": "^1.0.0",
     "electron-packager": "^13.0.1",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
     "knex": "^0.16.3",
     "material-design-icons": "^3.0.1",
     "node-gyp": "^3.8.0",

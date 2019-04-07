@@ -11,15 +11,16 @@ export class AppComponent implements OnInit {
   	title = 'economia';
   	public listPersonas: Array<any>;
   	public ipc = electron.ipcRenderer;
+  	public eliminarID: number;
   	public personaId: number;
 	public personaNombre: string;
+	public personaImagen: number;
 	public personaAnno: number;
 	public personaMesActNum: number;
 	public personaMesActNom: string;
 	public persona: Array<any>;
 	public meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
               "Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-    public imagenes = [1,2,3,4,5,6,7,8,9,10];
 
 	constructor(private ref: ChangeDetectorRef) { }	
 
@@ -33,8 +34,12 @@ export class AppComponent implements OnInit {
 			me.personaMesActNum = result[0].MES;
 			me.personaMesActNom = me.meses[me.personaMesActNum -1];
 			me.personaAnno = result[0].ANNO;
-			me.ref.detectChanges()
+			me.personaImagen = result[0].IMAGEN;
+			
 	    //});
+	    (<HTMLImageElement>document.getElementById('imagen')).src = "./assets/icons/" + me.personaImagen + ".png";
+	    (<HTMLInputElement>document.getElementById('edit' + String(me.personaImagen))).checked = true;
+	    me.ref.detectChanges()
 	}
 
 	gelAllPersona(){
@@ -65,9 +70,18 @@ export class AppComponent implements OnInit {
 		var nombreU = (<HTMLInputElement>document.getElementById('submitNombre')).value;
 		var mesU = (<HTMLInputElement>document.getElementById('submitMes')).value;
 		var annoU = (<HTMLInputElement>document.getElementById('submitAnno')).value;
+		var imagen = 0;
+
+		for (var i = 1; i <= 10; i++){
+			if((<HTMLInputElement>document.getElementById('edit' + String(i))).checked){
+				imagen = i;
+			}
+		}
+
 		var nombreSend = "";
 		var mesSend = 0;
 		var annoSend = 0;
+		var imaSend = 0;
 
 		if (nombreU == "") {
 			nombreSend = me.personaNombre;
@@ -87,7 +101,13 @@ export class AppComponent implements OnInit {
 			annoSend = +annoU;
 		}
 
-		me.ipc.send("updatePersona", me.personaId, nombreSend, mesSend, annoSend);
+		if (imagen == 0) {
+			imagen = me.personaImagen;
+		} else {
+			imaSend = imagen;
+		}
+
+		me.ipc.send("updatePersona", me.personaId, nombreSend, mesSend, annoSend, imaSend);
 		this.getPersona();
 
 		(<HTMLDivElement>document.getElementById('principal')).style.paddingTop = "40px";
@@ -104,6 +124,7 @@ export class AppComponent implements OnInit {
 		me.persona.push(me.personaMesActNum);
 		me.persona.push(me.personaMesActNom);
 		me.persona.push(me.personaAnno); 
+		me.persona.push(me.personaImagen); 
 
 		return me.persona;
 	}
@@ -120,6 +141,7 @@ export class AppComponent implements OnInit {
 
 	public newLoginFrom() {		
 		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('eliminar-usuario-id')).style.display = "none";
 	}
 
 
@@ -128,7 +150,13 @@ export class AppComponent implements OnInit {
 		var nombre = (<HTMLInputElement>document.getElementById('newNombre')).value;
 		var mes = (<HTMLInputElement>document.getElementById('newMes')).value;
 		var anno = (<HTMLInputElement>document.getElementById('newAnno')).value;
-		var imagen = (<HTMLInputElement>document.getElementById('newImagen')).value;
+		var imagen = 0;
+
+		for (var i = 1; i <= 10; i++){
+			if((<HTMLInputElement>document.getElementById('new' + String(i))).checked){
+				imagen = i;
+			}
+		}
 
 		if ((nombre == "") || (anno == "")) {
 			if (nombre == "") {
@@ -144,6 +172,7 @@ export class AppComponent implements OnInit {
 			(<HTMLInputElement>document.getElementById('newAnno')).value = "";
 			(<HTMLInputElement>document.getElementById('newMes')).value = "Enero";
 			(<HTMLInputElement>document.getElementById('newImagen')).value = "1";
+			(<HTMLInputElement>document.getElementById('new' + String(imagen))).checked = false;
 			var nuevoMes = me.meses.indexOf(mes) + 1;
 			me.ipc.send("newUsuario", nombre, nuevoMes, anno, imagen);
 			me.closeInsertL();
@@ -151,11 +180,23 @@ export class AppComponent implements OnInit {
 	    this.gelAllPersona();
 	}
 
-	public removeL(event) {
-		var id = event.target.id;
+	public previoRemoveL(event) {	
 		let me = this;
-	    me.ipc.send("removeLogin", id);
+		me.eliminarID = event.target.id;
+		(<HTMLInputElement>document.getElementById('eliminar-usuario-id')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "none";
+		this.gelAllPersona();
+	}
+
+	public removeL() {
+		let me = this;
+	    me.ipc.send("removeLogin", me.eliminarID);
+	    me.closeDeleteL();
 	    this.gelAllPersona();
+	}
+
+	public closeDeleteL() {
+		(<HTMLInputElement>document.getElementById('eliminar-usuario-id')).style.display = "none";
 	}
 
 	public closeInsertL() {
