@@ -6,3 +6,17 @@
 
 despues
 - updates
+
+
+
+
+- generar base de datos vacia si no existe.
+
+// knex.raw('CREATE DATABASE IF NOT EXISTS database12.sqlite3;'
+//     ).then(function() {
+//         knex.destroy();
+//         knexConnect.connection.database = 'database12.sqlite3';
+//         knex = require('knex')(knexConnect);
+//     })
+
+

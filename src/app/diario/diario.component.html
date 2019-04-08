@@ -79,7 +79,7 @@
         <div class=form-field>
           <label><strong>Categor&iacute;a:</strong></label> 
           <select name=categoria id="submitGrupo" required>
-            <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
+            <option *ngFor="let categoria of listCategoriaVigente" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>
@@ -109,7 +109,7 @@
         <div class=form-field>
           <label><strong>Categor&iacute;a:</strong></label> 
           <select name=categoria id="editGrupo" required>
-            <option *ngFor="let categoria of listCategoria" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
+            <option *ngFor="let categoria of listCategoriaVigente" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>

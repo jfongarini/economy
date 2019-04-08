@@ -16,6 +16,7 @@ export class DiarioComponent implements OnInit {
 	public listDiarioG: Array<string>;
 	public listDiarioI: Array<string>;
 	public listCategoria: Array<string>;
+	public listCategoriaVigente: Array<string>;
 	public totalIngreso: number;
 	public totalGasto: number;
 	public idDiario: number;
@@ -71,6 +72,19 @@ export class DiarioComponent implements OnInit {
 	    //});
 	}
 
+	getCategoriasVigentes(){
+		let me = this;
+		let personaActualID = this.persona[0];
+	    let result = me.ipc.sendSync("getCategorias", personaActualID)
+	    me.listCategoriaVigente = [];
+		for (var i = 0; i < result.length; i++) {
+			if (result[i].VIGENTE == 0){
+				me.listCategoriaVigente.push(result[i]);
+			}				
+		}
+		me.ref.detectChanges()
+	}
+
 	getDiario(){
 		let me = this;
 		let sendFecha = "";
@@ -119,6 +133,7 @@ export class DiarioComponent implements OnInit {
 
 	ngOnInit() {
 		this.getCategorias();
+		this.getCategoriasVigentes();
 		this.getDiario();
 	}
  

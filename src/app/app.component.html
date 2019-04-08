@@ -88,7 +88,9 @@
       <div class="containerLogin">
         <div ng-cloak class="float-left padding10" id={{persona}} *ngFor="let persona of listPersonas" >
             <div routerLink="home" class="delloginDiv">
-                <i class="material-icons dellogin" data-id={{persona.ID}} (click)="previoRemoveL($event)">clear</i>
+                <div *ngIf="persona.ID > 1">
+                  <i class="material-icons dellogin" data-id={{persona.ID}} (click)="previoRemoveL($event)">clear</i>
+                </div>
                 <img class="imagen-log" src="./assets/icons/{{persona.IMAGEN}}.png" id={{persona.ID}}  (click)="enterApp($event)">
                 <div ng-cloak class="float-inherit" id={{persona.ID}}  (click)="enterApp($event)">
                     <label>{{persona.NOMBRE}}</label>

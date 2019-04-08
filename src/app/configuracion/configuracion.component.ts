@@ -132,6 +132,9 @@ export class ConfiguracionComponent implements OnInit {
 		let categoria = me.listI.find(cate => cate['ID'] === +id);
 		let nombre = categoria['NOMBRE'];
 	    me.ipc.send("deleteCategoria", id, nombre);
+	    (<HTMLInputElement>document.getElementById('editBotonCI')).style.display="none";
+		(<HTMLInputElement>document.getElementById('nuevoBotonCI')).style.display="inline-block";
+		(<HTMLInputElement>document.getElementById('submitI')).value = "";
 	    this.getCategorias();
 	}
 
@@ -141,6 +144,9 @@ export class ConfiguracionComponent implements OnInit {
 		let categoria = me.listG.find(cate => cate['ID'] === +id);
 		let nombre = categoria['NOMBRE'];
 	    me.ipc.send("deleteCategoria", id, nombre);
+	    (<HTMLInputElement>document.getElementById('editBotonCG')).style.display="none";
+		(<HTMLInputElement>document.getElementById('nuevoBotonCG')).style.display="inline-block";
+		(<HTMLInputElement>document.getElementById('submitG')).value = "";
 	    this.getCategorias();
 	}
 
@@ -222,6 +228,9 @@ export class ConfiguracionComponent implements OnInit {
 		let tarj = me.tarjetas.find(tar => tar['ID'] === +id);
 		let nombre = tarj['NOMBRE'];
 	    me.ipc.send("deleteTarjeta", id, nombre);
+	    (<HTMLInputElement>document.getElementById('editBotonT')).style.display="none";
+		(<HTMLInputElement>document.getElementById('nuevoBotonT')).style.display="inline-block";
+		(<HTMLInputElement>document.getElementById('submitT')).value = "";
 	    this.getTarjetas();
 	}
 
@@ -276,6 +285,9 @@ export class ConfiguracionComponent implements OnInit {
 		let inver = me.inversiones.find(inv => inv['ID'] === +id);
 		let nombre = inver['NOMBRE'];
 	    me.ipc.send("deleteInversion", id, nombre);
+	    (<HTMLInputElement>document.getElementById('editBotonV')).style.display="none";
+		(<HTMLInputElement>document.getElementById('nuevoBotonV')).style.display="inline-block";
+		(<HTMLInputElement>document.getElementById('submitV')).value = "";
 	    this.getInversiones();
 	}
 

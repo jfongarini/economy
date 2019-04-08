@@ -17,13 +17,6 @@ let knex = require("knex")({
   "debug": false
 });
 
-// knex.raw('CREATE DATABASE IF NOT EXISTS database12.sqlite3;'
-//     ).then(function() {
-//         knex.destroy();
-//         knexConnect.connection.database = 'database12.sqlite3';
-//         knex = require('knex')(knexConnect);
-//     })
-
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, webPreferences:{
