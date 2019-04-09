@@ -16,11 +16,17 @@
 </div>
 <div class="desp-main-app" id="desp-main-div">
   <div class="main-app">
-    <input class="mes-main" type="text" placeholder="{{personaMesActNum}}" id="submitMes" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>
+    <select name=mes id="submitMes" required>
+      <option value="" disabled selected>{{personaMesActNom}}</option>
+      <option *ngFor="let mes of meses">{{mes}}</option>
+    </select>
   </div>
   <div class="separator"></div>
   <div class="main-app">
-    <input class="anno-main" type="text" placeholder="{{personaAnno}}" id="submitAnno" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>
+    <select name=anno id="submitAnno" required>
+      <option value="" disabled selected>{{personaAnno}}</option>
+      <option *ngFor="let anno of annos">{{anno}}</option>
+    </select>
   </div>
   <div class="imagenEdit">
     <label>
@@ -65,7 +71,7 @@
     </label>
   </div>
   <div class="usuario-edit">
-    <input class="usuario-main" type="text" placeholder="{{personaNombre}}" id="submitNombre" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>         
+    <input class="usuario-main" type="text" placeholder="{{personaNombre}}" id="submitNombre" minlength="2" maxlength="10" pattern="^[^\s].*([A-zÀ-ž\s]){2,10}" ng-pattern-restrict required>         
   </div>
   <label class="button-main posfixed"><i class="material-icons botton-check" (click)="updatePersona()">done</i></label>
 </div>
@@ -111,13 +117,18 @@
             </div> 
             <div class=form-field>
               <label><strong class="padding10">Mes:</strong></label>
-              <select name=mes id="newMes" required>
+              <select name=mes id="newMes" placeholder="Mes" (click)="blankInputMes()" required >
+                <option value="" disabled selected>Mes</option>
                 <option *ngFor="let mes of meses">{{mes}}</option>
               </select>
+              <label class="input-error" id="mesError">*Obligatorio</label>
             </div>
             <div class=form-field>
               <label><strong class="padding10">Año:</strong></label>
-              <input type="anno" placeholder="Año" id="newAnno" (click)="blankInputAnno()" step="1" required>
+              <select name=anno id="newAnno" placeholder="Año" (click)="blankInputAnno()" required>
+                <option value="" disabled selected>Año</option>
+                <option *ngFor="let anno of annos">{{anno}}</option>
+              </select>
               <label class="input-error" id="annoError">*Obligatorio</label> 
             </div>
             <div class=form-field id="newImagen">

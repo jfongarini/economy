@@ -69,7 +69,7 @@
         <div class=form-field>
           <label><strong>Dia:</strong></label>
           <input type="number" placeholder="Dia" id="submitDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
-          <label class="input-error" id="diaError">*Obligatorio</label> 
+          <label class="input-error" id="diaError">{{mensaje}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Importe:</strong></label>
@@ -98,13 +98,13 @@
       <form id="testform" onsubmit="return false;">
         <div class=form-field>
           <label><strong>Dia:</strong></label>
-          <input type="number" placeholder="Dia" id="editDia" (click)="blankInputDia()" min="01" max="31" ng-pattern-restrict required />
-          <label class="input-error" id="diaError">*Obligatorio</label> 
+          <input type="number" placeholder="Dia" id="editDia" (click)="blankEditDia()" min="01" max="31" ng-pattern-restrict required />
+          <label class="input-error" id="editDiaError">{{mensaje}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Importe:</strong></label>
-          <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
-          <label class="input-error" id="importeError">*Obligatorio</label> 
+          <input type="number" placeholder="Importe" id="editImporte" (click)="blankEditImporte()" step=".01" required>
+          <label class="input-error" id="editImporteError">*Obligatorio</label> 
         </div>
         <div class=form-field>
           <label><strong>Categor&iacute;a:</strong></label> 

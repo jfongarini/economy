@@ -69,7 +69,7 @@
         <div class=form-field>
           <label><strong>Tarjeta:</strong></label> 
           <select name=tarjeta id="submitTarjeta" required>
-            <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
+            <option *ngFor="let tarjeta of listTarjetaVigente" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>
@@ -80,16 +80,16 @@
         <div class=form-field>
           <label><strong>Valor de Cuota:</strong></label>
           <input type="number" placeholder="Importe" id="submitImporte" (click)="blankInputImporte()" step=".01" required>
-          <label class="input-error" id="importeError">*Obligatorio</label> 
+          <label class="input-error" id="importeError">{{mensaje}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Cantidad de Cuotas:</strong></label>
           <input type="number" placeholder="Cuotas" id="submitCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
-          <label class="input-error" id="cuotasError">*Obligatorio</label>
+          <label class="input-error" id="cuotasError">{{mensaje}}</label>
         </div>
         <div class=form-field>
           <label><strong>Mes Primer Cuota:</strong></label>
-          <input type="month" id="submitMes" ng-pattern-restrict required />        
+          <input type="month" id="submitMes" (click)="blankInputMPC()" ng-pattern-restrict required />        
           <label class="input-error" id="mesError">*Oblig</label> 
         </div>
         <label class="button-main"><i class="material-icons botton-check" (click)="insertTC()">done</i></label> 
@@ -106,28 +106,29 @@
         <div class=form-field>
           <label><strong>Tarjeta:</strong></label> 
           <select name=tarjeta id="editTarjeta" required>
-            <option *ngFor="let tarjeta of listTarjetaConsumo" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
+            <option value="" disabled selected>{{tarjetaEditaNombre}}</option>
+            <option *ngFor="let tarjeta of listTarjetaVigente" [value]="tarjeta.ID">{{tarjeta.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>
           <label><strong>Nombre:</strong></label>
-          <input type="text" placeholder="Nombre" id="editNombreConsumo" (click)="blankInputNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
-          <label class="input-error" id="nombreConsumoError">*Obligatorio</label> 
+          <input type="text" placeholder="Nombre" id="editNombreConsumo" (click)="blankEditNombreConsumo()" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+          <label class="input-error" id="editNombreConsumoError">*Obligatorio</label> 
         </div>
         <div class=form-field>
           <label><strong>Valor de Cuota:</strong></label>
-          <input type="number" placeholder="Importe" id="editImporte" (click)="blankInputImporte()" step=".01" required>
-          <label class="input-error" id="importeError">*Obligatorio</label> 
+          <input type="number" placeholder="Importe" id="editImporte" (click)="blankEditImporte()" step=".01" required>
+          <label class="input-error" id="editImporteError">{{mensaje}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Cantidad de Cuotas:</strong></label>
-          <input type="number" placeholder="Cuotas" id="editCuotas" (click)="blankInputCoutas()" min="01" max="100" ng-pattern-restrict required />
-          <label class="input-error" id="cuotasError">*Obligatorio</label>
+          <input type="number" placeholder="Cuotas" id="editCuotas" (click)="blankEditCoutas()" min="01" max="100" ng-pattern-restrict required />
+          <label class="input-error" id="editCuotasError">{{mensaje}}</label>
         </div>
         <div class=form-field>
           <label><strong>Mes Primer Cuota:</strong></label>
-          <input type="month" id="editMes" ng-pattern-restrict required />        
-          <label class="input-error" id="mesError">*Oblig</label> 
+          <input type="month" id="editMes" (click)="blankEditMPC()" ng-pattern-restrict required />        
+          <label class="input-error" id="editMesError">*Oblig</label> 
         </div>
         <label class="button-main"><i class="material-icons botton-check" (click)="updateTC()">done</i></label> 
         <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertTC()">clear</i></label> 

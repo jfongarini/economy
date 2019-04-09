@@ -224,7 +224,7 @@ ipcMain.on('updateCategoria', (event, id, nombre) => {
 });
 
 ipcMain.on('insertTarjeta', (event, id, arg) => {
-  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: arg})
+  knex('Tarjeta').insert({ID_PERSONA: id, NOMBRE: arg, VIGENTE: 0})
   .then( function (result) {
   })
 });

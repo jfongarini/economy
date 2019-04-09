@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
 	public meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
               "Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
+    public annos = [];
+
 	constructor(private ref: ChangeDetectorRef) { }	
 
 	getPersona(){
@@ -48,7 +50,15 @@ export class AppComponent implements OnInit {
 		me.listPersonas = result;
 	}
 
+	setAnno(){
+		let me = this;
+		for (var i = 15; i <= 50; i++) {
+			me.annos.push('20'+ String(i));
+		}
+	}
+
 	async ngOnInit() {
+		await this.setAnno();
 		await this.gelAllPersona();
 		await this.getPersona();
 	}
@@ -92,7 +102,8 @@ export class AppComponent implements OnInit {
 		if (mesU == "") {
 			mesSend = me.personaMesActNum;
 		} else {
-			mesSend = +mesU;
+			var nuevoMes = me.meses.indexOf(mesU) + 1;
+			mesSend = +nuevoMes;
 		}
 
 		if (annoU == "") {
@@ -139,6 +150,11 @@ export class AppComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('annoError')).style.visibility="hidden";
 	}
 
+	public blankInputMes() {
+		(<HTMLInputElement>document.getElementById('newMes')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('mesError')).style.visibility="hidden";
+	}
+
 	public newLoginFrom() {		
 		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('eliminar-usuario-id')).style.display = "none";
@@ -158,7 +174,7 @@ export class AppComponent implements OnInit {
 			}
 		}
 
-		if ((nombre == "") || (anno == "")) {
+		if ((nombre == "") || (anno == "") || (mes == "")) {
 			if (nombre == "") {
 				(<HTMLInputElement>document.getElementById('newNombre')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('nombreError')).style.visibility="visible";
@@ -167,10 +183,14 @@ export class AppComponent implements OnInit {
 				(<HTMLInputElement>document.getElementById('newAnno')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('annoError')).style.visibility="visible";
 			}
+			if (mes == "") {
+				(<HTMLInputElement>document.getElementById('newMes')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('mesError')).style.visibility="visible";
+			}
 		} else {
 			(<HTMLInputElement>document.getElementById('newNombre')).value = "";
 			(<HTMLInputElement>document.getElementById('newAnno')).value = "";
-			(<HTMLInputElement>document.getElementById('newMes')).value = "Enero";
+			(<HTMLInputElement>document.getElementById('newMes')).value = "";
 			(<HTMLInputElement>document.getElementById('newImagen')).value = "1";
 			(<HTMLInputElement>document.getElementById('new' + String(imagen))).checked = false;
 			var nuevoMes = me.meses.indexOf(mes) + 1;
@@ -202,6 +222,11 @@ export class AppComponent implements OnInit {
 	public closeInsertL() {
 		this.blankInputNombre();
 		this.blankInputAnno();
+		this.blankInputMes();
 		(<HTMLInputElement>document.getElementById('nuevo-usuario-id')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('newNombre')).value = "";
+		(<HTMLInputElement>document.getElementById('newAnno')).value = "";
+		(<HTMLInputElement>document.getElementById('newMes')).value = "";
+		(<HTMLInputElement>document.getElementById('newImagen')).value = "1";
 	}
 }

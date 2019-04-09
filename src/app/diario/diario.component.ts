@@ -20,6 +20,7 @@ export class DiarioComponent implements OnInit {
 	public totalIngreso: number;
 	public totalGasto: number;
 	public idDiario: number;
+	public mensaje: string;
 
 	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -144,10 +145,16 @@ export class DiarioComponent implements OnInit {
 		var grupo = (<HTMLInputElement>document.getElementById('submitGrupo')).value;
 		var detalle = (<HTMLInputElement>document.getElementById('submitDetalle')).value;
 		var fecha = me.setFecha(dia);
-		if ((dia == "") || (importe == "")) {
+		if ((dia == "") || (importe == "") || (+dia < 1) || (+dia > 31)) {
 			if (dia == "") {
 				(<HTMLInputElement>document.getElementById('submitDia')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('diaError')).style.visibility="visible";
+				me.mensaje = "*Obligatorio";
+			}
+			if (((+dia < 1) || (+dia > 31)) && (dia != "")){
+				(<HTMLInputElement>document.getElementById('submitDia')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('diaError')).style.visibility="visible";
+				me.mensaje = "El día " + dia + " no es permitido";
 			}
 			if (importe == "") {
 				(<HTMLInputElement>document.getElementById('submitImporte')).style.borderColor="red"; 
@@ -176,6 +183,16 @@ export class DiarioComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('importeError')).style.visibility="hidden";
 	}
 
+	public blankEditDia() {
+		(<HTMLInputElement>document.getElementById('editDia')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('editDiaError')).style.visibility="hidden";
+	}
+
+	public blankEditImporte() {
+		(<HTMLInputElement>document.getElementById('editImporte')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('editImporteError')).style.visibility="hidden";
+	}
+
 	public habilitaFormInsert() {
 		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
@@ -184,9 +201,18 @@ export class DiarioComponent implements OnInit {
 	public closeInsertDiario() {
 		this.blankInputDia();
 		this.blankInputImporte();
+		this.blankEditDia();
+		this.blankEditImporte();
 		(<HTMLInputElement>document.getElementById('formNuevoDiario')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('formEditDiario')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('editDia')).value = "";
+		(<HTMLInputElement>document.getElementById('editImporte')).value = "";
+		(<HTMLInputElement>document.getElementById('editDetalle')).value = "";
+		(<HTMLInputElement>document.getElementById('submitDia')).value = "";
+		(<HTMLInputElement>document.getElementById('submitImporte')).value = "";
+		(<HTMLInputElement>document.getElementById('submitDetalle')).value = "";
+
 	}
 
 	public habilitaFormEdit(event) {
@@ -216,14 +242,20 @@ export class DiarioComponent implements OnInit {
 		var grupo = (<HTMLInputElement>document.getElementById('editGrupo')).value;
 		var detalle = (<HTMLInputElement>document.getElementById('editDetalle')).value;
 		var fecha = me.setFecha(dia);
-		if ((dia == "") || (importe == "")) {
+		if ((dia == "") || (importe == "") || (+dia < 1) || (+dia > 31)) {
 			if (dia == "") {
 				(<HTMLInputElement>document.getElementById('editDia')).style.borderColor="red"; 
-				(<HTMLInputElement>document.getElementById('diaError')).style.visibility="visible";
+				(<HTMLInputElement>document.getElementById('editDiaError')).style.visibility="visible";
+				me.mensaje = "*Obligatorio";
+			}
+			if (((+dia < 1) || (+dia > 31)) && (dia != "")){
+				(<HTMLInputElement>document.getElementById('editDia')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('editDiaError')).style.visibility="visible";
+				me.mensaje = "El día " + dia + " no es permitido";
 			}
 			if (importe == "") {
 				(<HTMLInputElement>document.getElementById('editImporte')).style.borderColor="red"; 
-				(<HTMLInputElement>document.getElementById('importeError')).style.visibility="visible";
+				(<HTMLInputElement>document.getElementById('editImporteError')).style.visibility="visible";
 			}
 		} else {
 			(<HTMLInputElement>document.getElementById('editDia')).value = "";
