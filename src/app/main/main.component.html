@@ -6,24 +6,24 @@
   <table ng-cloak id=table class=main-table>
     <thead>
       <tr>
-        <th></th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
+        <th class="primerCol"></th>
+        <th class="segCol">Ene</th>
+        <th class="segCol">Feb</th>
+        <th class="segCol">Mar</th>
+        <th class="segCol">Abr</th>
+        <th class="segCol">May</th>
+        <th class="segCol">Jun</th>
+        <th class="segCol">Jul</th>
+        <th class="segCol">Ago</th>
+        <th class="segCol">Sep</th>
+        <th class="segCol">Oct</th>
+        <th class="segCol">Nov</th>
+        <th class="segCol">Dic</th>
       </tr>
     </thead>
     <tbody>
      <tr ng-cloak id={{ingreso}} class="data-row fade-in" *ngFor="let ingreso of resumenI" >
-            <td data-id={{ingreso}}>{{ingreso.nombre}}</td>
+            <td  class="primerCol" data-id={{ingreso}}>{{ingreso.nombre}}</td>
             <td data-id={{ingreso}}>{{ingreso.m01}}</td>
             <td data-id={{ingreso}}>{{ingreso.m02}}</td>
             <td data-id={{ingreso}}>{{ingreso.m03}}</td>
@@ -38,7 +38,7 @@
             <td data-id={{ingreso}}>{{ingreso.m12}}</td>
           </tr>
       <tr ng-cloak class="data-row fade-in color-total">
-        <td>Total</td>
+        <td  class="primerCol">Total</td>
         <td>{{resumenTotalI.m01}}</td>
         <td>{{resumenTotalI.m02}}</td>
         <td>{{resumenTotalI.m03}}</td>
@@ -63,24 +63,24 @@
   <table ng-cloak id=table class=main-table>
     <thead>
       <tr>
-        <th></th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
+        <th class="primerCol"></th>
+        <th class="segCol">Ene</th>
+        <th class="segCol">Feb</th>
+        <th class="segCol">Mar</th>
+        <th class="segCol">Abr</th>
+        <th class="segCol">May</th>
+        <th class="segCol">Jun</th>
+        <th class="segCol">Jul</th>
+        <th class="segCol">Ago</th>
+        <th class="segCol">Sep</th>
+        <th class="segCol">Oct</th>
+        <th class="segCol">Nov</th>
+        <th class="segCol">Dic</th>
       </tr>
     </thead>
     <tbody>
      <tr ng-cloak id={{gasto}} class="data-row fade-in" *ngFor="let gasto of resumenG" >
-            <td data-id={{gasto}}>{{gasto.nombre}}</td>
+            <td class="primerCol" data-id={{gasto}}>{{gasto.nombre}}</td>
             <td data-id={{gasto}}>{{gasto.m01}}</td>
             <td data-id={{gasto}}>{{gasto.m02}}</td>
             <td data-id={{gasto}}>{{gasto.m03}}</td>
@@ -95,7 +95,7 @@
             <td data-id={{gasto}}>{{gasto.m12}}</td>
           </tr>
       <tr ng-cloak class="data-row fade-in color-total">
-        <td>Total</td>
+        <td class="primerCol">Total</td>
         <td>{{resumenTotalG.m01}}</td>
         <td>{{resumenTotalG.m02}}</td>
         <td>{{resumenTotalG.m03}}</td>
@@ -120,24 +120,24 @@
   <table ng-cloak id=table class=main-table>
     <thead>
       <tr>
-        <th></th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
+        <th class="primerCol"></th>
+        <th class="segCol">Ene</th>
+        <th class="segCol">Feb</th>
+        <th class="segCol">Mar</th>
+        <th class="segCol">Abr</th>
+        <th class="segCol">May</th>
+        <th class="segCol">Jun</th>
+        <th class="segCol">Jul</th>
+        <th class="segCol">Ago</th>
+        <th class="segCol">Sep</th>
+        <th class="segCol">Oct</th>
+        <th class="segCol">Nov</th>
+        <th class="segCol">Dic</th>
       </tr>
     </thead>
     <tbody>
      <tr ng-cloak id={{inversion}} class="data-row fade-in" *ngFor="let inversion of resumenV" >
-            <td data-id={{inversion}}>{{inversion.nombre}}</td>
+            <td class="primerCol" data-id={{inversion}}>{{inversion.nombre}}</td>
             <td data-id={{inversion}}>{{inversion.m01}}</td>
             <td data-id={{inversion}}>{{inversion.m02}}</td>
             <td data-id={{inversion}}>{{inversion.m03}}</td>
@@ -152,7 +152,7 @@
             <td data-id={{inversion}}>{{inversion.m12}}</td>
           </tr>
       <tr ng-cloak class="data-row fade-in color-total">
-        <td>Total</td>
+        <td class="primerCol">Total</td>
         <td>{{resumenTotalV.m01}}</td>
         <td>{{resumenTotalV.m02}}</td>
         <td>{{resumenTotalV.m03}}</td>
@@ -177,24 +177,24 @@
   <table ng-cloak id=table class=main-table style="font-weight=bold">
     <thead>
       <tr class="color-total">
-        <th></th>
-        <th>Ene</th>
-        <th>Feb</th>
-        <th>Mar</th>
-        <th>Abr</th>
-        <th>May</th>
-        <th>Jun</th>
-        <th>Jul</th>
-        <th>Ago</th>
-        <th>Sep</th>
-        <th>Oct</th>
-        <th>Nov</th>
-        <th>Dic</th>
+        <th class="primerCol"></th>
+        <th class="segCol">Ene</th>
+        <th class="segCol">Feb</th>
+        <th class="segCol">Mar</th>
+        <th class="segCol">Abr</th>
+        <th class="segCol">May</th>
+        <th class="segCol">Jun</th>
+        <th class="segCol">Jul</th>
+        <th class="segCol">Ago</th>
+        <th class="segCol">Sep</th>
+        <th class="segCol">Oct</th>
+        <th class="segCol">Nov</th>
+        <th class="segCol">Dic</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-cloak class="data-row fade-in">
-        <td>Saldo Disponible</td>
+        <td class="primerCol">Saldo Disponible</td>
         <td>{{listSaldos.m01}}</td>
         <td>{{listSaldos.m02}}</td>
         <td>{{listSaldos.m03}}</td>
@@ -209,69 +209,69 @@
         <td>{{listSaldos.m12}}</td>
       </tr>
       <tr ng-cloak class="data-row fade-in">
-        <td>Saldo Anterior</td>
-        <td *ngIf="listSaldos.m01 > 0" >{{listSaldos.m13}}</td>
-        <td *ngIf="listSaldos.m01 <= 0" >0</td>
-        <td *ngIf="listSaldos.m02 > 0" >{{listSaldos.m01}}</td>
-        <td *ngIf="listSaldos.m02 <= 0" >0</td>
-        <td *ngIf="listSaldos.m03 > 0" >{{listSaldos.m02}}</td>
-        <td *ngIf="listSaldos.m03 <= 0" >0</td>
-        <td *ngIf="listSaldos.m04 > 0" >{{listSaldos.m03}}</td>
-        <td *ngIf="listSaldos.m04 <= 0" >0</td>
-        <td *ngIf="listSaldos.m05 > 0" >{{listSaldos.m04}}</td>
-        <td *ngIf="listSaldos.m05 <= 0" >0</td>
-        <td *ngIf="listSaldos.m06 > 0" >{{listSaldos.m05}}</td>
-        <td *ngIf="listSaldos.m06 <= 0" >0</td>
-        <td *ngIf="listSaldos.m07 > 0" >{{listSaldos.m06}}</td>
-        <td *ngIf="listSaldos.m07 <= 0" >0</td>
-        <td *ngIf="listSaldos.m08 > 0" >{{listSaldos.m07}}</td>
-        <td *ngIf="listSaldos.m08 <= 0" >0</td>
-        <td *ngIf="listSaldos.m09 > 0" >{{listSaldos.m08}}</td>
-        <td *ngIf="listSaldos.m09 <= 0" >0</td>
-        <td *ngIf="listSaldos.m10 > 0" >{{listSaldos.m09}}</td>
-        <td *ngIf="listSaldos.m10 <= 0" >0</td>
-        <td *ngIf="listSaldos.m11 > 0" >{{listSaldos.m10}}</td>
-        <td *ngIf="listSaldos.m11 <= 0" >0</td>
-        <td *ngIf="listSaldos.m12 > 0" >{{listSaldos.m11}}</td>
-        <td *ngIf="listSaldos.m12 <= 0" >0</td>
+        <td class="primerCol">Saldo Anterior</td>
+        <td *ngIf="listSaldos.m01 != 0" >{{listSaldos.m13}}</td>
+        <td *ngIf="listSaldos.m01 == 0" >0</td>
+        <td *ngIf="listSaldos.m02 != 0" >{{listSaldosAnt.m02}}</td>
+        <td *ngIf="listSaldos.m02 == 0" >0</td>
+        <td *ngIf="listSaldos.m03 != 0" >{{listSaldosAnt.m03}}</td>
+        <td *ngIf="listSaldos.m03 == 0" >0</td>
+        <td *ngIf="listSaldos.m04 != 0" >{{listSaldosAnt.m04}}</td>
+        <td *ngIf="listSaldos.m04 == 0" >0</td>
+        <td *ngIf="listSaldos.m05 != 0" >{{listSaldosAnt.m05}}</td>
+        <td *ngIf="listSaldos.m05 == 0" >0</td>
+        <td *ngIf="listSaldos.m06 != 0" >{{listSaldosAnt.m06}}</td>
+        <td *ngIf="listSaldos.m06 == 0" >0</td>
+        <td *ngIf="listSaldos.m07 != 0" >{{listSaldosAnt.m07}}</td>
+        <td *ngIf="listSaldos.m07 == 0" >0</td>
+        <td *ngIf="listSaldos.m08 != 0" >{{listSaldosAnt.m08}}</td>
+        <td *ngIf="listSaldos.m08 == 0" >0</td>
+        <td *ngIf="listSaldos.m09 != 0" >{{listSaldosAnt.m09}}</td>
+        <td *ngIf="listSaldos.m09 == 0" >0</td>
+        <td *ngIf="listSaldos.m10 != 0" >{{listSaldosAnt.m10}}</td>
+        <td *ngIf="listSaldos.m10 == 0" >0</td>
+        <td *ngIf="listSaldos.m11 != 0" >{{listSaldosAnt.m11}}</td>
+        <td *ngIf="listSaldos.m11 == 0" >0</td>
+        <td *ngIf="listSaldos.m12 != 0" >{{listSaldosAnt.m12}}</td>
+        <td *ngIf="listSaldos.m12 == 0" >0</td>
       </tr>
       <tr ng-cloak class="data-row fade-in color-total">
-        <td>Total</td>
-        <td *ngIf="listSaldos.m01 > 0" >{{listSaldos.m01 + listSaldos.m13}}</td>
-        <td *ngIf="listSaldos.m01 <= 0" >0</td>
+        <td class="primerCol">Total</td>
+        <td *ngIf="listSaldos.m01 != 0" >{{listSaldos.m01 + listSaldosAnt.m01}}</td>
+        <td *ngIf="listSaldos.m01 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m02 > 0">{{listSaldos.m02 + listSaldos.m01}}</td>
-        <td *ngIf="listSaldos.m02 <= 0" >0</td>
+        <td *ngIf="listSaldos.m02 != 0" >{{listSaldos.m02 + listSaldosAnt.m02}}</td>
+        <td *ngIf="listSaldos.m02 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m03 > 0" >{{listSaldos.m03 + listSaldos.m02}}</td>
-        <td *ngIf="listSaldos.m03 <= 0" >0</td>
+        <td *ngIf="listSaldos.m03 != 0" >{{listSaldos.m03 + listSaldosAnt.m03}}</td>
+        <td *ngIf="listSaldos.m03 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m04 > 0" >{{listSaldos.m04 + listSaldos.m03}}</td>
-        <td *ngIf="listSaldos.m04 <= 0" >0</td>
+        <td *ngIf="listSaldos.m04 != 0" >{{listSaldos.m04 + listSaldosAnt.m04}}</td>
+        <td *ngIf="listSaldos.m04 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m05 > 0" >{{listSaldos.m05 + listSaldos.m04}}</td>
-        <td *ngIf="listSaldos.m05 <= 0" >0</td>
+        <td *ngIf="listSaldos.m05 != 0" >{{listSaldos.m05 + listSaldosAnt.m05}}</td>
+        <td *ngIf="listSaldos.m05 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m06 > 0" >{{listSaldos.m06 + listSaldos.m05}}</td>
-        <td *ngIf="listSaldos.m06 <= 0" >0</td>
+        <td *ngIf="listSaldos.m06 != 0" >{{listSaldos.m06 + listSaldosAnt.m06}}</td>
+        <td *ngIf="listSaldos.m06 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m07 > 0" >{{listSaldos.m07 + listSaldos.m06}}</td>
-        <td *ngIf="listSaldos.m07 <= 0" >0</td>
+        <td *ngIf="listSaldos.m07 != 0" >{{listSaldos.m07 + listSaldosAnt.m07}}</td>
+        <td *ngIf="listSaldos.m07 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m08 > 0" >{{listSaldos.m08 + listSaldos.m07}}</td>
-        <td *ngIf="listSaldos.m08 <= 0" >0</td>
+        <td *ngIf="listSaldos.m08 != 0" >{{listSaldos.m08 + listSaldosAnt.m08}}</td>
+        <td *ngIf="listSaldos.m08 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m09 > 0" >{{listSaldos.m09 + listSaldos.m08}}</td>
-        <td *ngIf="listSaldos.m09 <= 0" >0</td>
+        <td *ngIf="listSaldos.m09 != 0" >{{listSaldos.m09 + listSaldosAnt.m09}}</td>
+        <td *ngIf="listSaldos.m09 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m10 > 0" >{{listSaldos.m10 + listSaldos.m09}}</td>
-        <td *ngIf="listSaldos.m10 <= 0" >0</td>
+        <td *ngIf="listSaldos.m10 != 0" >{{listSaldos.m10 + listSaldosAnt.m10}}</td>
+        <td *ngIf="listSaldos.m10 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m11 > 0" >{{listSaldos.m11 + listSaldos.m10}}</td>
-        <td *ngIf="listSaldos.m11 <= 0" >0</td>
+        <td *ngIf="listSaldos.m11 != 0" >{{listSaldos.m11 + listSaldosAnt.m11}}</td>
+        <td *ngIf="listSaldos.m11 == 0" >0</td>
 
-        <td *ngIf="listSaldos.m12 > 0" >{{listSaldos.m12 + listSaldos.m11}}</td>
-        <td *ngIf="listSaldos.m12 <= 0" >0</td>
+        <td *ngIf="listSaldos.m12 != 0" >{{listSaldos.m12 + listSaldosAnt.m12}}</td>
+        <td *ngIf="listSaldos.m12 == 0" >0</td>
 
       </tr>
     </tbody>

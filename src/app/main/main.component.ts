@@ -24,6 +24,7 @@ export class MainComponent implements OnInit {
   public meses = new Array();
   public saldos = new Array();
   public listSaldos = new Array();
+  public listSaldosAnt = new Array();
   public saldoLength: number;
 
   public diarioLength: number;
@@ -54,6 +55,7 @@ export class MainComponent implements OnInit {
     await this.refactorList();
     await this.getSaldo();
     await this.generarListaSaldos();
+    await this.getTotalDisponible();
   }
 
   checkComparacion(){
@@ -65,14 +67,18 @@ export class MainComponent implements OnInit {
 
     if (saldo == saldoReal){
       this.compara = true;
-      (<HTMLInputElement>document.getElementById('saldoError')).style.visibility="hidden";
+      (<HTMLInputElement>document.getElementById('saldoError')).style.visibility="visible";
+      (<HTMLInputElement>document.getElementById('saldoError')).style.color="black";
+      this.mensaje = "La comparación fue exitosa";
     } else {
       this.compara = false;
       if (saldo > saldoReal) {
         (<HTMLInputElement>document.getElementById('saldoError')).style.visibility="visible";
+        (<HTMLInputElement>document.getElementById('saldoError')).style.color="red";
         this.mensaje = "El saldo disponible es mayor al saldo real";
       } else {
         (<HTMLInputElement>document.getElementById('saldoError')).style.visibility="visible";
+        (<HTMLInputElement>document.getElementById('saldoError')).style.color="red";
         this.mensaje = "El saldo real es mayor al saldo disponible";
       }
     }
@@ -92,35 +98,61 @@ export class MainComponent implements OnInit {
 
   setSaldo() {
     let me = this;
-    let personaActualMes = String(this.persona[2]);
     let mes = "";
     let mesGuardar = "";
-    let personaActualMesInt = +personaActualMes;
 
-    if (personaActualMesInt < 10) {
-      mesGuardar = '0'+personaActualMes;
-    } else {
-      mesGuardar = personaActualMes;
-    }    
-    mes = 'm'+mesGuardar;
-    let ingresoSuma = 0;
-    let gastoSuma = 0;
-    let inversionSuma = 0;
-    gastoSuma = me.resumenTotalG[mes];    
-    ingresoSuma = me.resumenTotalI[mes];   
-    inversionSuma = me.resumenTotalV[mes];
-    me.total = ingresoSuma + inversionSuma - gastoSuma;
+    for (var i = 1; i <= 12; i++) {      
+      if (i < 10) {
+        mesGuardar = '0'+i;
+      } else {
+        mesGuardar = String(i);
+      }    
+      mes = 'm'+mesGuardar;
+      let ingresoSuma = 0;
+      let gastoSuma = 0;
+      let inversionSuma = 0;
+      gastoSuma = me.resumenTotalG[mes];    
+      ingresoSuma = me.resumenTotalI[mes];   
+      inversionSuma = me.resumenTotalV[mes];
+      me.total = ingresoSuma + inversionSuma - gastoSuma;
 
-    var mesAnno = mesGuardar + '/' + String(this.persona[4]);
+      var mesAnno = mesGuardar + '/' + String(this.persona[4]);
+      let saldoActual = me.saldos.find(sal => sal['FECHA'] === mesAnno);
+      let estadoSaldo = this.getSafe(() => saldoActual);
+      if (estadoSaldo == undefined) {
+        let personaActualID = this.persona[0];
+        me.ipc.send("insertSaldo", personaActualID, mesAnno, me.total);
+      } else {
+        me.ipc.send("updateSaldo", saldoActual['ID'], me.total);
+      }
+    }
+
+    me.total = 0;
+    let personaActualAnnoPasado = String(this.persona[4] -1);
+    var mes12Anno = '12/' + personaActualAnnoPasado;
+    var mes11Anno = '11/' + personaActualAnnoPasado;
+    var mesAnno = '13/' + String(this.persona[4]);
+    let saldo12AnnoPasado = me.saldos.find(sal => sal['FECHA'] === mes12Anno);
+    let saldo11AnnoPasado = me.saldos.find(sal => sal['FECHA'] === mes11Anno);
     let saldoActual = me.saldos.find(sal => sal['FECHA'] === mesAnno);
+    let estado12Saldo = this.getSafe(() => saldo12AnnoPasado);
+    let estado11Saldo = this.getSafe(() => saldo11AnnoPasado);
     let estadoSaldo = this.getSafe(() => saldoActual);
-    if (estadoSaldo == undefined) {
+
+    if (estado12Saldo != undefined) {     
+      me.total = saldo12AnnoPasado['SALDO'];
+    }
+
+    if (estado11Saldo != undefined) {    
+      me.total = me.total + saldo11AnnoPasado['SALDO'];
+    }
+
+    if (estadoSaldo == undefined){
       let personaActualID = this.persona[0];
       me.ipc.send("insertSaldo", personaActualID, mesAnno, me.total);
     } else {
       me.ipc.send("updateSaldo", saldoActual['ID'], me.total);
     }
-
   }
 
   getAnnoValido(fecha):boolean {
@@ -136,15 +168,6 @@ export class MainComponent implements OnInit {
     this.setSaldo();
     this.getSaldo();
     let me = this;
-    let personaActualAnnoPasado = String(this.persona[4] -1);
-    var mesAnno = '12/' + personaActualAnnoPasado;
-    let saldoAnnoPasado = me.saldos.find(sal => sal['FECHA'] === mesAnno);
-    let estadoSaldo = this.getSafe(() => saldoAnnoPasado);
-    if (estadoSaldo == undefined) {
-      me.listSaldos['m13'] = 0;
-    } else {      
-      me.listSaldos['m13'] = saldoAnnoPasado['SALDO'];
-    }
     
     for (var i = 0; i < me.saldoLength; i++) {
       let fecha = me.saldos[i]['FECHA']
@@ -154,55 +177,50 @@ export class MainComponent implements OnInit {
       if (valido) {
         let mesSal = splitted[0];
         let mes = 'm'+mesSal;
-        me.listSaldos[mes] = me.saldos[i]['SALDO'];
+        me.listSaldos[mes] = me.saldos[i]['SALDO'];                 
       }
+    }
+
+    for (var i = 1; i < 13; i++) {
+      if (i > 2) {
+        let mesAct = "";
+        let mesAnt = "";
+        if (i <= 10) {
+          mesAct = 'm0'+i;
+          if (i == 10) {
+            mesAnt = 'm09';
+          } else {
+            mesAnt = 'm0'+ String(i-1);
+          }
+        } else {
+          mesAct = 'm'+i;
+          mesAnt = 'm'+ String(i-1);
+        } 
+        me.listSaldosAnt[mesAct] = me.listSaldosAnt[mesAnt] + me.listSaldos[mesAnt];
+      } else {
+        if (i == 2) {
+          me.listSaldosAnt['m02'] = me.listSaldos['m13'] + me.listSaldos['m01'];
+        } else {
+          me.listSaldosAnt['m01'] = me.listSaldos['m13'];
+        }
+        
+      }  
     }
   }
 
   getTotalDisponible():string {
     let me = this;
     let personaActualMes = String(this.persona[2]);
-    let mes = "";
     let mesActual = "";
-    let mesAnterior = "";
-    let saldoActual  = 0;
-    let saldoAnterior = 0;
-    let annoAnterior = "";
     let personaActualMesInt = +personaActualMes;
 
     if (personaActualMesInt < 10) {
-      mesActual = '0'+personaActualMes;
+      mesActual = 'm0'+personaActualMes;
     } else {
-      mesActual = personaActualMes;
-    }    
-    if (personaActualMesInt == 1) {
-      mesAnterior = '12';
-      annoAnterior = String(this.persona[4] -1);
-    } else {
-      let mesAnteriorInt = personaActualMesInt - 1;
-      annoAnterior = String(this.persona[4]);
-      if (personaActualMesInt < 10) {
-        mesAnterior = '0'+mesAnteriorInt;
-      } else {
-        mesAnterior = String(mesAnteriorInt);
-      }
-    }    
+      mesActual = 'm'+personaActualMes;
+    }       
 
-    var mesAnnoActual = mesActual + '/' + String(this.persona[4]);
-    let estadoSaldoAux = me.saldos.find(sal => sal['FECHA'] === mesAnnoActual);
-    let estadoSaldo = this.getSafe(() => estadoSaldoAux);
-    if (estadoSaldo != undefined) {      
-      saldoActual = estadoSaldoAux['SALDO'];
-    }
-
-    var mesAnnoAnterior = mesAnterior + '/' + annoAnterior;
-    estadoSaldoAux = me.saldos.find(sal => sal['FECHA'] === mesAnnoAnterior);
-    estadoSaldo = this.getSafe(() => estadoSaldoAux);
-    if (estadoSaldo != undefined) {      
-      saldoAnterior = estadoSaldoAux['SALDO'];
-    }
-
-    me.sumaFinal = saldoActual + saldoAnterior;
+    me.sumaFinal = me.listSaldos[mesActual] + me.listSaldosAnt[mesActual];
     return String(me.sumaFinal);
 
   }

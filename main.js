@@ -312,6 +312,30 @@ ipcMain.on('updateDiario', (event, id, fecha, importe, grupo, detalle) => {
   })
 });
 
+ipcMain.on("searchDiarioGrupo", (event, arg, grupo) => {
+  let result = knex('Diario').where('ID_PERSONA', arg).andWhere('ID_CATEGORIA', grupo)
+  result.then(function (rows) {
+    //mainWindow.webContents.send("resultSentUnDiario", rows);
+    event.returnValue = rows;
+  })
+});
+
+ipcMain.on("searchDiarioDetalle", (event, arg, detalle) => {
+  let result = knex('Diario').where('ID_PERSONA', arg).andWhere('DETALLE', 'like', '%'+detalle+'%')
+  result.then(function (rows) {
+    //mainWindow.webContents.send("resultSentUnDiario", rows);
+    event.returnValue = rows;
+  })
+});
+
+ipcMain.on("searchDiarioGD", (event, arg, grupo, detalle) => {
+  let result = knex('Diario').where('ID_PERSONA', arg).andWhere('ID_CATEGORIA', grupo).andWhere('DETALLE', 'like', '%'+detalle+'%')
+  result.then(function (rows) {
+    //mainWindow.webContents.send("resultSentUnDiario", rows);
+    event.returnValue = rows;
+  })
+});
+
 ///////////////////////////////////////////
 
 //-- Tarjeta
@@ -338,8 +362,8 @@ function getTarjetaConsumo() {
 ipcMain.on("getUnTC", (event, id) => {
   let result = knex('TarjetaConsumo').where('ID', id)
   result.then(function (rows) {
-    mainWindow.webContents.send("resultSentUnTC", rows);
-    //event.returnValue = rows;
+    //mainWindow.webContents.send("resultSentUnTC", rows);
+    event.returnValue = rows;
   })
 });
 

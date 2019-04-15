@@ -22,7 +22,8 @@ export class TarjetasComponent implements OnInit {
 	public r2Length: number;
 	public valido: boolean;
 	public idTC: number;
-	public mensaje: string;
+	public mensaje1: string;
+	public mensaje2: string;
 
 	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -198,7 +199,7 @@ export class TarjetasComponent implements OnInit {
 		var importe = (<HTMLInputElement>document.getElementById('submitImporte')).value;
 		var cantCuota = (<HTMLInputElement>document.getElementById('submitCuotas')).value;
 		var fCuota = (<HTMLInputElement>document.querySelector('input[type="month"]')).value;
-		if ((nombreConsumo == "") || (importe == "") || (cantCuota == "") || (fCuota == "") || (+cantCuota < 1) || (+importe < 1)) {
+		if ((nombreConsumo == "") || (importe == "") || (cantCuota == "") || (fCuota == "") || (+cantCuota < 1) || (+importe < 0.1)) {
 			if (nombreConsumo == "") {
 				(<HTMLInputElement>document.getElementById('submitNombreConsumo')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('nombreConsumoError')).style.visibility="visible";
@@ -206,22 +207,22 @@ export class TarjetasComponent implements OnInit {
 			if (importe == "") {
 				(<HTMLInputElement>document.getElementById('submitImporte')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('importeError')).style.visibility="visible";
-				me.mensaje = "*Obligatorio";
+				me.mensaje1 = "*Obligatorio";
 			}
 			if ((+importe < 1) && (importe != "")) {
 				(<HTMLInputElement>document.getElementById('submitImporte')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('importeError')).style.visibility="visible";
-				me.mensaje = "Importe no puede ser 0";
+				me.mensaje1 = "Valor no puede ser 0";
 			}
 			if (cantCuota == "") {
 				(<HTMLInputElement>document.getElementById('submitCuotas')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('cuotasError')).style.visibility="visible";
-				me.mensaje = "*Obligatorio";
+				me.mensaje2 = "*Obligatorio";
 			}
 			if ((+cantCuota < 1) && (cantCuota != "")){
 				(<HTMLInputElement>document.getElementById('submitCuotas')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('cuotasError')).style.visibility="visible";
-				me.mensaje = "Cantidad de cuotas no puede ser 0";
+				me.mensaje2 = "Cantidad de cuotas no puede ser 0";
 			}
 			if (fCuota == "") {
 				(<HTMLInputElement>document.getElementById('submitMes')).style.borderColor="red"; 
@@ -307,9 +308,10 @@ export class TarjetasComponent implements OnInit {
 		let me = this;
 		me.idTC = event.target.id;
 		let idTarj = 0;
-		//let result = me.ipc.sendSync("getUnTC", me.idTC)
-		me.ipc.send("getUnTC", me.idTC)
-	    me.ipc.on("resultSentUnTC", function (evt, result) {
+		let tarj = 0;
+		let result = me.ipc.sendSync("getUnTC", me.idTC)
+		//me.ipc.send("getUnTC", me.idTC)
+	    //me.ipc.on("resultSentUnTC", function (evt, result) {
 	    	idTarj = result[0].ID_TARJETA;
 			//(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = tarj;
 	    	//(<HTMLSelectElement>document.getElementById('editTarjeta')).selectedIndex = result[0].ID_TARJETA -1;
@@ -318,8 +320,9 @@ export class TarjetasComponent implements OnInit {
 			(<HTMLInputElement>document.getElementById('editCuotas')).value = result[0].CUOTAS;
 			(<HTMLInputElement>document.getElementById('editMes')).value = result[0].F_PRI_CUOTA;
 			(<HTMLInputElement>document.querySelector('input[type="month"]')).value = result[0].F_PRI_CUOTA;
-	    });
-	    let tarj = me.listTarjeta.findIndex(tar => tar['ID'] === idTarj);
+			tarj = me.listTarjeta.findIndex(tar => tar['ID'] === idTarj);
+	    //});
+	   // let tarj = me.listTarjeta.findIndex(tar => tar['ID'] === idTarj);
 		me.tarjetaEditaNombre = me.listTarjeta[tarj]['NOMBRE'];
 		me.tarjetaEditaID = idTarj;
 		me.ref.detectChanges();
@@ -343,22 +346,22 @@ export class TarjetasComponent implements OnInit {
 			if (importe == "") {
 				(<HTMLInputElement>document.getElementById('editImporte')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('editImporteError')).style.visibility="visible";
-				me.mensaje = "*Obligatorio";
+				me.mensaje1 = "*Obligatorio";
 			}
 			if ((+importe < 1) && (importe != "")) {
 				(<HTMLInputElement>document.getElementById('editImporte')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('editImporteError')).style.visibility="visible";
-				me.mensaje = "Importe no puede ser 0";
+				me.mensaje1 = "Valor no puede ser 0";
 			}
 			if (cantCuota == "") {
 				(<HTMLInputElement>document.getElementById('editCuotas')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('editCuotasError')).style.visibility="visible";
-				me.mensaje = "*Obligatorio";
+				me.mensaje2 = "*Obligatorio";
 			}
 			if ((+cantCuota < 1) && (cantCuota != "")){
 				(<HTMLInputElement>document.getElementById('editCuotas')).style.borderColor="red"; 
 				(<HTMLInputElement>document.getElementById('editCuotasError')).style.visibility="visible";
-				me.mensaje = "Cantidad de cuotas no puede ser 0";
+				me.mensaje2 = "Cantidad de cuotas no puede ser 0";
 			}
 			if (fCuota == "") {
 				(<HTMLInputElement>document.getElementById('editMes')).style.borderColor="red"; 

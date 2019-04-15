@@ -1,4 +1,28 @@
 <div class="principal" id="principal">
+<div id="bottonHabilitaEditForm" class="busqueda">
+  <i class="material-icons button-busqueda" (click)="habilitaFormBusqueda()">search</i>  
+</div>
+<div class=busqueda-form id="formBusquedaDiario">
+  <div class=fila-tarjetas-configuracion>
+     <div class="card busqueda-diario">
+      <form id="testform" onsubmit="return false;">       
+        <div class=form-field-bus>
+          <label><strong>Categor&iacute;a:</strong></label> 
+          <select name=categoria id="buscaGrupo" required>
+            <option value="" selected>Sin Grupo</option>
+            <option *ngFor="let categoria of listCategoriaVigente" [value]="categoria.ID">{{categoria.NOMBRE}}</option>
+          </select>
+        </div> 
+        <div class=form-field-bus>
+          <label><strong>Detalle:</strong></label>
+          <input type="text" placeholder="Detalle" id="buscaDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
+        </div> 
+        <label class="button-busqueda"><i class="material-icons botton-check" (click)="getCategoriasBusqueda()">done</i></label> 
+        <label class="button-busqueda"><i class="material-icons botton-close" (click)="closeBusquedaDiario()">clear</i></label> 
+      </form>
+    </div>
+  </div>
+</div>
 <div class="titulos">
   INGRESOS
 </div>

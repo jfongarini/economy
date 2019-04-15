@@ -22,9 +22,8 @@
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.MONTO}}</td>
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.DETALLE}}</td>
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.GANANCIA}}</td>
-            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO > 0"><i class="material-icons bola-roja">fiber_manual_record</i></td>
-            <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)" *ngIf="inversionDiario.FINALIZADO < 1"><i class="material-icons bola-verde">fiber_manual_record</i></td>
-            <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="pagado($event)">cached</i></td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO > 0"><i class="material-icons bola-roja">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="pagado($event)">cached</i></td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1"><i class="material-icons bola-verde">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="pagado($event)">cached</i></td>
             <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="removeI($event)">clear</i></td>
           </tr>
         </tbody>
@@ -38,23 +37,23 @@
         <div class=form-field>
           <label><strong>Inversion:</strong></label> 
           <select name=tarjeta id="submitInversion" required>
-            <option *ngFor="let inversion of listInversionesDiario" [value]="inversion.ID">{{inversion.NOMBRE}}</option>
+            <option *ngFor="let inversion of listInversionesVigente" [value]="inversion.ID">{{inversion.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>
           <label><strong>Fecha:</strong></label>
           <input type="date" id="submitFecha" ng-pattern-restrict required />        
-          <label class="input-error" id="fechaError">*Oblig</label>
+          <label class="input-error" id="fechaError">*Obligatorio</label>
         </div>
         <div class=form-field>
           <label><strong>Monto:</strong></label>
           <input type="number" placeholder="Monto" id="submitMonto" (click)="blankInputMonto()" step=".01" required>
-          <label class="input-error" id="montoError">*Obligatorio</label> 
+          <label class="input-error" id="montoError">{{mensaje1}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Ganancia:</strong></label>
           <input type="number" placeholder="Ganancia" id="submitGanancia" (click)="blankInputGanancia()" step=".01" ng-pattern-restrict required />
-          <label class="input-error" id="gananciaError">*Obligatorio</label>
+          <label class="input-error" id="gananciaError">{{mensaje2}}</label>
         </div>
         <div class=form-field>
           <label><strong>Detalle:</strong></label>
@@ -74,28 +73,28 @@
         <div class=form-field>
           <label><strong>Inversion:</strong></label> 
           <select name=tarjeta id="editInversion" required>
-            <option *ngFor="let inversion of listInversionesDiario" [value]="inversion.ID">{{inversion.NOMBRE}}</option>
+            <option value="" disabled selected>{{inversionEditaNombre}}</option>
+            <option *ngFor="let inversion of listInversionesVigente" [value]="inversion.ID">{{inversion.NOMBRE}}</option>
           </select>
         </div> 
         <div class=form-field>
           <label><strong>Fecha:</strong></label>
           <input type="date" id="editFecha" ng-pattern-restrict required />        
-          <label class="input-error" id="fechaError">*Oblig</label>
+          <label class="input-error" id="fechaEditError">*Obligatorio</label>
         </div>
         <div class=form-field>
           <label><strong>Monto:</strong></label>
           <input type="number" placeholder="Monto" id="editMonto" (click)="blankInputMonto()" step=".01" required>
-          <label class="input-error" id="montoError">*Obligatorio</label> 
+          <label class="input-error" id="montoEditError">{{mensaje1}}</label> 
         </div>
         <div class=form-field>
           <label><strong>Ganancia:</strong></label>
           <input type="number" placeholder="Ganancia" id="editGanancia" (click)="blankInputGanancia()" step=".01" ng-pattern-restrict required />
-          <label class="input-error" id="gananciaError">*Obligatorio</label>
+          <label class="input-error" id="gananciaEditError">{{mensaje2}}</label>
         </div>
         <div class=form-field>
           <label><strong>Detalle:</strong></label>
           <input type="text" placeholder="Detalle" id="editDetalle" maxlength="40" pattern="^[^\s].*([A-zÀ-ž\s]){1,40}" ng-pattern-restrict required>
-          <label class="input-error" id="detalleError">*Obligatorio</label> 
         </div>
         <label class="button-main"><i class="material-icons botton-check" (click)="updateI()">done</i></label> 
         <label class="button-main"><i class="material-icons botton-close" (click)="closeInsertI()">clear</i></label> 

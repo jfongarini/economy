@@ -640,7 +640,23 @@ div .bb {
 
 }
 
+.segCol{
+  width: 50px !important;
+}
+
+.primerCol{
+  width: 100px !important;
+}
+
+
 .delete{
+    text-align: right;
+    padding-right: 8px;
+    width: 30px;
+    padding-left: 0px;
+}
+
+.cambio{
     text-align: right;
     padding-right: 8px;
     width: 30px;
@@ -727,6 +743,15 @@ tr:hover i{
 }
 
 .diario-add{
+  user-select: none;
+  font-size: 13px;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  display: none;
+}
+
+.busqueda-add{
   user-select: none;
   font-size: 13px;
   bottom: 0;
@@ -869,8 +894,8 @@ right: 40px;
 
 .foot-button {
   cursor: pointer;
-  margin: 5px;
-  padding: 15px;
+/*  margin: 5px;
+  padding: 15px;*/
   /*background-color: #e27c60;*/
   display: inline-block;
 }
@@ -1244,4 +1269,34 @@ display: initial;
 
 .posfixed{
   position: fixed;
+}
+
+
+
+.busqueda{
+    margin-left: 210px;
+    margin-top: 5px;
+    float: left;
+}
+
+.busqueda-form {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin-left: 250px;
+    display: none;
+}
+
+.busqueda-diario {
+    width: 440px;
+    padding: 20px;
+}
+
+.button-busqueda {
+    cursor: pointer;
+}
+
+.form-field-bus {
+    padding-right: 5px;
+    font-size: 13px;
+    float: left;
 }

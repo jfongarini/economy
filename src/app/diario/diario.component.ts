@@ -21,6 +21,8 @@ export class DiarioComponent implements OnInit {
 	public totalGasto: number;
 	public idDiario: number;
 	public mensaje: string;
+	public listBusqueda: Array<string>;
+	public esBusqueda: boolean;
 
 	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -93,33 +95,35 @@ export class DiarioComponent implements OnInit {
 		let idCat = 0;
 		let fechaValida = false;
 		let personaActualID = this.persona[0];		
-//	    me.ipc.send("getDiario", personaActualID)
-	    let result = me.ipc.sendSync("getDiario", personaActualID);
-//	    me.ipc.on("resultSentDiario", function (evt, result) {
-			me.listDiarioG = [];
-			me.listDiarioI = [];
-			me.totalIngreso = 0;
-			me.totalGasto = 0;
-			for (var i = 0; i < result.length; i++) {
-				sendFecha = result[i].FECHA;
-				fechaValida = me.getFecha(sendFecha);
-				if (fechaValida) {
-					idCat = result[i].ID_CATEGORIA;
-					let categoria = me.listCategoria.find(cate => cate['ID'] === idCat);
-					giCat = categoria['GI'];
-					result[i].dia = me.diaDiario; 
-					result[i].nombreCategoria = categoria['NOMBRE'];
-					if (giCat == 'G') {
-						me.listDiarioG.push(result[i]);
-						me.totalGasto = me.totalGasto + result[i].MONTO;
-					} else {
-						me.listDiarioI.push(result[i]);
-						me.totalIngreso = me.totalIngreso + result[i].MONTO;
-					}
-				}		
-			}
-			me.ref.detectChanges()
-//	    });
+		let result = [];
+		if (me.esBusqueda == true) {
+			result = me.listBusqueda;
+		} else {
+			result = me.ipc.sendSync("getDiario", personaActualID);
+		}
+		me.listDiarioG = [];
+		me.listDiarioI = [];
+		me.totalIngreso = 0;
+		me.totalGasto = 0;
+		for (var i = 0; i < result.length; i++) {
+			sendFecha = result[i].FECHA;
+			fechaValida = me.getFecha(sendFecha);
+			if (fechaValida) {
+				idCat = result[i].ID_CATEGORIA;
+				let categoria = me.listCategoria.find(cate => cate['ID'] === idCat);
+				giCat = categoria['GI'];
+				result[i].dia = me.diaDiario; 
+				result[i].nombreCategoria = categoria['NOMBRE'];
+				if (giCat == 'G') {
+					me.listDiarioG.push(result[i]);
+					me.totalGasto = me.totalGasto + result[i].MONTO;
+				} else {
+					me.listDiarioI.push(result[i]);
+					me.totalIngreso = me.totalIngreso + result[i].MONTO;
+				}
+			}		
+		}
+		me.ref.detectChanges()
 	}
 
 	getTotalIngreso():string {		
@@ -133,6 +137,7 @@ export class DiarioComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.esBusqueda = false;
 		this.getCategorias();
 		this.getCategoriasVigentes();
 		this.getDiario();
@@ -273,6 +278,48 @@ export class DiarioComponent implements OnInit {
 		let me = this;
 	    me.ipc.send("removeDiario", id);
 	    this.getDiario();
+	}
+
+	//busqueda
+
+	public habilitaFormBusqueda() {
+		(<HTMLInputElement>document.getElementById('formBusquedaDiario')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaEditForm')).style.display = "none";
+	}
+
+	public closeBusquedaDiario() {
+		this.ngOnInit();
+		(<HTMLInputElement>document.getElementById('formBusquedaDiario')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaEditForm')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('buscaDetalle')).value = "";
+		(<HTMLInputElement>document.getElementById('buscaGrupo')).value = "";
+	}
+
+	getCategoriasBusqueda(){
+		let me = this;
+		let personaActualID = this.persona[0];
+		var grupo = (<HTMLInputElement>document.getElementById('buscaGrupo')).value;
+		var detalle = (<HTMLInputElement>document.getElementById('buscaDetalle')).value;
+		me.esBusqueda = true;
+
+		if ((grupo != '') && (detalle != "")) {
+			me.listBusqueda = me.ipc.sendSync("searchDiarioGD", personaActualID, grupo, detalle);
+			this.getDiario();
+			me.ref.detectChanges()
+		} else {
+			if ((grupo != '') || (detalle != "")) {
+				if (grupo != '') {
+					me.listBusqueda = me.ipc.sendSync("searchDiarioGrupo", personaActualID, grupo);
+				}
+				if (detalle != '') {
+					me.listBusqueda = me.ipc.sendSync("searchDiarioDetalle", personaActualID, detalle);
+				}
+				this.getDiario();
+				me.listBusqueda = [];
+				me.esBusqueda = false;
+				me.ref.detectChanges()
+			}
+		}
 	}
 
 }
