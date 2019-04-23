@@ -28,7 +28,7 @@
             <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1"><i class="material-icons bola-verde">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="noPagado($event)">cached</i></td>
 
              <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO > 0">-</td>
-            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1">{{getHoy()}}</td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1">{{me.fechaP}}</td>
 
             <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="removeI($event)">clear</i></td>
           </tr>
