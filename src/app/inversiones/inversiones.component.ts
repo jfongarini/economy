@@ -24,6 +24,13 @@ export class InversionesComponent implements OnInit {
 	public mensaje1: string;
 	public mensaje2: string;
 
+	public cierreFechaApertura: string;
+	public cierreMonto: string;
+	public cierreGanancia: string;
+	public cierreTotal: string;
+	public cierreDetalle: string;
+	public fechaP: string;
+
   	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
   	ngOnInit() {
@@ -181,6 +188,11 @@ export class InversionesComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('gananciaEditError')).style.visibility="hidden";
 	}
 
+	public blankPagado() {
+		(<HTMLInputElement>document.getElementById('pagadoFecha')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('fechaPagado')).style.visibility="hidden";
+	}
+
 	public habilitaFormInsert() {
 		(<HTMLInputElement>document.getElementById('formNuevoI')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
@@ -193,8 +205,10 @@ export class InversionesComponent implements OnInit {
 		this.blankEditFecha();
 		this.blankEditMonto();
 		this.blankEditGanancia();
+		this.blankPagado();
 		(<HTMLInputElement>document.getElementById('formNuevoI')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('formEditI')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('formPagado')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "block";
 	}
 
@@ -276,17 +290,51 @@ export class InversionesComponent implements OnInit {
   		this.getInversionDiarioFinal();
 	}
 
+  	public habilitaPagado(event) {
+		(<HTMLInputElement>document.getElementById('formPagado')).style.display = "block";
+		let me = this;
+		me.idInversionesDiario = event.target.id;
+		let result = me.ipc.sendSync("getUnInversionDiario", me.idInversionesDiario);
+    	let idInv = result[0].ID_INVERSION;
+		let inver = me.listInversiones.findIndex(inv => inv['ID'] === idInv);
+		me.inversionEditaNombre = me.listInversiones[inver]['NOMBRE'];
+		me.inversionEditaID = idInv;
+
+		me.cierreFechaApertura = result[0].FECHA;
+		me.cierreMonto = result[0].MONTO;
+		me.cierreGanancia = result[0].GANANCIA;
+		me.cierreTotal = String(+result[0].MONTO + +result[0].GANANCIA);
+		me.cierreDetalle = result[0].DETALLE;
+		me.ref.detectChanges();
+	}
+
 	public pagado(event) {
 		let me = this;
-		var id = event.target.id;
-		let result = me.ipc.sendSync("getUnEstado", id);
-		let estado = result[0].FINALIZADO;
-		let fin = 0;
-		if (estado == 0) {
-			fin = 1;
-		}
-		me.ipc.send("setUnEstado", id, fin);
+		
+		me.fechaP = (<HTMLInputElement>document.getElementById('pagadoFecha')).value;
+
+		if (me.fechaP == "") {
+			if (me.fechaP == "") {
+				(<HTMLInputElement>document.getElementById('editFecha')).style.borderColor="red"; 
+				(<HTMLInputElement>document.getElementById('fechaEditError')).style.visibility="visible";
+			}			
+		} else {
+			(<HTMLInputElement>document.getElementById('pagadoFecha')).value = "";
+			var id = event.target.id;			
+			me.ipc.send("setUnEstado", id, me.fechaP);
+			me.closeInsertI();
+		}	    
 	    this.getInversionDiario();
   		this.getInversionDiarioFinal();
+	}
+
+	public noPagado(event) {
+		let me = this;
+		var id = event.target.id;
+		let fin = "0";
+		me.ipc.send("setUnEstado", id, fin);
+	    this.getInversionDiario();
+		this.getInversionDiarioFinal();
   	}
+
 }

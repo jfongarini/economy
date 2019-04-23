@@ -426,7 +426,7 @@ export class GraficoComponent implements OnInit {
 		var ctx1 = canvas1.getContext('2d');
 
 
-		var tipos = 'line';                         
+		var tipos = 'bar';                         
 		var options = { scales: { yAxes: [{ ticks: { beginAtZero: true} }] } }; 
 
 		this.getArregloColumnaBar(arregloColumnaBar1);
@@ -494,7 +494,7 @@ export class GraficoComponent implements OnInit {
  		var canvas2 = (<HTMLCanvasElement>document.getElementById('inversiones'))
 		var ctx2 = canvas2.getContext('2d');
 
-		var tipos = 'bar';                         
+		var tipos = 'line';                         
 		var options = { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } }; 
 
 		this.getArregloColumnaBar(arregloColumnaBar2);
