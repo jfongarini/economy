@@ -214,6 +214,7 @@ export class InversionesComponent implements OnInit {
 
 	public habilitaFormEdit(event) {
 		(<HTMLInputElement>document.getElementById('formEditI')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('formPagado')).style.display = "none";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
 		let me = this;
 		me.idInversionesDiario = event.target.id;
@@ -292,6 +293,9 @@ export class InversionesComponent implements OnInit {
 
   	public habilitaPagado(event) {
 		(<HTMLInputElement>document.getElementById('formPagado')).style.display = "block";
+		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('formNuevoI')).style.display = "none";
+		(<HTMLInputElement>document.getElementById('formEditI')).style.display = "none";
 		let me = this;
 		me.idInversionesDiario = event.target.id;
 		let result = me.ipc.sendSync("getUnInversionDiario", me.idInversionesDiario);
@@ -314,14 +318,11 @@ export class InversionesComponent implements OnInit {
 		me.fechaP = (<HTMLInputElement>document.getElementById('pagadoFecha')).value;
 
 		if (me.fechaP == "") {
-			if (me.fechaP == "") {
-				(<HTMLInputElement>document.getElementById('editFecha')).style.borderColor="red"; 
-				(<HTMLInputElement>document.getElementById('fechaEditError')).style.visibility="visible";
-			}			
+			(<HTMLInputElement>document.getElementById('pagadoFecha')).style.borderColor="red"; 
+			(<HTMLInputElement>document.getElementById('fechaPagado')).style.visibility="visible";		
 		} else {
-			(<HTMLInputElement>document.getElementById('pagadoFecha')).value = "";
-			var id = event.target.id;			
-			me.ipc.send("setUnEstado", id, me.fechaP);
+			(<HTMLInputElement>document.getElementById('pagadoFecha')).value = "";			
+			me.ipc.send("setUnEstado", me.idInversionesDiario, me.fechaP);
 			me.closeInsertI();
 		}	    
 	    this.getInversionDiario();
