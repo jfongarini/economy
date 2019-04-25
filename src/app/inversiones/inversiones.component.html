@@ -24,11 +24,11 @@
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.DETALLE}}</td>
             <td data-id={{inversionDiario.ID}} (click)="habilitaFormEdit($event)">{{inversionDiario.GANANCIA}}</td>
 
-            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO > 0"><i class="material-icons bola-roja">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="noPagado($event)">cached</i></td>
-            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1"><i class="material-icons bola-verde">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="habilitaPagado($event)">cached</i></td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO != '0'"><i class="material-icons bola-roja">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="noPagado($event)">cached</i></td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO == '0'"><i class="material-icons bola-verde">fiber_manual_record</i><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="habilitaPagado($event)">cached</i></td>
 
-             <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO > 0">-</td>
-            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO < 1">{{fechaP}}</td>
+             <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO == '0'">-</td>
+            <td data-id={{inversionDiario.ID}} *ngIf="inversionDiario.FINALIZADO != '0'">{{inversionDiario.FINALIZADO}}</td>
 
             <td class="delete" ><i class="material-icons tachoi" data-id={{inversionDiario.ID}} (click)="removeI($event)">clear</i></td>
           </tr>
@@ -48,7 +48,7 @@
         </div> 
         <div class=form-field>
           <label><strong>Fecha:</strong></label>
-          <input type="date" id="submitFecha" ng-pattern-restrict required />        
+          <input type="date" id="submitFecha" (click)="blankInputFecha()" ng-pattern-restrict required />        
           <label class="input-error" id="fechaError">*Obligatorio</label>
         </div>
         <div class=form-field>
@@ -85,7 +85,7 @@
         </div> 
         <div class=form-field>
           <label><strong>Fecha:</strong></label>
-          <input type="date" id="editFecha" ng-pattern-restrict required />        
+          <input type="date" id="editFecha" (click)="blankEditFecha()" ng-pattern-restrict required />        
           <label class="input-error" id="fechaEditError">*Obligatorio</label>
         </div>
         <div class=form-field>
@@ -130,7 +130,7 @@
         </div>
         <div class=form-field>
           <label><strong>Fecha Cierre:</strong></label>
-          <input type="date" id="pagadoFecha" ng-pattern-restrict required />        
+          <input type="date" id="pagadoFecha" (click)="blankPagadoFecha()" ng-pattern-restrict required />        
           <label class="input-error" id="fechaPagado">*Obligatorio</label>
         </div>
         <label class="button-main"><i class="material-icons botton-check" (click)="pagado()">done</i></label> 

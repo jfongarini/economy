@@ -29,7 +29,6 @@ export class InversionesComponent implements OnInit {
 	public cierreGanancia: string;
 	public cierreTotal: string;
 	public cierreDetalle: string;
-	public fechaP: string;
 
   	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -193,6 +192,11 @@ export class InversionesComponent implements OnInit {
 		(<HTMLInputElement>document.getElementById('fechaPagado')).style.visibility="hidden";
 	}
 
+	public blankPagadoFecha() {
+		(<HTMLInputElement>document.getElementById('pagadoFecha')).style.borderColor=""; 
+		(<HTMLInputElement>document.getElementById('fechaPagado')).style.visibility="hidden";
+	}
+
 	public habilitaFormInsert() {
 		(<HTMLInputElement>document.getElementById('formNuevoI')).style.display = "block";
 		(<HTMLInputElement>document.getElementById('bottonHabilitaForm')).style.display = "none";
@@ -315,14 +319,14 @@ export class InversionesComponent implements OnInit {
 	public pagado(event) {
 		let me = this;
 		
-		me.fechaP = (<HTMLInputElement>document.getElementById('pagadoFecha')).value;
+		let fechaP = (<HTMLInputElement>document.getElementById('pagadoFecha')).value;
 
-		if (me.fechaP == "") {
+		if (fechaP == "") {
 			(<HTMLInputElement>document.getElementById('pagadoFecha')).style.borderColor="red"; 
 			(<HTMLInputElement>document.getElementById('fechaPagado')).style.visibility="visible";		
 		} else {
 			(<HTMLInputElement>document.getElementById('pagadoFecha')).value = "";			
-			me.ipc.send("setUnEstado", me.idInversionesDiario, me.fechaP);
+			me.ipc.send("setUnEstado", me.idInversionesDiario, fechaP);
 			me.closeInsertI();
 		}	    
 	    this.getInversionDiario();

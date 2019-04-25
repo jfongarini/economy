@@ -246,13 +246,32 @@ export class GraficoComponent implements OnInit {
               me.resumenV[i][mes] = 0;
             }            
             let estadoFin = me.listInversionesDiario[j]['FINALIZADO'];
-            me.resumenTotalVG[mes] = me.resumenTotalVG[mes] + +me.listInversionesDiario[j]['MONTO'];
-            if (estadoFin == 0) {
-              me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'];
-            } else {
-              me.resumenTotalVI[mes] = me.resumenTotalVI[mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
-              me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
-            }
+            me.resumenTotalVG[mes] = me.resumenTotalVG[mes] - +me.listInversionesDiario[j]['MONTO'];
+            me.resumenV[i][mes] = me.resumenV[i][mes] - +me.listInversionesDiario[j]['MONTO'];
+            if (estadoFin != 0) {
+              let sendFecha = me.listInversionesDiario[j]['FINALIZADO'];
+              let splitted = sendFecha.split("-",3);
+              let fechaAnno = splitted[0];
+              let fechaValida = me.getAnnoValidoInver(fechaAnno);
+              if (fechaValida) {
+                let mesInv = splitted[1];
+                let mes = 'm'+mesInv;
+                let estadoInv = this.getSafe(() => me.resumenV[i]);
+                if (estadoInv == undefined) {
+                  me.resumenV[i] = [];
+                }
+                let estadoNombre = this.getSafe(() => me.resumenV[i]['nombre']);
+                if (estadoNombre == undefined) {
+                  me.resumenV[i]['nombre'] = nombreInv;
+                }  
+                let estadoMes = this.getSafe(() => me.resumenV[i][mes]);
+                if (estadoMes == undefined) {
+                  me.resumenV[i][mes] = 0;
+                }
+                me.resumenTotalVI[mes] = me.resumenTotalVI[mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
+                me.resumenV[i][mes] = me.resumenV[i][mes] + +me.listInversionesDiario[j]['MONTO'] + +me.listInversionesDiario[j]['GANANCIA'];
+              }
+            }  
                        
           }
         }
@@ -330,6 +349,21 @@ export class GraficoComponent implements OnInit {
 			}
 			let mes = 'm'+k;
 			var dif = listaI[mes] - listaG[mes];
+			lista.push(dif);                
+		}
+	}
+
+	getDiferenciaTotalesInv(lista,listaI,listaG){
+		let k = ''
+		for (var i = 0; i < 12; i++) {
+			let j = i+1;
+			if (j < 10) {
+				k = '0'+j;
+			} else {
+				k = String(j);
+			}
+			let mes = 'm'+k;
+			var dif = listaI[mes] + listaG[mes];
 			lista.push(dif);                
 		}
 	}
@@ -507,7 +541,7 @@ export class GraficoComponent implements OnInit {
 			this.getTotalArregloDataBar(arregloDataBarG2,me.resumenTotalVG);
 		}
 
-		this.getDiferenciaTotales(arregloDataBarDif2,me.resumenTotalVI,me.resumenTotalVG);
+		this.getDiferenciaTotalesInv(arregloDataBarDif2,me.resumenTotalVG,me.resumenTotalVI);
 
 
 	        
