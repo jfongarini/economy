@@ -11,7 +11,7 @@ var personaLogin = 1;
 let knex = require("knex")({
   client: "sqlite3",
   connection: {
-    filename: path.join(__dirname, './db/', 'database.sqlite3')    
+    filename: path.join(__dirname, './db/', 'database1.sqlite3')    
   } ,
   "useNullAsDefault": true,
   "debug": false

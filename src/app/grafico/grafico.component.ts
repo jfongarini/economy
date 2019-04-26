@@ -42,6 +42,7 @@ export class GraficoComponent implements OnInit {
 	public color34: string;
 	public color41: string;
 	public color44: string;
+  public colorSet: Array<string>;
 
 	constructor(private ref: ChangeDetectorRef, private _appComponent: AppComponent) { }
 
@@ -442,6 +443,20 @@ export class GraficoComponent implements OnInit {
 		me.color34 = 'rgba(70,191,189,0.4)';
 		me.color41 = 'rgba(162,183,58,0.1)'; // verde
 		me.color44 = 'rgba(162,183,58,0.4)';
+    me.colorSet = [
+                    'rgba(237,187,153,0.4)',
+                    'rgba(171,235,198,0.4)',
+                    'rgba(249,231,159,0.4)',
+                    'rgba(210,180,222,0.4)',
+                    'rgba(245,183,177,0.4)',
+                    'rgba(230,176,170,0.4)',
+                    'rgba(174,214,241,0.4)',
+                    'rgba(169,223,191,0.4)',
+                    'rgba(250,215,160,0.4)',
+                    'rgba(215,189,226,0.4)',
+                    'rgba(245,203,167,0.4)',
+                    'rgba(169,204,227,0.4)'
+                  ];
 	}
 		
 
@@ -603,7 +618,7 @@ export class GraficoComponent implements OnInit {
 			labels: arregloColumnaBar3, 
 			datasets: [{ 
 				label: 'Ingresos', 
-				backgroundColor: me.color11, 
+				backgroundColor: me.colorSet, 
 				borderColor: me.color14, 
 				borderWidth: 2, 
 				hoverBackgroundColor: me.color14, 
@@ -640,7 +655,7 @@ export class GraficoComponent implements OnInit {
 			labels: arregloColumnaBar3, 
 			datasets: [{ 
 				label: 'Ingresos', 
-				backgroundColor: me.color11, 
+				backgroundColor: me.colorSet, 
 				borderColor: me.color14, 
 				borderWidth: 2, 
 				hoverBackgroundColor: me.color14, 
@@ -691,7 +706,7 @@ export class GraficoComponent implements OnInit {
 			labels: arregloColumnaBar3, 
 			datasets: [{ 
 				label: 'Ingresos', 
-				backgroundColor: me.color11, 
+				backgroundColor: me.colorSet, 
 				borderColor: me.color14, 
 				borderWidth: 2, 
 				hoverBackgroundColor: me.color14, 
@@ -742,7 +757,7 @@ export class GraficoComponent implements OnInit {
 			labels: arregloColumnaBar3, 
 			datasets: [{ 
 				label: 'Ingresos', 
-				backgroundColor: me.color11, 
+				backgroundColor: me.colorSet, 
 				borderColor: me.color14, 
 				borderWidth: 2, 
 				hoverBackgroundColor: me.color14, 
