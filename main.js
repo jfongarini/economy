@@ -11,7 +11,7 @@ var personaLogin = 1;
 let knex = require("knex")({
   client: "sqlite3",
   connection: {
-    filename: path.join(__dirname, './db/', 'database1.sqlite3')    
+    filename: path.join(__dirname, './db/', 'database.sqlite3')    
   } ,
   "useNullAsDefault": true,
   "debug": false
@@ -19,7 +19,7 @@ let knex = require("knex")({
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, webPreferences:{
+  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, icon: __dirname + '/icons/icono2.ico', webPreferences:{
         nodeIntegration: true
       } })
 
@@ -33,7 +33,7 @@ function createWindow() {
   mainWindow.once("ready-to-show", () => { mainWindow.show() })
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
   
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
