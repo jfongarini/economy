@@ -16,32 +16,14 @@
     "electron-tsc": "tsc main.ts && ng build --base-href ./index.html && electron .",
     "package": "electron-packager . firstdesk",
     "watch": "webpack --progress --config webpack.config.js",
-    "start2": "electron ."
+    "start2": "electron .",
+    "electron-package": "electron-packager ."
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~7.2.0",
-    "@angular/common": "~7.2.0",
-    "@angular/compiler": "~7.2.0",
-    "@angular/core": "~7.2.0",
-    "@angular/forms": "~7.2.0",
-    "@angular/platform-browser": "~7.2.0",
-    "@angular/platform-browser-dynamic": "~7.2.0",
-    "@angular/router": "~7.2.0",
-    "angular": "^1.7.8",
-    "angular-font-awesome": "^3.1.2",
-    "core-js": "^2.5.4",
     "electron": "^4.0.2",
-    "electron-chartjs": "^1.0.0",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
-    "knex": "^0.16.3",
-    "material-design-icons": "^3.0.1",
-    "node-gyp": "^3.8.0",
-    "rxjs": "~6.3.3",
     "sqlite3": "^4.0.6",
-    "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "knex": "^0.16.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.12.0",
@@ -70,6 +52,24 @@
     "typescript": "~3.2.2",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+        "@angular/animations": "~7.2.0",
+    "@angular/common": "~7.2.0",
+    "@angular/compiler": "~7.2.0",
+    "@angular/core": "~7.2.0",
+    "@angular/forms": "~7.2.0",
+    "@angular/platform-browser": "~7.2.0",
+    "@angular/platform-browser-dynamic": "~7.2.0",
+    "angular": "^1.7.8",
+    "angular-font-awesome": "^3.1.2",
+    "core-js": "^2.5.4",
+    "electron-chartjs": "^1.0.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "material-design-icons": "^3.0.1",
+    "node-gyp": "^3.8.0",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.8.26"
   }
 }
