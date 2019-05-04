@@ -17,7 +17,7 @@
     "package": "electron-packager . firstdesk",
     "watch": "webpack --progress --config webpack.config.js",
     "start2": "electron .",
-    "electron-package": "electron-packager ."
+    "electron-package": "electron-packager . --icon=./icons/icono3.ico"
   },
   "private": true,
   "dependencies": {

@@ -19,7 +19,7 @@ let knex = require("knex")({
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, icon: __dirname + '/icons/icono2.ico', webPreferences:{
+  mainWindow = new BrowserWindow({ width: 1000, height: 600, show: false, autoHideMenuBar: true, icon: __dirname + '/icons/icono3.ico', webPreferences:{
         nodeIntegration: true
       } })
 
